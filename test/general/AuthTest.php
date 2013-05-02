@@ -18,38 +18,43 @@
  * under the License.
  */
 
-require_once 'auth/Google_Signer.php';
+use Google\Auth\AssertionCredentials;
+use Google\Auth\PemVerifier;
+use Google\Auth\P12Signer;
+use Google\Auth\OAuth2;
+use Google\Auth\None;
 
+require_once 'auth/Signer
 class AuthTest extends BaseTest {
   const PRIVATE_KEY_FILE = "general/testdata/cert.p12";
   const PUBLIC_KEY_FILE = "general/testdata/cacert.pem";
   const USER_ID = "102102479283111695822";
 
-  /** @var Google_P12Signer  */
+  /** @var P12Signer  */
   private $signer;
 
   /** @var string */
   private $pem;
 
-  /** @var Google_PemVerifier */
+  /** @var PemVerifier */
   private $verifier;
 
   public function setUp() {
-    $this->signer = new Google_P12Signer(file_get_contents(self::PRIVATE_KEY_FILE), "notasecret");
+    $this->signer = new P12Signer(file_get_contents(self::PRIVATE_KEY_FILE), "notasecret");
     $this->pem = file_get_contents(self::PUBLIC_KEY_FILE);
-    $this->verifier = new Google_PemVerifier($this->pem);
+    $this->verifier = new PemVerifier($this->pem);
   }
 
   public function testCantOpenP12() {
     try {
-      new Google_P12Signer(file_get_contents(self::PRIVATE_KEY_FILE), "badpassword");
+      new P12Signer(file_get_contents(self::PRIVATE_KEY_FILE), "badpassword");
       $this->fail("Should have thrown");
     } catch (Google_AuthException $e) {
       $this->assertContains("mac verify failure", $e->getMessage());
     }
 
     try {
-      new Google_P12Signer(file_get_contents(self::PRIVATE_KEY_FILE) . "foo", "badpassword");
+      new P12Signer(file_get_contents(self::PRIVATE_KEY_FILE) . "foo", "badpassword");
       $this->fail("Should have thrown");
     } catch (Exception $e) {
       $this->assertContains("Unable to parse", $e->getMessage());
@@ -99,7 +104,7 @@ class AuthTest extends BaseTest {
         "iat" => time(),
         "exp" => time() + 3600));
     $certs = $this->getSignonCerts();
-    $oauth2 = new Google_OAuth2();
+    $oauth2 = new OAuth2();
     $ticket = $oauth2->verifySignedJwtWithCerts($id_token, $certs, "client_id");
     $this->assertEquals(self::USER_ID, $ticket->getUserId());
     // Check that payload and envelope got filled in.
@@ -111,7 +116,7 @@ class AuthTest extends BaseTest {
   // Checks that the id token fails to verify with the expected message.
   private function checkIdTokenFailure($id_token, $msg) {
     $certs = $this->getSignonCerts();
-    $oauth2 = new Google_OAuth2();
+    $oauth2 = new OAuth2();
     try {
       $oauth2->verifySignedJwtWithCerts($id_token, $certs, "client_id");
       $this->fail("Should have thrown for $id_token");
@@ -197,8 +202,8 @@ class AuthTest extends BaseTest {
   }
 
   public function testNoAuth() {
-    /** @var $noAuth Google_AuthNone */
-    $noAuth = new Google_AuthNone();
+    /** @var $noAuth None */
+    $noAuth = new None();
     $req = new Google_HttpRequest("http://example.com");
 
     $resp = $noAuth->sign($req);
@@ -213,7 +218,7 @@ class AuthTest extends BaseTest {
   }
 
   public function testAssertionCredentials() {
-    $assertion = new Google_AssertionCredentials('name', 'scope',
+    $assertion = new AssertionCredentials('name', 'scope',
         file_get_contents(self::PRIVATE_KEY_FILE));
 
     $token = explode(".", $assertion->generateAssertion());

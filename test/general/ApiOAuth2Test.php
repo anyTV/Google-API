@@ -18,6 +18,8 @@
  * under the License.
  */
 
+use Google\Auth\OAuth2;
+
 require_once "../src/Google_Client.php";
 require_once "BaseTest.php";
 require_once "io/Google_REST.php";
@@ -25,7 +27,7 @@ require_once "io/Google_REST.php";
 class ApiOAuth2Test extends BaseTest {
 
   public function testSign() {
-    $oauth = new Google_OAuth2();
+    $oauth = new OAuth2();
 
     $oauth->developerKey = "devKey";
     $oauth->clientId = "clientId1";
@@ -52,7 +54,7 @@ class ApiOAuth2Test extends BaseTest {
   }
 
   public function testCreateAuthUrl() {
-    $oauth = new Google_OAuth2();
+    $oauth = new OAuth2();
 
     $oauth->developerKey = "devKey";
     $oauth->clientId = "clientId1";

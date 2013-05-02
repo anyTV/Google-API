@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+use Google\Auth\AssertionCredentials;
+
 require_once '../../src/Google_Client.php';
 require_once '../../src/contrib/Google_PredictionService.php';
 
@@ -41,7 +43,7 @@ if (isset($_SESSION['token'])) {
 // Load the key in PKCS 12 format (you need to download this from the
 // Google API Console when the service account was created.
 $key = file_get_contents(KEY_FILE);
-$client->setAssertionCredentials(new Google_AssertionCredentials(
+$client->setAssertionCredentials(new AssertionCredentials(
     SERVICE_ACCOUNT_NAME,
     array('https://www.googleapis.com/auth/prediction'),
     $key)

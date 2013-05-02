@@ -84,8 +84,8 @@ class ApiClientTest extends BaseTest {
     $this->assertEquals('object', gettype($client->getIo()));
 
 
-    $client->setAuthClass('Google_AuthNone');
-    $client->setAuthClass('Google_OAuth2');
+    $client->setAuthClass('None');
+    $client->setAuthClass('OAuth2');
 
     try {
       $client->setAccessToken(null);

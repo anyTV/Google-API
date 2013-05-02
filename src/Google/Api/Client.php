@@ -63,7 +63,7 @@ class Client {
   private $authenticated = false;
 
   /** @var array $config */
-  protected $config = array();
+  protected static $config = array();
 
   public function __construct($config = array()) {
     if (! ini_get('date.timezone') && function_exists('date_default_timezone_set')) {
@@ -77,7 +77,7 @@ class Client {
     self::$auth = new $apiConfig['authClass']();
     self::$io = new $apiConfig['ioClass']();
 
-    $this->config = $apiConfig;
+    static::$config = $apiConfig;
   }
 
   /**
@@ -88,9 +88,9 @@ class Client {
       throw new Google\Exception('Cant add services after having authenticated');
     }
     $this->services[$service] = array();
-    if (isset($this->config['services'][$service])) {
+    if (isset(static::$config['services'][$service])) {
       // Merge the service descriptor with the default values
-      $this->services[$service] = array_merge($this->services[$service], $this->config['services'][$service]);
+      $this->services[$service] = array_merge($this->services[$service], static::$config['services'][$service]);
     }
   }
 
@@ -220,7 +220,7 @@ class Client {
    * @param string $applicationName
    */
   public function setApplicationName($applicationName) {
-    $this->config['application_name'] = $applicationName;
+    static::$config['application_name'] = $applicationName;
   }
 
   /**
@@ -228,7 +228,7 @@ class Client {
    * @param string $clientId
    */
   public function setClientId($clientId) {
-    $this->config['oauth2_client_id'] = $clientId;
+    static::$config['oauth2_client_id'] = $clientId;
     self::$auth->clientId = $clientId;
   }
 
@@ -244,7 +244,7 @@ class Client {
    * @param string $clientSecret
    */
   public function setClientSecret($clientSecret) {
-    $this->config['oauth2_client_secret'] = $clientSecret;
+    static::$config['oauth2_client_secret'] = $clientSecret;
     self::$auth->clientSecret = $clientSecret;
   }
 
@@ -260,7 +260,7 @@ class Client {
    * @param string $redirectUri
    */
   public function setRedirectUri($redirectUri) {
-    $this->config['oauth2_redirect_uri'] = $redirectUri;
+    static::$config['oauth2_redirect_uri'] = $redirectUri;
     self::$auth->redirectUri = $redirectUri;
   }
 
@@ -338,7 +338,7 @@ class Client {
    * @experimental
    */
   public function setUseObjects($useObjects) {
-    $this->config['use_objects'] = $useObjects;
+    static::$config['use_objects'] = $useObjects;
   }
 
   /**
@@ -374,4 +374,14 @@ class Client {
   public function getCache() {
     return static::$cache;
   }
+
+    public static function getConfig($key = null)
+    {
+        if(is_null($key)) {
+            return self::$config;
+        }
+        else {
+            return isset(self::$config[$key]) ? self::$config[$key] : null;
+        }
+    }
 }

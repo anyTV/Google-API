@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-require_once "Google_PemVerifier.php";
+namespace Google\Auth;
 
 /**
- * Verifies signatures.
+ * Signs data.
  *
  * @author Brian Eaton <beaton@google.com>
  */
-abstract class Google_Verifier {
-  /**
-   * Checks a signature, returns true if the signature is correct,
-   * false otherwise.
-   */
-  abstract public function verify($data, $signature);
+abstract class Signer
+{
+    /**
+     * Signs data, returns the signature as binary data.
+     */
+    abstract public function sign($data);
 }
