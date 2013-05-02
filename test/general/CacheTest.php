@@ -18,9 +18,11 @@
  * under the License.
  */
 
+use Google\Cache\FileCache;
+
 class CacheTest extends BaseTest {
   public function testSet() {
-    $cache = new Google_FileCache();
+    $cache = new FileCache();
     $cache->set('foo', 'bar');
     $this->assertEquals($cache->get('foo'), 'bar');
 
@@ -45,7 +47,7 @@ class CacheTest extends BaseTest {
   public function testDelete() {
     global $apiConfig;
     $apiConfig['ioFileCache_directory'] = '/tmp/google-api-php-client/tests';
-    $cache = new Google_FileCache();
+    $cache = new FileCache();
     $cache->set('foo', 'bar');
     $cache->delete('foo');
     $this->assertEquals($cache->get('foo'), false);

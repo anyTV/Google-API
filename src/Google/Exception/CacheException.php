@@ -2,4 +2,4 @@
 
 namespace Google\Exception;
 
-class CacheException extends Exception {}
+class CacheException extends \Google\Exception {}
