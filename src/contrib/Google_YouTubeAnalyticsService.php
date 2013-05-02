@@ -22,7 +22,12 @@
    *   $reports = $youtubeAnalyticsService->reports;
    *  </code>
    */
-  class Google_ReportsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ReportsServiceResource extends Resource {
 
 
     /**
@@ -69,27 +74,27 @@
  *
  * @author Google, Inc.
  */
-class Google_YouTubeAnalyticsService extends Google_Service {
+class Google_YouTubeAnalyticsService extends Service {
   public $reports;
   /**
    * Constructs the internal representation of the YouTubeAnalytics service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'youtube/analytics/v1/';
     $this->version = 'v1';
     $this->serviceName = 'youtubeAnalytics';
 
     $client->addService($this->serviceName, $this->version);
-    $this->reports = new Google_ReportsServiceResource($this, $this->serviceName, 'reports', json_decode('{"methods": {"query": {"id": "youtubeAnalytics.reports.query", "path": "reports", "httpMethod": "GET", "parameters": {"dimensions": {"type": "string", "location": "query"}, "end-date": {"type": "string", "required": true, "location": "query"}, "filters": {"type": "string", "location": "query"}, "ids": {"type": "string", "required": true, "location": "query"}, "max-results": {"type": "integer", "format": "int32", "minimum": "1", "location": "query"}, "metrics": {"type": "string", "required": true, "location": "query"}, "sort": {"type": "string", "location": "query"}, "start-date": {"type": "string", "required": true, "location": "query"}, "start-index": {"type": "integer", "format": "int32", "minimum": "1", "location": "query"}}, "response": {"$ref": "ResultTable"}, "scopes": ["https://www.googleapis.com/auth/yt-analytics-monetary.readonly", "https://www.googleapis.com/auth/yt-analytics.readonly"]}}}', true));
+    $this->reports = new Resource\ReportsResource($this, $this->serviceName, 'reports', json_decode('{"methods": {"query": {"id": "youtubeAnalytics.reports.query", "path": "reports", "httpMethod": "GET", "parameters": {"dimensions": {"type": "string", "location": "query"}, "end-date": {"type": "string", "required": true, "location": "query"}, "filters": {"type": "string", "location": "query"}, "ids": {"type": "string", "required": true, "location": "query"}, "max-results": {"type": "integer", "format": "int32", "minimum": "1", "location": "query"}, "metrics": {"type": "string", "required": true, "location": "query"}, "sort": {"type": "string", "location": "query"}, "start-date": {"type": "string", "required": true, "location": "query"}, "start-index": {"type": "integer", "format": "int32", "minimum": "1", "location": "query"}}, "response": {"$ref": "ResultTable"}, "scopes": ["https://www.googleapis.com/auth/yt-analytics-monetary.readonly", "https://www.googleapis.com/auth/yt-analytics.readonly"]}}}', true));
 
   }
 }
 
 
 
-class Google_ResultTable extends Google_Model {
+class Google_ResultTable extends Model {
   protected $__columnHeadersType = 'Google_ResultTableColumnHeaders';
   protected $__columnHeadersDataType = 'array';
   public $columnHeaders;
@@ -117,7 +122,7 @@ class Google_ResultTable extends Google_Model {
   }
 }
 
-class Google_ResultTableColumnHeaders extends Google_Model {
+class Google_ResultTableColumnHeaders extends Model {
   public $columnType;
   public $dataType;
   public $name;

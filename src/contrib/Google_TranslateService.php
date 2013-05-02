@@ -22,7 +22,12 @@
    *   $languages = $translateService->languages;
    *  </code>
    */
-  class Google_LanguagesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_LanguagesServiceResource extends Resource {
 
 
     /**
@@ -53,7 +58,7 @@
    *   $detections = $translateService->detections;
    *  </code>
    */
-  class Google_DetectionsServiceResource extends Google_ServiceResource {
+  class Google_DetectionsServiceResource extends Resource {
 
 
     /**
@@ -83,7 +88,7 @@
    *   $translations = $translateService->translations;
    *  </code>
    */
-  class Google_TranslationsServiceResource extends Google_ServiceResource {
+  class Google_TranslationsServiceResource extends Resource {
 
 
     /**
@@ -124,16 +129,16 @@
  *
  * @author Google, Inc.
  */
-class Google_TranslateService extends Google_Service {
+class Google_TranslateService extends Service {
   public $languages;
   public $detections;
   public $translations;
   /**
    * Constructs the internal representation of the Translate service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'language/translate/';
     $this->version = 'v2';
     $this->serviceName = 'translate';
@@ -146,7 +151,7 @@ class Google_TranslateService extends Google_Service {
   }
 }
 
-class Google_DetectionsListResponse extends Google_Model {
+class Google_DetectionsListResponse extends Model {
   protected $__detectionsType = 'Google_DetectionsResourceItems';
   protected $__detectionsDataType = 'array';
   public $detections;
@@ -159,7 +164,7 @@ class Google_DetectionsListResponse extends Google_Model {
   }
 }
 
-class Google_DetectionsResourceItems extends Google_Model {
+class Google_DetectionsResourceItems extends Model {
   public $isReliable;
   public $confidence;
   public $language;
@@ -183,7 +188,7 @@ class Google_DetectionsResourceItems extends Google_Model {
   }
 }
 
-class Google_LanguagesListResponse extends Google_Model {
+class Google_LanguagesListResponse extends Model {
   protected $__languagesType = 'Google_LanguagesResource';
   protected $__languagesDataType = 'array';
   public $languages;
@@ -196,7 +201,7 @@ class Google_LanguagesListResponse extends Google_Model {
   }
 }
 
-class Google_LanguagesResource extends Google_Model {
+class Google_LanguagesResource extends Model {
   public $name;
   public $language;
   public function setName($name) {
@@ -213,7 +218,7 @@ class Google_LanguagesResource extends Google_Model {
   }
 }
 
-class Google_TranslationsListResponse extends Google_Model {
+class Google_TranslationsListResponse extends Model {
   protected $__translationsType = 'Google_TranslationsResource';
   protected $__translationsDataType = 'array';
   public $translations;
@@ -226,7 +231,7 @@ class Google_TranslationsListResponse extends Google_Model {
   }
 }
 
-class Google_TranslationsResource extends Google_Model {
+class Google_TranslationsResource extends Model {
   public $detectedSourceLanguage;
   public $translatedText;
   public function setDetectedSourceLanguage($detectedSourceLanguage) {

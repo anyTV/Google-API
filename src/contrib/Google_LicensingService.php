@@ -22,7 +22,12 @@
    *   $licenseAssignments = $licensingService->licenseAssignments;
    *  </code>
    */
-  class Google_LicenseAssignmentsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_LicenseAssignmentsServiceResource extends Resource {
 
 
     /**
@@ -177,14 +182,14 @@
  *
  * @author Google, Inc.
  */
-class Google_LicensingService extends Google_Service {
+class Google_LicensingService extends Service {
   public $licenseAssignments;
   /**
    * Constructs the internal representation of the Licensing service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'apps/licensing/v1/product/';
     $this->version = 'v1';
     $this->serviceName = 'licensing';
@@ -195,7 +200,7 @@ class Google_LicensingService extends Google_Service {
   }
 }
 
-class Google_LicenseAssignment extends Google_Model {
+class Google_LicenseAssignment extends Model {
   public $skuId;
   public $kind;
   public $userId;
@@ -240,7 +245,7 @@ class Google_LicenseAssignment extends Google_Model {
   }
 }
 
-class Google_LicenseAssignmentInsert extends Google_Model {
+class Google_LicenseAssignmentInsert extends Model {
   public $userId;
   public function setUserId($userId) {
     $this->userId = $userId;
@@ -250,7 +255,7 @@ class Google_LicenseAssignmentInsert extends Google_Model {
   }
 }
 
-class Google_LicenseAssignmentList extends Google_Model {
+class Google_LicenseAssignmentList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_LicenseAssignment';
   protected $__itemsDataType = 'array';

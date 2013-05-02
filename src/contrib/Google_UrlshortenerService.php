@@ -22,7 +22,12 @@
    *   $url = $urlshortenerService->url;
    *  </code>
    */
-  class Google_UrlServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_UrlServiceResource extends Resource {
 
 
     /**
@@ -96,14 +101,14 @@
  *
  * @author Google, Inc.
  */
-class Google_UrlshortenerService extends Google_Service {
+class Google_UrlshortenerService extends Service {
   public $url;
   /**
    * Constructs the internal representation of the Urlshortener service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'urlshortener/v1/';
     $this->version = 'v1';
     $this->serviceName = 'urlshortener';
@@ -114,7 +119,7 @@ class Google_UrlshortenerService extends Google_Service {
   }
 }
 
-class Google_AnalyticsSnapshot extends Google_Model {
+class Google_AnalyticsSnapshot extends Model {
   public $shortUrlClicks;
   protected $__countriesType = 'Google_StringCount';
   protected $__countriesDataType = 'array';
@@ -171,7 +176,7 @@ class Google_AnalyticsSnapshot extends Google_Model {
   }
 }
 
-class Google_AnalyticsSummary extends Google_Model {
+class Google_AnalyticsSummary extends Model {
   protected $__weekType = 'Google_AnalyticsSnapshot';
   protected $__weekDataType = '';
   public $week;
@@ -219,7 +224,7 @@ class Google_AnalyticsSummary extends Google_Model {
   }
 }
 
-class Google_StringCount extends Google_Model {
+class Google_StringCount extends Model {
   public $count;
   public $id;
   public function setCount($count) {
@@ -236,7 +241,7 @@ class Google_StringCount extends Google_Model {
   }
 }
 
-class Google_Url extends Google_Model {
+class Google_Url extends Model {
   public $status;
   public $kind;
   public $created;
@@ -283,7 +288,7 @@ class Google_Url extends Google_Model {
   }
 }
 
-class Google_UrlHistory extends Google_Model {
+class Google_UrlHistory extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Url';
   protected $__itemsDataType = 'array';

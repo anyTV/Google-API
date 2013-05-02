@@ -22,7 +22,12 @@
    *   $objectAccessControls = $storageService->objectAccessControls;
    *  </code>
    */
-  class Google_ObjectAccessControlsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ObjectAccessControlsServiceResource extends Resource {
 
 
     /**
@@ -148,7 +153,7 @@
    *   $bucketAccessControls = $storageService->bucketAccessControls;
    *  </code>
    */
-  class Google_BucketAccessControlsServiceResource extends Google_ServiceResource {
+  class Google_BucketAccessControlsServiceResource extends Resource {
 
 
     /**
@@ -268,7 +273,7 @@
    *   $objects = $storageService->objects;
    *  </code>
    */
-  class Google_ObjectsServiceResource extends Google_ServiceResource {
+  class Google_ObjectsServiceResource extends Resource {
 
 
     /**
@@ -400,7 +405,7 @@
    *   $buckets = $storageService->buckets;
    *  </code>
    */
-  class Google_BucketsServiceResource extends Google_ServiceResource {
+  class Google_BucketsServiceResource extends Resource {
 
 
     /**
@@ -530,7 +535,7 @@
  *
  * @author Google, Inc.
  */
-class Google_StorageService extends Google_Service {
+class Google_StorageService extends Service {
   public $objectAccessControls;
   public $bucketAccessControls;
   public $objects;
@@ -538,9 +543,9 @@ class Google_StorageService extends Google_Service {
   /**
    * Constructs the internal representation of the Storage service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'storage/v1beta1/';
     $this->version = 'v1beta1';
     $this->serviceName = 'storage';
@@ -554,7 +559,7 @@ class Google_StorageService extends Google_Service {
   }
 }
 
-class Google_Bucket extends Google_Model {
+class Google_Bucket extends Model {
   protected $__websiteType = 'Google_BucketWebsite';
   protected $__websiteDataType = '';
   public $website;
@@ -637,7 +642,7 @@ class Google_Bucket extends Google_Model {
   }
 }
 
-class Google_BucketAccessControl extends Google_Model {
+class Google_BucketAccessControl extends Model {
   public $domain;
   public $bucket;
   public $kind;
@@ -703,7 +708,7 @@ class Google_BucketAccessControl extends Google_Model {
   }
 }
 
-class Google_BucketAccessControls extends Google_Model {
+class Google_BucketAccessControls extends Model {
   protected $__itemsType = 'Google_BucketAccessControl';
   protected $__itemsDataType = 'array';
   public $items;
@@ -723,7 +728,7 @@ class Google_BucketAccessControls extends Google_Model {
   }
 }
 
-class Google_BucketOwner extends Google_Model {
+class Google_BucketOwner extends Model {
   public $entityId;
   public $entity;
   public function setEntityId($entityId) {
@@ -740,7 +745,7 @@ class Google_BucketOwner extends Google_Model {
   }
 }
 
-class Google_BucketWebsite extends Google_Model {
+class Google_BucketWebsite extends Model {
   public $notFoundPage;
   public $mainPageSuffix;
   public function setNotFoundPage($notFoundPage) {
@@ -757,7 +762,7 @@ class Google_BucketWebsite extends Google_Model {
   }
 }
 
-class Google_Buckets extends Google_Model {
+class Google_Buckets extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Bucket';
   protected $__itemsDataType = 'array';
@@ -784,7 +789,7 @@ class Google_Buckets extends Google_Model {
   }
 }
 
-class Google_ObjectAccessControl extends Google_Model {
+class Google_ObjectAccessControl extends Model {
   public $domain;
   public $object;
   public $bucket;
@@ -857,7 +862,7 @@ class Google_ObjectAccessControl extends Google_Model {
   }
 }
 
-class Google_ObjectAccessControls extends Google_Model {
+class Google_ObjectAccessControls extends Model {
   protected $__itemsType = 'Google_ObjectAccessControl';
   protected $__itemsDataType = 'array';
   public $items;
@@ -877,7 +882,7 @@ class Google_ObjectAccessControls extends Google_Model {
   }
 }
 
-class Google_Objects extends Google_Model {
+class Google_Objects extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_StorageObject';
   protected $__itemsDataType = 'array';
@@ -912,7 +917,7 @@ class Google_Objects extends Google_Model {
   }
 }
 
-class Google_StorageObject extends Google_Model {
+class Google_StorageObject extends Model {
   public $kind;
   public $name;
   protected $__mediaType = 'Google_StorageObjectMedia';
@@ -1006,7 +1011,7 @@ class Google_StorageObject extends Google_Model {
   }
 }
 
-class Google_StorageObjectMedia extends Google_Model {
+class Google_StorageObjectMedia extends Model {
   public $contentType;
   public $timeCreated;
   public $algorithm;
@@ -1058,7 +1063,7 @@ class Google_StorageObjectMedia extends Google_Model {
   }
 }
 
-class Google_StorageObjectOwner extends Google_Model {
+class Google_StorageObjectOwner extends Model {
   public $entityId;
   public $entity;
   public function setEntityId($entityId) {

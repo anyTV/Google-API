@@ -22,7 +22,12 @@
    *   $disks = $computeService->disks;
    *  </code>
    */
-  class Google_DisksServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_DisksServiceResource extends Resource {
 
 
     /**
@@ -117,7 +122,7 @@
    *   $firewalls = $computeService->firewalls;
    *  </code>
    */
-  class Google_FirewallsServiceResource extends Google_ServiceResource {
+  class Google_FirewallsServiceResource extends Resource {
 
 
     /**
@@ -245,7 +250,7 @@
    *   $globalOperations = $computeService->globalOperations;
    *  </code>
    */
-  class Google_GlobalOperationsServiceResource extends Google_ServiceResource {
+  class Google_GlobalOperationsServiceResource extends Resource {
 
 
     /**
@@ -311,7 +316,7 @@
    *   $images = $computeService->images;
    *  </code>
    */
-  class Google_ImagesServiceResource extends Google_ServiceResource {
+  class Google_ImagesServiceResource extends Resource {
 
 
     /**
@@ -420,7 +425,7 @@
    *   $instances = $computeService->instances;
    *  </code>
    */
-  class Google_InstancesServiceResource extends Google_ServiceResource {
+  class Google_InstancesServiceResource extends Resource {
 
 
     /**
@@ -615,7 +620,7 @@
    *   $kernels = $computeService->kernels;
    *  </code>
    */
-  class Google_KernelsServiceResource extends Google_ServiceResource {
+  class Google_KernelsServiceResource extends Resource {
 
 
     /**
@@ -667,7 +672,7 @@
    *   $machineTypes = $computeService->machineTypes;
    *  </code>
    */
-  class Google_MachineTypesServiceResource extends Google_ServiceResource {
+  class Google_MachineTypesServiceResource extends Resource {
 
 
     /**
@@ -720,7 +725,7 @@
    *   $networks = $computeService->networks;
    *  </code>
    */
-  class Google_NetworksServiceResource extends Google_ServiceResource {
+  class Google_NetworksServiceResource extends Resource {
 
 
     /**
@@ -809,7 +814,7 @@
    *   $projects = $computeService->projects;
    *  </code>
    */
-  class Google_ProjectsServiceResource extends Google_ServiceResource {
+  class Google_ProjectsServiceResource extends Resource {
 
 
     /**
@@ -858,7 +863,7 @@
    *   $snapshots = $computeService->snapshots;
    *  </code>
    */
-  class Google_SnapshotsServiceResource extends Google_ServiceResource {
+  class Google_SnapshotsServiceResource extends Resource {
 
 
     /**
@@ -948,7 +953,7 @@
    *   $zoneOperations = $computeService->zoneOperations;
    *  </code>
    */
-  class Google_ZoneOperationsServiceResource extends Google_ServiceResource {
+  class Google_ZoneOperationsServiceResource extends Resource {
 
 
     /**
@@ -1017,7 +1022,7 @@
    *   $zones = $computeService->zones;
    *  </code>
    */
-  class Google_ZonesServiceResource extends Google_ServiceResource {
+  class Google_ZonesServiceResource extends Resource {
 
 
     /**
@@ -1075,7 +1080,7 @@
  *
  * @author Google, Inc.
  */
-class Google_ComputeService extends Google_Service {
+class Google_ComputeService extends Service {
   public $disks;
   public $firewalls;
   public $globalOperations;
@@ -1091,9 +1096,9 @@ class Google_ComputeService extends Google_Service {
   /**
    * Constructs the internal representation of the Compute service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'compute/v1beta14/projects/';
     $this->version = 'v1beta14';
     $this->serviceName = 'compute';
@@ -1115,7 +1120,7 @@ class Google_ComputeService extends Google_Service {
   }
 }
 
-class Google_AccessConfig extends Google_Model {
+class Google_AccessConfig extends Model {
   public $kind;
   public $name;
   public $natIP;
@@ -1146,7 +1151,7 @@ class Google_AccessConfig extends Google_Model {
   }
 }
 
-class Google_AttachedDisk extends Google_Model {
+class Google_AttachedDisk extends Model {
   public $boot;
   public $deviceName;
   public $index;
@@ -1198,7 +1203,7 @@ class Google_AttachedDisk extends Google_Model {
   }
 }
 
-class Google_DeprecationStatus extends Google_Model {
+class Google_DeprecationStatus extends Model {
   public $deleted;
   public $deprecated;
   public $obsolete;
@@ -1236,7 +1241,7 @@ class Google_DeprecationStatus extends Google_Model {
   }
 }
 
-class Google_Disk extends Google_Model {
+class Google_Disk extends Model {
   public $creationTimestamp;
   public $description;
   public $id;
@@ -1323,7 +1328,7 @@ class Google_Disk extends Google_Model {
   }
 }
 
-class Google_DiskList extends Google_Model {
+class Google_DiskList extends Model {
   public $id;
   protected $__itemsType = 'Google_Disk';
   protected $__itemsDataType = 'array';
@@ -1364,7 +1369,7 @@ class Google_DiskList extends Google_Model {
   }
 }
 
-class Google_Firewall extends Google_Model {
+class Google_Firewall extends Model {
   protected $__allowedType = 'Google_FirewallAllowed';
   protected $__allowedDataType = 'array';
   public $allowed;
@@ -1450,7 +1455,7 @@ class Google_Firewall extends Google_Model {
   }
 }
 
-class Google_FirewallAllowed extends Google_Model {
+class Google_FirewallAllowed extends Model {
   public $IPProtocol;
   public $ports;
   public function setIPProtocol($IPProtocol) {
@@ -1468,7 +1473,7 @@ class Google_FirewallAllowed extends Google_Model {
   }
 }
 
-class Google_FirewallList extends Google_Model {
+class Google_FirewallList extends Model {
   public $id;
   protected $__itemsType = 'Google_Firewall';
   protected $__itemsDataType = 'array';
@@ -1509,7 +1514,7 @@ class Google_FirewallList extends Google_Model {
   }
 }
 
-class Google_Image extends Google_Model {
+class Google_Image extends Model {
   public $creationTimestamp;
   protected $__deprecatedType = 'Google_DeprecationStatus';
   protected $__deprecatedDataType = '';
@@ -1586,7 +1591,7 @@ class Google_Image extends Google_Model {
   }
 }
 
-class Google_ImageList extends Google_Model {
+class Google_ImageList extends Model {
   public $id;
   protected $__itemsType = 'Google_Image';
   protected $__itemsDataType = 'array';
@@ -1627,7 +1632,7 @@ class Google_ImageList extends Google_Model {
   }
 }
 
-class Google_ImageRawDisk extends Google_Model {
+class Google_ImageRawDisk extends Model {
   public $containerType;
   public $sha1Checksum;
   public $source;
@@ -1651,7 +1656,7 @@ class Google_ImageRawDisk extends Google_Model {
   }
 }
 
-class Google_Instance extends Google_Model {
+class Google_Instance extends Model {
   public $canIpForward;
   public $creationTimestamp;
   public $description;
@@ -1793,7 +1798,7 @@ class Google_Instance extends Google_Model {
   }
 }
 
-class Google_InstanceList extends Google_Model {
+class Google_InstanceList extends Model {
   public $id;
   protected $__itemsType = 'Google_Instance';
   protected $__itemsDataType = 'array';
@@ -1834,7 +1839,7 @@ class Google_InstanceList extends Google_Model {
   }
 }
 
-class Google_Kernel extends Google_Model {
+class Google_Kernel extends Model {
   public $creationTimestamp;
   protected $__deprecatedType = 'Google_DeprecationStatus';
   protected $__deprecatedDataType = '';
@@ -1888,7 +1893,7 @@ class Google_Kernel extends Google_Model {
   }
 }
 
-class Google_KernelList extends Google_Model {
+class Google_KernelList extends Model {
   public $id;
   protected $__itemsType = 'Google_Kernel';
   protected $__itemsDataType = 'array';
@@ -1929,7 +1934,7 @@ class Google_KernelList extends Google_Model {
   }
 }
 
-class Google_MachineType extends Google_Model {
+class Google_MachineType extends Model {
   public $availableZone;
   public $creationTimestamp;
   protected $__deprecatedType = 'Google_DeprecationStatus';
@@ -2036,7 +2041,7 @@ class Google_MachineType extends Google_Model {
   }
 }
 
-class Google_MachineTypeEphemeralDisks extends Google_Model {
+class Google_MachineTypeEphemeralDisks extends Model {
   public $diskGb;
   public function setDiskGb($diskGb) {
     $this->diskGb = $diskGb;
@@ -2046,7 +2051,7 @@ class Google_MachineTypeEphemeralDisks extends Google_Model {
   }
 }
 
-class Google_MachineTypeList extends Google_Model {
+class Google_MachineTypeList extends Model {
   public $id;
   protected $__itemsType = 'Google_MachineType';
   protected $__itemsDataType = 'array';
@@ -2087,7 +2092,7 @@ class Google_MachineTypeList extends Google_Model {
   }
 }
 
-class Google_Metadata extends Google_Model {
+class Google_Metadata extends Model {
   public $fingerprint;
   protected $__itemsType = 'Google_MetadataItems';
   protected $__itemsDataType = 'array';
@@ -2114,7 +2119,7 @@ class Google_Metadata extends Google_Model {
   }
 }
 
-class Google_MetadataItems extends Google_Model {
+class Google_MetadataItems extends Model {
   public $key;
   public $value;
   public function setKey($key) {
@@ -2131,7 +2136,7 @@ class Google_MetadataItems extends Google_Model {
   }
 }
 
-class Google_Network extends Google_Model {
+class Google_Network extends Model {
   public $IPv4Range;
   public $creationTimestamp;
   public $description;
@@ -2190,7 +2195,7 @@ class Google_Network extends Google_Model {
   }
 }
 
-class Google_NetworkInterface extends Google_Model {
+class Google_NetworkInterface extends Model {
   protected $__accessConfigsType = 'Google_AccessConfig';
   protected $__accessConfigsDataType = 'array';
   public $accessConfigs;
@@ -2224,7 +2229,7 @@ class Google_NetworkInterface extends Google_Model {
   }
 }
 
-class Google_NetworkList extends Google_Model {
+class Google_NetworkList extends Model {
   public $id;
   protected $__itemsType = 'Google_Network';
   protected $__itemsDataType = 'array';
@@ -2265,7 +2270,7 @@ class Google_NetworkList extends Google_Model {
   }
 }
 
-class Google_Operation extends Google_Model {
+class Google_Operation extends Model {
   public $clientOperationId;
   public $creationTimestamp;
   public $endTime;
@@ -2420,7 +2425,7 @@ class Google_Operation extends Google_Model {
   }
 }
 
-class Google_OperationError extends Google_Model {
+class Google_OperationError extends Model {
   protected $__errorsType = 'Google_OperationErrorErrors';
   protected $__errorsDataType = 'array';
   public $errors;
@@ -2433,7 +2438,7 @@ class Google_OperationError extends Google_Model {
   }
 }
 
-class Google_OperationErrorErrors extends Google_Model {
+class Google_OperationErrorErrors extends Model {
   public $code;
   public $location;
   public $message;
@@ -2457,7 +2462,7 @@ class Google_OperationErrorErrors extends Google_Model {
   }
 }
 
-class Google_OperationList extends Google_Model {
+class Google_OperationList extends Model {
   public $id;
   protected $__itemsType = 'Google_Operation';
   protected $__itemsDataType = 'array';
@@ -2498,7 +2503,7 @@ class Google_OperationList extends Google_Model {
   }
 }
 
-class Google_OperationWarnings extends Google_Model {
+class Google_OperationWarnings extends Model {
   public $code;
   protected $__dataType = 'Google_OperationWarningsData';
   protected $__dataDataType = 'array';
@@ -2525,7 +2530,7 @@ class Google_OperationWarnings extends Google_Model {
   }
 }
 
-class Google_OperationWarningsData extends Google_Model {
+class Google_OperationWarningsData extends Model {
   public $key;
   public $value;
   public function setKey($key) {
@@ -2542,7 +2547,7 @@ class Google_OperationWarningsData extends Google_Model {
   }
 }
 
-class Google_Project extends Google_Model {
+class Google_Project extends Model {
   protected $__commonInstanceMetadataType = 'Google_Metadata';
   protected $__commonInstanceMetadataDataType = '';
   public $commonInstanceMetadata;
@@ -2614,7 +2619,7 @@ class Google_Project extends Google_Model {
   }
 }
 
-class Google_Quota extends Google_Model {
+class Google_Quota extends Model {
   public $limit;
   public $metric;
   public $usage;
@@ -2638,7 +2643,7 @@ class Google_Quota extends Google_Model {
   }
 }
 
-class Google_SerialPortOutput extends Google_Model {
+class Google_SerialPortOutput extends Model {
   public $contents;
   public $kind;
   public $selfLink;
@@ -2662,7 +2667,7 @@ class Google_SerialPortOutput extends Google_Model {
   }
 }
 
-class Google_ServiceAccount extends Google_Model {
+class Google_ServiceAccount extends Model {
   public $email;
   public $scopes;
   public function setEmail($email) {
@@ -2680,7 +2685,7 @@ class Google_ServiceAccount extends Google_Model {
   }
 }
 
-class Google_Snapshot extends Google_Model {
+class Google_Snapshot extends Model {
   public $creationTimestamp;
   public $description;
   public $diskSizeGb;
@@ -2753,7 +2758,7 @@ class Google_Snapshot extends Google_Model {
   }
 }
 
-class Google_SnapshotList extends Google_Model {
+class Google_SnapshotList extends Model {
   public $id;
   protected $__itemsType = 'Google_Snapshot';
   protected $__itemsDataType = 'array';
@@ -2794,7 +2799,7 @@ class Google_SnapshotList extends Google_Model {
   }
 }
 
-class Google_Tags extends Google_Model {
+class Google_Tags extends Model {
   public $fingerprint;
   public $items;
   public function setFingerprint($fingerprint) {
@@ -2812,7 +2817,7 @@ class Google_Tags extends Google_Model {
   }
 }
 
-class Google_Zone extends Google_Model {
+class Google_Zone extends Model {
   public $availableMachineType;
   public $creationTimestamp;
   protected $__deprecatedType = 'Google_DeprecationStatus';
@@ -2901,7 +2906,7 @@ class Google_Zone extends Google_Model {
   }
 }
 
-class Google_ZoneList extends Google_Model {
+class Google_ZoneList extends Model {
   public $id;
   protected $__itemsType = 'Google_Zone';
   protected $__itemsDataType = 'array';
@@ -2942,7 +2947,7 @@ class Google_ZoneList extends Google_Model {
   }
 }
 
-class Google_ZoneMaintenanceWindows extends Google_Model {
+class Google_ZoneMaintenanceWindows extends Model {
   public $beginTime;
   public $description;
   public $endTime;

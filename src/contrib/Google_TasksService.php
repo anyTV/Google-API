@@ -22,7 +22,12 @@
    *   $tasks = $tasksService->tasks;
    *  </code>
    */
-  class Google_TasksServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_TasksServiceResource extends Resource {
 
 
     /**
@@ -190,7 +195,7 @@
    *   $tasklists = $tasksService->tasklists;
    *  </code>
    */
-  class Google_TasklistsServiceResource extends Google_ServiceResource {
+  class Google_TasklistsServiceResource extends Resource {
 
 
     /**
@@ -311,15 +316,15 @@
  *
  * @author Google, Inc.
  */
-class Google_TasksService extends Google_Service {
+class Google_TasksService extends Service {
   public $tasks;
   public $tasklists;
   /**
    * Constructs the internal representation of the Tasks service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'tasks/v1/';
     $this->version = 'v1';
     $this->serviceName = 'tasks';
@@ -331,7 +336,7 @@ class Google_TasksService extends Google_Service {
   }
 }
 
-class Google_Task extends Google_Model {
+class Google_Task extends Model {
   public $status;
   public $kind;
   public $updated;
@@ -442,7 +447,7 @@ class Google_Task extends Google_Model {
   }
 }
 
-class Google_TaskLinks extends Google_Model {
+class Google_TaskLinks extends Model {
   public $type;
   public $link;
   public $description;
@@ -466,7 +471,7 @@ class Google_TaskLinks extends Google_Model {
   }
 }
 
-class Google_TaskList extends Google_Model {
+class Google_TaskList extends Model {
   public $kind;
   public $title;
   public $updated;
@@ -511,7 +516,7 @@ class Google_TaskList extends Google_Model {
   }
 }
 
-class Google_TaskLists extends Google_Model {
+class Google_TaskLists extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_TaskList';
   protected $__itemsDataType = 'array';
@@ -545,7 +550,7 @@ class Google_TaskLists extends Google_Model {
   }
 }
 
-class Google_Tasks extends Google_Model {
+class Google_Tasks extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Task';
   protected $__itemsDataType = 'array';

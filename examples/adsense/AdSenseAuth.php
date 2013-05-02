@@ -16,6 +16,8 @@
  */
 
 // Error if PDO and PDO_SQLITE not present
+use Google\Client;
+
 if (!extension_loaded('pdo') || !extension_loaded('pdo_sqlite')) {
   throw new Exception('The sample code needs PDO and PDO_SQLITE PHP extension');
 }
@@ -23,8 +25,7 @@ if (!extension_loaded('pdo') || !extension_loaded('pdo_sqlite')) {
 /**
  * Include the library files for the api client and AdSense service class.
  */
-require_once "../../src/Google_Client.php";
-require_once "../../src/contrib/Google_AdsenseService.php";
+require_once "../../src/Client.phpire_once "../../src/contrib/Google_AdsenseService.php";
 
 /**
  * Handles authentication and OAuth token storing.
@@ -46,7 +47,7 @@ class AdSenseAuth {
    */
   public function __construct() {
     // Create the apiClient instances.
-    $this->apiClient = new Google_Client();
+    $this->apiClient = new Client();
     // Visit https://code.google.com/apis/console?api=adsense to
     // generate your oauth2_client_id, oauth2_client_secret, and to
     // register your oauth2_redirect_uri.

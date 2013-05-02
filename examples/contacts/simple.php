@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
-require_once '../../src/Google_Client.php';
-session_start();
+use Google\Client;
+use Google\IO\HttpRequest;
 
-$client = new Google_Client();
+require_once '../../src/Clientsession_start();
+
+$client = new Client();
 $client->setApplicationName('Google Contacts PHP Sample');
 $client->setScopes("http://www.google.com/m8/feeds/");
 // Documentation: http://code.google.com/apis/gdata/docs/2.0/basics.html
@@ -46,7 +48,7 @@ if (isset($_REQUEST['logout'])) {
 }
 
 if ($client->getAccessToken()) {
-  $req = new Google_HttpRequest("https://www.google.com/m8/feeds/contacts/default/full");
+  $req = new HttpRequest("https://www.google.com/m8/feeds/contacts/default/full");
   $val = $client->getIo()->authenticatedRequest($req);
 
   // The contacts api only returns XML responses.

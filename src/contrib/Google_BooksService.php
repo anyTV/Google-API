@@ -22,7 +22,12 @@
    *   $layers = $booksService->layers;
    *  </code>
    */
-  class Google_LayersServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_LayersServiceResource extends Resource {
 
 
     /**
@@ -78,7 +83,7 @@
    *   $annotationData = $booksService->annotationData;
    *  </code>
    */
-  class Google_LayersAnnotationDataServiceResource extends Google_ServiceResource {
+  class Google_LayersAnnotationDataServiceResource extends Resource {
 
 
     /**
@@ -146,7 +151,7 @@
    *   $volumeAnnotations = $booksService->volumeAnnotations;
    *  </code>
    */
-  class Google_LayersVolumeAnnotationsServiceResource extends Google_ServiceResource {
+  class Google_LayersVolumeAnnotationsServiceResource extends Resource {
 
 
     /**
@@ -212,7 +217,7 @@
    *   $bookshelves = $booksService->bookshelves;
    *  </code>
    */
-  class Google_BookshelvesServiceResource extends Google_ServiceResource {
+  class Google_BookshelvesServiceResource extends Resource {
 
 
     /**
@@ -264,7 +269,7 @@
    *   $volumes = $booksService->volumes;
    *  </code>
    */
-  class Google_BookshelvesVolumesServiceResource extends Google_ServiceResource {
+  class Google_BookshelvesVolumesServiceResource extends Resource {
 
 
     /**
@@ -300,7 +305,7 @@
    *   $myconfig = $booksService->myconfig;
    *  </code>
    */
-  class Google_MyconfigServiceResource extends Google_ServiceResource {
+  class Google_MyconfigServiceResource extends Resource {
 
 
     /**
@@ -380,7 +385,7 @@
    *   $volumes = $booksService->volumes;
    *  </code>
    */
-  class Google_VolumesServiceResource extends Google_ServiceResource {
+  class Google_VolumesServiceResource extends Resource {
 
 
     /**
@@ -445,7 +450,7 @@
    *   $associated = $booksService->associated;
    *  </code>
    */
-  class Google_VolumesAssociatedServiceResource extends Google_ServiceResource {
+  class Google_VolumesAssociatedServiceResource extends Resource {
 
 
     /**
@@ -482,7 +487,7 @@
    *   $mylibrary = $booksService->mylibrary;
    *  </code>
    */
-  class Google_MylibraryServiceResource extends Google_ServiceResource {
+  class Google_MylibraryServiceResource extends Resource {
 
 
   }
@@ -495,7 +500,7 @@
    *   $bookshelves = $booksService->bookshelves;
    *  </code>
    */
-  class Google_MylibraryBookshelvesServiceResource extends Google_ServiceResource {
+  class Google_MylibraryBookshelvesServiceResource extends Resource {
 
 
     /**
@@ -606,7 +611,7 @@
    *   $volumes = $booksService->volumes;
    *  </code>
    */
-  class Google_MylibraryBookshelvesVolumesServiceResource extends Google_ServiceResource {
+  class Google_MylibraryBookshelvesVolumesServiceResource extends Resource {
 
 
     /**
@@ -643,7 +648,7 @@
    *   $readingpositions = $booksService->readingpositions;
    *  </code>
    */
-  class Google_MylibraryReadingpositionsServiceResource extends Google_ServiceResource {
+  class Google_MylibraryReadingpositionsServiceResource extends Resource {
 
 
     /**
@@ -693,7 +698,7 @@
    *   $annotations = $booksService->annotations;
    *  </code>
    */
-  class Google_MylibraryAnnotationsServiceResource extends Google_ServiceResource {
+  class Google_MylibraryAnnotationsServiceResource extends Resource {
 
 
     /**
@@ -811,7 +816,7 @@
  *
  * @author Google, Inc.
  */
-class Google_BooksService extends Google_Service {
+class Google_BooksService extends Service {
   public $layers;
   public $layers_annotationData;
   public $layers_volumeAnnotations;
@@ -827,9 +832,9 @@ class Google_BooksService extends Google_Service {
   /**
    * Constructs the internal representation of the Books service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'books/v1/';
     $this->version = 'v1';
     $this->serviceName = 'books';
@@ -851,7 +856,7 @@ class Google_BooksService extends Google_Service {
   }
 }
 
-class Google_Annotation extends Google_Model {
+class Google_Annotation extends Model {
   public $kind;
   public $updated;
   public $created;
@@ -971,7 +976,7 @@ class Google_Annotation extends Google_Model {
   }
 }
 
-class Google_AnnotationClientVersionRanges extends Google_Model {
+class Google_AnnotationClientVersionRanges extends Model {
   public $contentVersion;
   protected $__gbTextRangeType = 'Google_BooksAnnotationsRange';
   protected $__gbTextRangeDataType = '';
@@ -1008,7 +1013,7 @@ class Google_AnnotationClientVersionRanges extends Google_Model {
   }
 }
 
-class Google_AnnotationCurrentVersionRanges extends Google_Model {
+class Google_AnnotationCurrentVersionRanges extends Model {
   public $contentVersion;
   protected $__gbTextRangeType = 'Google_BooksAnnotationsRange';
   protected $__gbTextRangeDataType = '';
@@ -1045,7 +1050,7 @@ class Google_AnnotationCurrentVersionRanges extends Google_Model {
   }
 }
 
-class Google_Annotationdata extends Google_Model {
+class Google_Annotationdata extends Model {
   public $annotationType;
   public $kind;
   public $updated;
@@ -1113,7 +1118,7 @@ class Google_Annotationdata extends Google_Model {
   }
 }
 
-class Google_Annotations extends Google_Model {
+class Google_Annotations extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Annotation';
   protected $__itemsDataType = 'array';
@@ -1147,7 +1152,7 @@ class Google_Annotations extends Google_Model {
   }
 }
 
-class Google_Annotationsdata extends Google_Model {
+class Google_Annotationsdata extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Annotationdata';
   protected $__itemsDataType = 'array';
@@ -1181,7 +1186,7 @@ class Google_Annotationsdata extends Google_Model {
   }
 }
 
-class Google_BooksAnnotationsRange extends Google_Model {
+class Google_BooksAnnotationsRange extends Model {
   public $startPosition;
   public $endPosition;
   public $startOffset;
@@ -1212,7 +1217,7 @@ class Google_BooksAnnotationsRange extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoData extends Google_Model {
+class Google_BooksLayerGeoData extends Model {
   protected $__geoType = 'Google_BooksLayerGeoDataGeo';
   protected $__geoDataType = '';
   public $geo;
@@ -1233,7 +1238,7 @@ class Google_BooksLayerGeoData extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataCommon extends Google_Model {
+class Google_BooksLayerGeoDataCommon extends Model {
   public $lang;
   public $previewImageUrl;
   public $snippet;
@@ -1264,7 +1269,7 @@ class Google_BooksLayerGeoDataCommon extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataGeo extends Google_Model {
+class Google_BooksLayerGeoDataGeo extends Model {
   public $countryCode;
   public $title;
   public $zoom;
@@ -1335,7 +1340,7 @@ class Google_BooksLayerGeoDataGeo extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataGeoBoundary extends Google_Model {
+class Google_BooksLayerGeoDataGeoBoundary extends Model {
   public $latitude;
   public $longitude;
   public function setLatitude($latitude) {
@@ -1352,7 +1357,7 @@ class Google_BooksLayerGeoDataGeoBoundary extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataGeoViewport extends Google_Model {
+class Google_BooksLayerGeoDataGeoViewport extends Model {
   protected $__loType = 'Google_BooksLayerGeoDataGeoViewportLo';
   protected $__loDataType = '';
   public $lo;
@@ -1373,7 +1378,7 @@ class Google_BooksLayerGeoDataGeoViewport extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataGeoViewportHi extends Google_Model {
+class Google_BooksLayerGeoDataGeoViewportHi extends Model {
   public $latitude;
   public $longitude;
   public function setLatitude($latitude) {
@@ -1390,7 +1395,7 @@ class Google_BooksLayerGeoDataGeoViewportHi extends Google_Model {
   }
 }
 
-class Google_BooksLayerGeoDataGeoViewportLo extends Google_Model {
+class Google_BooksLayerGeoDataGeoViewportLo extends Model {
   public $latitude;
   public $longitude;
   public function setLatitude($latitude) {
@@ -1407,7 +1412,7 @@ class Google_BooksLayerGeoDataGeoViewportLo extends Google_Model {
   }
 }
 
-class Google_Bookshelf extends Google_Model {
+class Google_Bookshelf extends Model {
   public $kind;
   public $description;
   public $created;
@@ -1480,7 +1485,7 @@ class Google_Bookshelf extends Google_Model {
   }
 }
 
-class Google_Bookshelves extends Google_Model {
+class Google_Bookshelves extends Model {
   protected $__itemsType = 'Google_Bookshelf';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1500,7 +1505,7 @@ class Google_Bookshelves extends Google_Model {
   }
 }
 
-class Google_ConcurrentAccessRestriction extends Google_Model {
+class Google_ConcurrentAccessRestriction extends Model {
   public $nonce;
   public $kind;
   public $restricted;
@@ -1580,7 +1585,7 @@ class Google_ConcurrentAccessRestriction extends Google_Model {
   }
 }
 
-class Google_DownloadAccessRestriction extends Google_Model {
+class Google_DownloadAccessRestriction extends Model {
   public $nonce;
   public $kind;
   public $justAcquired;
@@ -1667,7 +1672,7 @@ class Google_DownloadAccessRestriction extends Google_Model {
   }
 }
 
-class Google_DownloadAccesses extends Google_Model {
+class Google_DownloadAccesses extends Model {
   protected $__downloadAccessListType = 'Google_DownloadAccessRestriction';
   protected $__downloadAccessListDataType = 'array';
   public $downloadAccessList;
@@ -1687,7 +1692,7 @@ class Google_DownloadAccesses extends Google_Model {
   }
 }
 
-class Google_Layersummaries extends Google_Model {
+class Google_Layersummaries extends Model {
   public $totalItems;
   protected $__itemsType = 'Google_Layersummary';
   protected $__itemsDataType = 'array';
@@ -1714,7 +1719,7 @@ class Google_Layersummaries extends Google_Model {
   }
 }
 
-class Google_Layersummary extends Google_Model {
+class Google_Layersummary extends Model {
   public $kind;
   public $annotationCount;
   public $dataCount;
@@ -1802,7 +1807,7 @@ class Google_Layersummary extends Google_Model {
   }
 }
 
-class Google_ReadingPosition extends Google_Model {
+class Google_ReadingPosition extends Model {
   public $kind;
   public $gbImagePosition;
   public $epubCfiPosition;
@@ -1854,7 +1859,7 @@ class Google_ReadingPosition extends Google_Model {
   }
 }
 
-class Google_RequestAccess extends Google_Model {
+class Google_RequestAccess extends Model {
   protected $__downloadAccessType = 'Google_DownloadAccessRestriction';
   protected $__downloadAccessDataType = '';
   public $downloadAccess;
@@ -1882,7 +1887,7 @@ class Google_RequestAccess extends Google_Model {
   }
 }
 
-class Google_Review extends Google_Model {
+class Google_Review extends Model {
   public $rating;
   public $kind;
   protected $__authorType = 'Google_ReviewAuthor';
@@ -1959,7 +1964,7 @@ class Google_Review extends Google_Model {
   }
 }
 
-class Google_ReviewAuthor extends Google_Model {
+class Google_ReviewAuthor extends Model {
   public $displayName;
   public function setDisplayName($displayName) {
     $this->displayName = $displayName;
@@ -1969,7 +1974,7 @@ class Google_ReviewAuthor extends Google_Model {
   }
 }
 
-class Google_ReviewSource extends Google_Model {
+class Google_ReviewSource extends Model {
   public $extraDescription;
   public $url;
   public $description;
@@ -1993,7 +1998,7 @@ class Google_ReviewSource extends Google_Model {
   }
 }
 
-class Google_Volume extends Google_Model {
+class Google_Volume extends Model {
   public $kind;
   protected $__accessInfoType = 'Google_VolumeAccessInfo';
   protected $__accessInfoDataType = '';
@@ -2069,7 +2074,7 @@ class Google_Volume extends Google_Model {
   }
 }
 
-class Google_VolumeAccessInfo extends Google_Model {
+class Google_VolumeAccessInfo extends Model {
   public $webReaderLink;
   public $publicDomain;
   public $embeddable;
@@ -2155,7 +2160,7 @@ class Google_VolumeAccessInfo extends Google_Model {
   }
 }
 
-class Google_VolumeAccessInfoEpub extends Google_Model {
+class Google_VolumeAccessInfoEpub extends Model {
   public $isAvailable;
   public $downloadLink;
   public $acsTokenLink;
@@ -2179,7 +2184,7 @@ class Google_VolumeAccessInfoEpub extends Google_Model {
   }
 }
 
-class Google_VolumeAccessInfoPdf extends Google_Model {
+class Google_VolumeAccessInfoPdf extends Model {
   public $isAvailable;
   public $downloadLink;
   public $acsTokenLink;
@@ -2203,7 +2208,7 @@ class Google_VolumeAccessInfoPdf extends Google_Model {
   }
 }
 
-class Google_VolumeSaleInfo extends Google_Model {
+class Google_VolumeSaleInfo extends Model {
   public $country;
   protected $__retailPriceType = 'Google_VolumeSaleInfoRetailPrice';
   protected $__retailPriceDataType = '';
@@ -2259,7 +2264,7 @@ class Google_VolumeSaleInfo extends Google_Model {
   }
 }
 
-class Google_VolumeSaleInfoListPrice extends Google_Model {
+class Google_VolumeSaleInfoListPrice extends Model {
   public $amount;
   public $currencyCode;
   public function setAmount($amount) {
@@ -2276,7 +2281,7 @@ class Google_VolumeSaleInfoListPrice extends Google_Model {
   }
 }
 
-class Google_VolumeSaleInfoRetailPrice extends Google_Model {
+class Google_VolumeSaleInfoRetailPrice extends Model {
   public $amount;
   public $currencyCode;
   public function setAmount($amount) {
@@ -2293,7 +2298,7 @@ class Google_VolumeSaleInfoRetailPrice extends Google_Model {
   }
 }
 
-class Google_VolumeSearchInfo extends Google_Model {
+class Google_VolumeSearchInfo extends Model {
   public $textSnippet;
   public function setTextSnippet($textSnippet) {
     $this->textSnippet = $textSnippet;
@@ -2303,7 +2308,7 @@ class Google_VolumeSearchInfo extends Google_Model {
   }
 }
 
-class Google_VolumeUserInfo extends Google_Model {
+class Google_VolumeUserInfo extends Model {
   public $isInMyBooks;
   public $updated;
   protected $__reviewType = 'Google_Review';
@@ -2352,7 +2357,7 @@ class Google_VolumeUserInfo extends Google_Model {
   }
 }
 
-class Google_VolumeVolumeInfo extends Google_Model {
+class Google_VolumeVolumeInfo extends Model {
   public $publisher;
   public $subtitle;
   public $description;
@@ -2504,7 +2509,7 @@ class Google_VolumeVolumeInfo extends Google_Model {
   }
 }
 
-class Google_VolumeVolumeInfoDimensions extends Google_Model {
+class Google_VolumeVolumeInfoDimensions extends Model {
   public $width;
   public $thickness;
   public $height;
@@ -2528,7 +2533,7 @@ class Google_VolumeVolumeInfoDimensions extends Google_Model {
   }
 }
 
-class Google_VolumeVolumeInfoImageLinks extends Google_Model {
+class Google_VolumeVolumeInfoImageLinks extends Model {
   public $medium;
   public $smallThumbnail;
   public $large;
@@ -2573,7 +2578,7 @@ class Google_VolumeVolumeInfoImageLinks extends Google_Model {
   }
 }
 
-class Google_VolumeVolumeInfoIndustryIdentifiers extends Google_Model {
+class Google_VolumeVolumeInfoIndustryIdentifiers extends Model {
   public $identifier;
   public $type;
   public function setIdentifier($identifier) {
@@ -2590,7 +2595,7 @@ class Google_VolumeVolumeInfoIndustryIdentifiers extends Google_Model {
   }
 }
 
-class Google_Volumeannotation extends Google_Model {
+class Google_Volumeannotation extends Model {
   public $annotationType;
   public $kind;
   public $updated;
@@ -2694,7 +2699,7 @@ class Google_Volumeannotation extends Google_Model {
   }
 }
 
-class Google_VolumeannotationContentRanges extends Google_Model {
+class Google_VolumeannotationContentRanges extends Model {
   public $contentVersion;
   protected $__gbTextRangeType = 'Google_BooksAnnotationsRange';
   protected $__gbTextRangeDataType = '';
@@ -2731,7 +2736,7 @@ class Google_VolumeannotationContentRanges extends Google_Model {
   }
 }
 
-class Google_Volumeannotations extends Google_Model {
+class Google_Volumeannotations extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Volumeannotation';
   protected $__itemsDataType = 'array';
@@ -2765,7 +2770,7 @@ class Google_Volumeannotations extends Google_Model {
   }
 }
 
-class Google_Volumes extends Google_Model {
+class Google_Volumes extends Model {
   public $totalItems;
   protected $__itemsType = 'Google_Volume';
   protected $__itemsDataType = 'array';

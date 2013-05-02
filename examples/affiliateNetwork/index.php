@@ -14,12 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_GanService.php';
+use Google\Client;
+
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_GanService.php';
 
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google GAN PHP Starter Application");
 // Visit https://code.google.com/apis/console?api=gan to generate your
 // oauth2_client_id, oauth2_client_secret, and to register your oauth2_redirect_uri.

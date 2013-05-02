@@ -19,11 +19,10 @@
  */
 
 use Google\Auth\OAuth2;
+use Google\IO\HttpRequest;
 
-require_once "../src/Google_Client.php";
-require_once "BaseTest.php";
-require_once "io/Google_REST.php";
-
+require_once "../src/Client.phpire_once "BaseTest.php";
+require_once "io/REST
 class ApiOAuth2Test extends BaseTest {
 
   public function testSign() {
@@ -36,7 +35,7 @@ class ApiOAuth2Test extends BaseTest {
     $oauth->approvalPrompt = 'force';
     $oauth->accessType = "offline";
 
-    $req = new Google_HttpRequest('http://localhost');
+    $req = new HttpRequest('http://localhost');
     $req = $oauth->sign($req);
 
     $this->assertEquals('http://localhost?key=devKey', $req->getUrl());

@@ -22,7 +22,12 @@
    *   $communityMembers = $orkutService->communityMembers;
    *  </code>
    */
-  class Google_CommunityMembersServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_CommunityMembersServiceResource extends Resource {
 
 
     /**
@@ -110,7 +115,7 @@
    *   $activities = $orkutService->activities;
    *  </code>
    */
-  class Google_ActivitiesServiceResource extends Google_ServiceResource {
+  class Google_ActivitiesServiceResource extends Resource {
 
 
     /**
@@ -157,7 +162,7 @@
    *   $communityPollComments = $orkutService->communityPollComments;
    *  </code>
    */
-  class Google_CommunityPollCommentsServiceResource extends Google_ServiceResource {
+  class Google_CommunityPollCommentsServiceResource extends Resource {
 
 
     /**
@@ -211,7 +216,7 @@
    *   $communityPolls = $orkutService->communityPolls;
    *  </code>
    */
-  class Google_CommunityPollsServiceResource extends Google_ServiceResource {
+  class Google_CommunityPollsServiceResource extends Resource {
 
 
     /**
@@ -265,7 +270,7 @@
    *   $communityMessages = $orkutService->communityMessages;
    *  </code>
    */
-  class Google_CommunityMessagesServiceResource extends Google_ServiceResource {
+  class Google_CommunityMessagesServiceResource extends Resource {
 
 
     /**
@@ -333,7 +338,7 @@
    *   $communityTopics = $orkutService->communityTopics;
    *  </code>
    */
-  class Google_CommunityTopicsServiceResource extends Google_ServiceResource {
+  class Google_CommunityTopicsServiceResource extends Resource {
 
 
     /**
@@ -420,7 +425,7 @@
    *   $comments = $orkutService->comments;
    *  </code>
    */
-  class Google_CommentsServiceResource extends Google_ServiceResource {
+  class Google_CommentsServiceResource extends Resource {
 
 
     /**
@@ -504,7 +509,7 @@
    *   $acl = $orkutService->acl;
    *  </code>
    */
-  class Google_AclServiceResource extends Google_ServiceResource {
+  class Google_AclServiceResource extends Resource {
 
 
     /**
@@ -530,7 +535,7 @@
    *   $communityRelated = $orkutService->communityRelated;
    *  </code>
    */
-  class Google_CommunityRelatedServiceResource extends Google_ServiceResource {
+  class Google_CommunityRelatedServiceResource extends Resource {
 
 
     /**
@@ -562,7 +567,7 @@
    *   $scraps = $orkutService->scraps;
    *  </code>
    */
-  class Google_ScrapsServiceResource extends Google_ServiceResource {
+  class Google_ScrapsServiceResource extends Resource {
 
 
     /**
@@ -592,7 +597,7 @@
    *   $communityPollVotes = $orkutService->communityPollVotes;
    *  </code>
    */
-  class Google_CommunityPollVotesServiceResource extends Google_ServiceResource {
+  class Google_CommunityPollVotesServiceResource extends Resource {
 
 
     /**
@@ -624,7 +629,7 @@
    *   $communities = $orkutService->communities;
    *  </code>
    */
-  class Google_CommunitiesServiceResource extends Google_ServiceResource {
+  class Google_CommunitiesServiceResource extends Resource {
 
 
     /**
@@ -677,7 +682,7 @@
    *   $communityFollow = $orkutService->communityFollow;
    *  </code>
    */
-  class Google_CommunityFollowServiceResource extends Google_ServiceResource {
+  class Google_CommunityFollowServiceResource extends Resource {
 
 
     /**
@@ -721,7 +726,7 @@
    *   $activityVisibility = $orkutService->activityVisibility;
    *  </code>
    */
-  class Google_ActivityVisibilityServiceResource extends Google_ServiceResource {
+  class Google_ActivityVisibilityServiceResource extends Resource {
 
 
     /**
@@ -788,7 +793,7 @@
    *   $badges = $orkutService->badges;
    *  </code>
    */
-  class Google_BadgesServiceResource extends Google_ServiceResource {
+  class Google_BadgesServiceResource extends Resource {
 
 
     /**
@@ -836,7 +841,7 @@
    *   $counters = $orkutService->counters;
    *  </code>
    */
-  class Google_CountersServiceResource extends Google_ServiceResource {
+  class Google_CountersServiceResource extends Resource {
 
 
     /**
@@ -872,7 +877,7 @@
  *
  * @author Google, Inc.
  */
-class Google_OrkutService extends Google_Service {
+class Google_OrkutService extends Service {
   public $communityMembers;
   public $activities;
   public $communityPollComments;
@@ -892,9 +897,9 @@ class Google_OrkutService extends Google_Service {
   /**
    * Constructs the internal representation of the Orkut service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'orkut/v2/';
     $this->version = 'v2';
     $this->serviceName = 'orkut';
@@ -920,7 +925,7 @@ class Google_OrkutService extends Google_Service {
   }
 }
 
-class Google_Acl extends Google_Model {
+class Google_Acl extends Model {
   protected $__itemsType = 'Google_AclItems';
   protected $__itemsDataType = 'array';
   public $items;
@@ -954,7 +959,7 @@ class Google_Acl extends Google_Model {
   }
 }
 
-class Google_AclItems extends Google_Model {
+class Google_AclItems extends Model {
   public $type;
   public $id;
   public function setType($type) {
@@ -971,7 +976,7 @@ class Google_AclItems extends Google_Model {
   }
 }
 
-class Google_Activity extends Google_Model {
+class Google_Activity extends Model {
   public $kind;
   protected $__linksType = 'Google_OrkutLinkResource';
   protected $__linksDataType = 'array';
@@ -1053,7 +1058,7 @@ class Google_Activity extends Google_Model {
   }
 }
 
-class Google_ActivityList extends Google_Model {
+class Google_ActivityList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Activity';
   protected $__itemsDataType = 'array';
@@ -1080,7 +1085,7 @@ class Google_ActivityList extends Google_Model {
   }
 }
 
-class Google_ActivityObject extends Google_Model {
+class Google_ActivityObject extends Model {
   public $content;
   protected $__itemsType = 'Google_OrkutActivityobjectsResource';
   protected $__itemsDataType = 'array';
@@ -1116,7 +1121,7 @@ class Google_ActivityObject extends Google_Model {
   }
 }
 
-class Google_ActivityObjectReplies extends Google_Model {
+class Google_ActivityObjectReplies extends Model {
   public $totalItems;
   protected $__itemsType = 'Google_Comment';
   protected $__itemsDataType = 'array';
@@ -1143,7 +1148,7 @@ class Google_ActivityObjectReplies extends Google_Model {
   }
 }
 
-class Google_Badge extends Google_Model {
+class Google_Badge extends Model {
   public $badgeSmallLogo;
   public $kind;
   public $description;
@@ -1209,7 +1214,7 @@ class Google_Badge extends Google_Model {
   }
 }
 
-class Google_BadgeList extends Google_Model {
+class Google_BadgeList extends Model {
   protected $__itemsType = 'Google_Badge';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1229,7 +1234,7 @@ class Google_BadgeList extends Google_Model {
   }
 }
 
-class Google_Comment extends Google_Model {
+class Google_Comment extends Model {
   protected $__inReplyToType = 'Google_CommentInReplyTo';
   protected $__inReplyToDataType = '';
   public $inReplyTo;
@@ -1288,7 +1293,7 @@ class Google_Comment extends Google_Model {
   }
 }
 
-class Google_CommentInReplyTo extends Google_Model {
+class Google_CommentInReplyTo extends Model {
   public $type;
   public $href;
   public $ref;
@@ -1319,7 +1324,7 @@ class Google_CommentInReplyTo extends Google_Model {
   }
 }
 
-class Google_CommentList extends Google_Model {
+class Google_CommentList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Comment';
   protected $__itemsDataType = 'array';
@@ -1353,7 +1358,7 @@ class Google_CommentList extends Google_Model {
   }
 }
 
-class Google_Community extends Google_Model {
+class Google_Community extends Model {
   public $category;
   public $kind;
   public $member_count;
@@ -1465,7 +1470,7 @@ class Google_Community extends Google_Model {
   }
 }
 
-class Google_CommunityList extends Google_Model {
+class Google_CommunityList extends Model {
   protected $__itemsType = 'Google_Community';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1485,7 +1490,7 @@ class Google_CommunityList extends Google_Model {
   }
 }
 
-class Google_CommunityMembers extends Google_Model {
+class Google_CommunityMembers extends Model {
   protected $__communityMembershipStatusType = 'Google_CommunityMembershipStatus';
   protected $__communityMembershipStatusDataType = '';
   public $communityMembershipStatus;
@@ -1513,7 +1518,7 @@ class Google_CommunityMembers extends Google_Model {
   }
 }
 
-class Google_CommunityMembersList extends Google_Model {
+class Google_CommunityMembersList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__itemsType = 'Google_CommunityMembers';
@@ -1561,7 +1566,7 @@ class Google_CommunityMembersList extends Google_Model {
   }
 }
 
-class Google_CommunityMembershipStatus extends Google_Model {
+class Google_CommunityMembershipStatus extends Model {
   public $status;
   public $isFollowing;
   public $isRestoreAvailable;
@@ -1641,7 +1646,7 @@ class Google_CommunityMembershipStatus extends Google_Model {
   }
 }
 
-class Google_CommunityMessage extends Google_Model {
+class Google_CommunityMessage extends Model {
   public $body;
   public $kind;
   protected $__linksType = 'Google_OrkutLinkResource';
@@ -1705,7 +1710,7 @@ class Google_CommunityMessage extends Google_Model {
   }
 }
 
-class Google_CommunityMessageList extends Google_Model {
+class Google_CommunityMessageList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__itemsType = 'Google_CommunityMessage';
@@ -1753,7 +1758,7 @@ class Google_CommunityMessageList extends Google_Model {
   }
 }
 
-class Google_CommunityPoll extends Google_Model {
+class Google_CommunityPoll extends Model {
   protected $__linksType = 'Google_OrkutLinkResource';
   protected $__linksDataType = 'array';
   public $links;
@@ -1921,7 +1926,7 @@ class Google_CommunityPoll extends Google_Model {
   }
 }
 
-class Google_CommunityPollComment extends Google_Model {
+class Google_CommunityPollComment extends Model {
   public $body;
   public $kind;
   public $addedDate;
@@ -1961,7 +1966,7 @@ class Google_CommunityPollComment extends Google_Model {
   }
 }
 
-class Google_CommunityPollCommentList extends Google_Model {
+class Google_CommunityPollCommentList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__itemsType = 'Google_CommunityPollComment';
@@ -2009,7 +2014,7 @@ class Google_CommunityPollCommentList extends Google_Model {
   }
 }
 
-class Google_CommunityPollImage extends Google_Model {
+class Google_CommunityPollImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -2019,7 +2024,7 @@ class Google_CommunityPollImage extends Google_Model {
   }
 }
 
-class Google_CommunityPollList extends Google_Model {
+class Google_CommunityPollList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__itemsType = 'Google_CommunityPoll';
@@ -2067,7 +2072,7 @@ class Google_CommunityPollList extends Google_Model {
   }
 }
 
-class Google_CommunityPollVote extends Google_Model {
+class Google_CommunityPollVote extends Model {
   public $kind;
   public $optionIds;
   public $isVotevisible;
@@ -2092,7 +2097,7 @@ class Google_CommunityPollVote extends Google_Model {
   }
 }
 
-class Google_CommunityTopic extends Google_Model {
+class Google_CommunityTopic extends Model {
   public $body;
   public $lastUpdate;
   public $kind;
@@ -2180,7 +2185,7 @@ class Google_CommunityTopic extends Google_Model {
   }
 }
 
-class Google_CommunityTopicList extends Google_Model {
+class Google_CommunityTopicList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__itemsType = 'Google_CommunityTopic';
@@ -2228,7 +2233,7 @@ class Google_CommunityTopicList extends Google_Model {
   }
 }
 
-class Google_Counters extends Google_Model {
+class Google_Counters extends Model {
   protected $__itemsType = 'Google_OrkutCounterResource';
   protected $__itemsDataType = 'array';
   public $items;
@@ -2248,7 +2253,7 @@ class Google_Counters extends Google_Model {
   }
 }
 
-class Google_OrkutActivityobjectsResource extends Google_Model {
+class Google_OrkutActivityobjectsResource extends Model {
   public $displayName;
   protected $__linksType = 'Google_OrkutLinkResource';
   protected $__linksDataType = 'array';
@@ -2307,7 +2312,7 @@ class Google_OrkutActivityobjectsResource extends Google_Model {
   }
 }
 
-class Google_OrkutActivitypersonResource extends Google_Model {
+class Google_OrkutActivitypersonResource extends Model {
   protected $__nameType = 'Google_OrkutActivitypersonResourceName';
   protected $__nameDataType = '';
   public $name;
@@ -2356,7 +2361,7 @@ class Google_OrkutActivitypersonResource extends Google_Model {
   }
 }
 
-class Google_OrkutActivitypersonResourceImage extends Google_Model {
+class Google_OrkutActivitypersonResourceImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -2366,7 +2371,7 @@ class Google_OrkutActivitypersonResourceImage extends Google_Model {
   }
 }
 
-class Google_OrkutActivitypersonResourceName extends Google_Model {
+class Google_OrkutActivitypersonResourceName extends Model {
   public $givenName;
   public $familyName;
   public function setGivenName($givenName) {
@@ -2383,7 +2388,7 @@ class Google_OrkutActivitypersonResourceName extends Google_Model {
   }
 }
 
-class Google_OrkutAuthorResource extends Google_Model {
+class Google_OrkutAuthorResource extends Model {
   public $url;
   protected $__imageType = 'Google_OrkutAuthorResourceImage';
   protected $__imageDataType = '';
@@ -2416,7 +2421,7 @@ class Google_OrkutAuthorResource extends Google_Model {
   }
 }
 
-class Google_OrkutAuthorResourceImage extends Google_Model {
+class Google_OrkutAuthorResourceImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -2426,7 +2431,7 @@ class Google_OrkutAuthorResourceImage extends Google_Model {
   }
 }
 
-class Google_OrkutCommunitypolloptionResource extends Google_Model {
+class Google_OrkutCommunitypolloptionResource extends Model {
   protected $__imageType = 'Google_OrkutCommunitypolloptionResourceImage';
   protected $__imageDataType = '';
   public $image;
@@ -2459,7 +2464,7 @@ class Google_OrkutCommunitypolloptionResource extends Google_Model {
   }
 }
 
-class Google_OrkutCommunitypolloptionResourceImage extends Google_Model {
+class Google_OrkutCommunitypolloptionResourceImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -2469,7 +2474,7 @@ class Google_OrkutCommunitypolloptionResourceImage extends Google_Model {
   }
 }
 
-class Google_OrkutCounterResource extends Google_Model {
+class Google_OrkutCounterResource extends Model {
   public $total;
   protected $__linkType = 'Google_OrkutLinkResource';
   protected $__linkDataType = '';
@@ -2495,7 +2500,7 @@ class Google_OrkutCounterResource extends Google_Model {
   }
 }
 
-class Google_OrkutLinkResource extends Google_Model {
+class Google_OrkutLinkResource extends Model {
   public $href;
   public $type;
   public $rel;
@@ -2526,7 +2531,7 @@ class Google_OrkutLinkResource extends Google_Model {
   }
 }
 
-class Google_Visibility extends Google_Model {
+class Google_Visibility extends Model {
   public $kind;
   public $visibility;
   protected $__linksType = 'Google_OrkutLinkResource';

@@ -16,12 +16,13 @@
  * limitations under the License.
  */
 
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_PredictionService.php';
+use Google\Client;
+
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_PredictionService.php';
 
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google Prediction API PHP Starter Application");
 // Visit https://code.google.com/apis/console/?api=prediction to generate 
 // your oauth2_client_id, oauth2_client_secret, and to register your 

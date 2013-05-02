@@ -22,7 +22,12 @@
    *   $tables = $bigqueryService->tables;
    *  </code>
    */
-  class Google_TablesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_TablesServiceResource extends Resource {
 
 
     /**
@@ -151,7 +156,7 @@
    *   $datasets = $bigqueryService->datasets;
    *  </code>
    */
-  class Google_DatasetsServiceResource extends Google_ServiceResource {
+  class Google_DatasetsServiceResource extends Resource {
 
 
     /**
@@ -282,7 +287,7 @@
    *   $jobs = $bigqueryService->jobs;
    *  </code>
    */
-  class Google_JobsServiceResource extends Google_ServiceResource {
+  class Google_JobsServiceResource extends Resource {
 
 
     /**
@@ -395,7 +400,7 @@
    *   $tabledata = $bigqueryService->tabledata;
    *  </code>
    */
-  class Google_TabledataServiceResource extends Google_ServiceResource {
+  class Google_TabledataServiceResource extends Resource {
 
 
     /**
@@ -431,7 +436,7 @@
    *   $projects = $bigqueryService->projects;
    *  </code>
    */
-  class Google_ProjectsServiceResource extends Google_ServiceResource {
+  class Google_ProjectsServiceResource extends Resource {
 
 
     /**
@@ -469,7 +474,7 @@
  *
  * @author Google, Inc.
  */
-class Google_BigqueryService extends Google_Service {
+class Google_BigqueryService extends Service {
   public $tables;
   public $datasets;
   public $jobs;
@@ -478,9 +483,9 @@ class Google_BigqueryService extends Google_Service {
   /**
    * Constructs the internal representation of the Bigquery service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'bigquery/v2/';
     $this->version = 'v2';
     $this->serviceName = 'bigquery';
@@ -495,7 +500,7 @@ class Google_BigqueryService extends Google_Service {
   }
 }
 
-class Google_Dataset extends Google_Model {
+class Google_Dataset extends Model {
   public $kind;
   public $description;
   protected $__datasetReferenceType = 'Google_DatasetReference';
@@ -573,7 +578,7 @@ class Google_Dataset extends Google_Model {
   }
 }
 
-class Google_DatasetAccess extends Google_Model {
+class Google_DatasetAccess extends Model {
   public $specialGroup;
   public $domain;
   public $role;
@@ -611,7 +616,7 @@ class Google_DatasetAccess extends Google_Model {
   }
 }
 
-class Google_DatasetList extends Google_Model {
+class Google_DatasetList extends Model {
   public $nextPageToken;
   public $kind;
   protected $__datasetsType = 'Google_DatasetListDatasets';
@@ -645,7 +650,7 @@ class Google_DatasetList extends Google_Model {
   }
 }
 
-class Google_DatasetListDatasets extends Google_Model {
+class Google_DatasetListDatasets extends Model {
   public $friendlyName;
   public $kind;
   public $id;
@@ -678,7 +683,7 @@ class Google_DatasetListDatasets extends Google_Model {
   }
 }
 
-class Google_DatasetReference extends Google_Model {
+class Google_DatasetReference extends Model {
   public $projectId;
   public $datasetId;
   public function setProjectId($projectId) {
@@ -695,7 +700,7 @@ class Google_DatasetReference extends Google_Model {
   }
 }
 
-class Google_ErrorProto extends Google_Model {
+class Google_ErrorProto extends Model {
   public $debugInfo;
   public $message;
   public $reason;
@@ -726,7 +731,7 @@ class Google_ErrorProto extends Google_Model {
   }
 }
 
-class Google_GetQueryResultsResponse extends Google_Model {
+class Google_GetQueryResultsResponse extends Model {
   public $kind;
   protected $__rowsType = 'Google_TableRow';
   protected $__rowsDataType = 'array';
@@ -785,7 +790,7 @@ class Google_GetQueryResultsResponse extends Google_Model {
   }
 }
 
-class Google_Job extends Google_Model {
+class Google_Job extends Model {
   protected $__statusType = 'Google_JobStatus';
   protected $__statusDataType = '';
   public $status;
@@ -852,7 +857,7 @@ class Google_Job extends Google_Model {
   }
 }
 
-class Google_JobConfiguration extends Google_Model {
+class Google_JobConfiguration extends Model {
   protected $__loadType = 'Google_JobConfigurationLoad';
   protected $__loadDataType = '';
   public $load;
@@ -907,7 +912,7 @@ class Google_JobConfiguration extends Google_Model {
   }
 }
 
-class Google_JobConfigurationExtract extends Google_Model {
+class Google_JobConfigurationExtract extends Model {
   public $destinationUri;
   public $fieldDelimiter;
   protected $__sourceTableType = 'Google_TableReference';
@@ -940,7 +945,7 @@ class Google_JobConfigurationExtract extends Google_Model {
   }
 }
 
-class Google_JobConfigurationLink extends Google_Model {
+class Google_JobConfigurationLink extends Model {
   public $createDisposition;
   public $writeDisposition;
   protected $__destinationTableType = 'Google_TableReference';
@@ -974,7 +979,7 @@ class Google_JobConfigurationLink extends Google_Model {
   }
 }
 
-class Google_JobConfigurationLoad extends Google_Model {
+class Google_JobConfigurationLoad extends Model {
   public $encoding;
   public $fieldDelimiter;
   protected $__destinationTableType = 'Google_TableReference';
@@ -1066,7 +1071,7 @@ class Google_JobConfigurationLoad extends Google_Model {
   }
 }
 
-class Google_JobConfigurationQuery extends Google_Model {
+class Google_JobConfigurationQuery extends Model {
   protected $__defaultDatasetType = 'Google_DatasetReference';
   protected $__defaultDatasetDataType = '';
   public $defaultDataset;
@@ -1115,7 +1120,7 @@ class Google_JobConfigurationQuery extends Google_Model {
   }
 }
 
-class Google_JobConfigurationTableCopy extends Google_Model {
+class Google_JobConfigurationTableCopy extends Model {
   public $createDisposition;
   public $writeDisposition;
   protected $__destinationTableType = 'Google_TableReference';
@@ -1150,7 +1155,7 @@ class Google_JobConfigurationTableCopy extends Google_Model {
   }
 }
 
-class Google_JobList extends Google_Model {
+class Google_JobList extends Model {
   public $nextPageToken;
   public $totalItems;
   public $kind;
@@ -1191,7 +1196,7 @@ class Google_JobList extends Google_Model {
   }
 }
 
-class Google_JobListJobs extends Google_Model {
+class Google_JobListJobs extends Model {
   protected $__statusType = 'Google_JobStatus';
   protected $__statusDataType = '';
   public $status;
@@ -1260,7 +1265,7 @@ class Google_JobListJobs extends Google_Model {
   }
 }
 
-class Google_JobReference extends Google_Model {
+class Google_JobReference extends Model {
   public $projectId;
   public $jobId;
   public function setProjectId($projectId) {
@@ -1277,7 +1282,7 @@ class Google_JobReference extends Google_Model {
   }
 }
 
-class Google_JobStatistics extends Google_Model {
+class Google_JobStatistics extends Model {
   public $endTime;
   public $totalBytesProcessed;
   public $startTime;
@@ -1301,7 +1306,7 @@ class Google_JobStatistics extends Google_Model {
   }
 }
 
-class Google_JobStatus extends Google_Model {
+class Google_JobStatus extends Model {
   public $state;
   protected $__errorsType = 'Google_ErrorProto';
   protected $__errorsDataType = 'array';
@@ -1330,7 +1335,7 @@ class Google_JobStatus extends Google_Model {
   }
 }
 
-class Google_ProjectList extends Google_Model {
+class Google_ProjectList extends Model {
   public $nextPageToken;
   public $totalItems;
   public $kind;
@@ -1371,7 +1376,7 @@ class Google_ProjectList extends Google_Model {
   }
 }
 
-class Google_ProjectListProjects extends Google_Model {
+class Google_ProjectListProjects extends Model {
   public $friendlyName;
   public $kind;
   public $id;
@@ -1404,7 +1409,7 @@ class Google_ProjectListProjects extends Google_Model {
   }
 }
 
-class Google_ProjectReference extends Google_Model {
+class Google_ProjectReference extends Model {
   public $projectId;
   public function setProjectId($projectId) {
     $this->projectId = $projectId;
@@ -1414,7 +1419,7 @@ class Google_ProjectReference extends Google_Model {
   }
 }
 
-class Google_QueryRequest extends Google_Model {
+class Google_QueryRequest extends Model {
   public $timeoutMs;
   public $kind;
   public $dryRun;
@@ -1461,7 +1466,7 @@ class Google_QueryRequest extends Google_Model {
   }
 }
 
-class Google_QueryResponse extends Google_Model {
+class Google_QueryResponse extends Model {
   public $kind;
   protected $__rowsType = 'Google_TableRow';
   protected $__rowsDataType = 'array';
@@ -1513,7 +1518,7 @@ class Google_QueryResponse extends Google_Model {
   }
 }
 
-class Google_Table extends Google_Model {
+class Google_Table extends Model {
   public $kind;
   public $lastModifiedTime;
   public $description;
@@ -1611,7 +1616,7 @@ class Google_Table extends Google_Model {
   }
 }
 
-class Google_TableDataList extends Google_Model {
+class Google_TableDataList extends Model {
   public $pageToken;
   public $kind;
   public $etag;
@@ -1652,7 +1657,7 @@ class Google_TableDataList extends Google_Model {
   }
 }
 
-class Google_TableFieldSchema extends Google_Model {
+class Google_TableFieldSchema extends Model {
   protected $__fieldsType = 'Google_TableFieldSchema';
   protected $__fieldsDataType = 'array';
   public $fields;
@@ -1686,7 +1691,7 @@ class Google_TableFieldSchema extends Google_Model {
   }
 }
 
-class Google_TableList extends Google_Model {
+class Google_TableList extends Model {
   public $nextPageToken;
   protected $__tablesType = 'Google_TableListTables';
   protected $__tablesDataType = 'array';
@@ -1727,7 +1732,7 @@ class Google_TableList extends Google_Model {
   }
 }
 
-class Google_TableListTables extends Google_Model {
+class Google_TableListTables extends Model {
   public $friendlyName;
   public $kind;
   public $id;
@@ -1760,7 +1765,7 @@ class Google_TableListTables extends Google_Model {
   }
 }
 
-class Google_TableReference extends Google_Model {
+class Google_TableReference extends Model {
   public $projectId;
   public $tableId;
   public $datasetId;
@@ -1784,7 +1789,7 @@ class Google_TableReference extends Google_Model {
   }
 }
 
-class Google_TableRow extends Google_Model {
+class Google_TableRow extends Model {
   protected $__fType = 'Google_TableRowF';
   protected $__fDataType = 'array';
   public $f;
@@ -1797,7 +1802,7 @@ class Google_TableRow extends Google_Model {
   }
 }
 
-class Google_TableRowF extends Google_Model {
+class Google_TableRowF extends Model {
   public $v;
   public function setV($v) {
     $this->v = $v;
@@ -1807,7 +1812,7 @@ class Google_TableRowF extends Google_Model {
   }
 }
 
-class Google_TableSchema extends Google_Model {
+class Google_TableSchema extends Model {
   protected $__fieldsType = 'Google_TableFieldSchema';
   protected $__fieldsDataType = 'array';
   public $fields;

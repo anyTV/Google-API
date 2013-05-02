@@ -22,7 +22,7 @@
  * collection, printing the entire collection, then using the first account ID
  * to query the next level in the hierarchy, the webproperties collection.
  * The following Management API collections are accessed and rendered into
- * HTML: Accounts, Webproperties, Profiles, Goals, Segments.
+ * HTML: AccountsResource, Webproperties, Profiles, Goals, Segments.
  *
  * Note: The apiAnalyticsService parameter in the constructor accepts requires
  * an apiClient object to be instantiated. This all happens outside of this
@@ -69,7 +69,7 @@ class ManagementApiReference {
   }
 
   /**
-   * Traverses the Management API. A query is made to the Accounts collection.
+   * Traverses the Management API. A query is made to the AccountsResource collection.
    * The first account ID is used to then query the webproperties collection.
    * The first webproperty ID is used to query the profiles collection. The
    * first profile is used to query the goals collection. Finally the segments
@@ -136,13 +136,13 @@ class ManagementApiReference {
    * @return string An HTML representation.
    */
   private function getAccountsHtml(&$accounts) {
-    $html = '<h3>Accounts Collection</h3>' .
+    $html = '<h3>AccountsResource Collection</h3>' .
             $this->getCollectionInfoHtml($accounts);
 
     $items = $accounts->getItems();
 
     if (count($items) == 0) {
-      $html .= '<p>No Accounts Found</p>';
+      $html .= '<p>No AccountsResource Found</p>';
 
     } else {
       foreach($items as &$account) {

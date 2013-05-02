@@ -14,15 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use Google\Client;
+
 session_start();
 
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_BooksService.php';
+require_once '../../src/Clientrequire_once '../../src/contrib/Google_BooksService.php';
 
 // Include the boilerplate markup.
 include 'interface.html';
 
-$client = new Google_Client();
+$client = new Client();
 // Visit https://code.google.com/apis/console to generate your client's Developer Key.
 //$client->setDeveloperKey('insert_your_developer_key');
 $client->setApplicationName("Books_Example_App");

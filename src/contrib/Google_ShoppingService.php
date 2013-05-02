@@ -22,7 +22,12 @@
    *   $products = $shoppingService->products;
    *  </code>
    */
-  class Google_ProductsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ProductsServiceResource extends Resource {
 
 
     /**
@@ -135,14 +140,14 @@
  *
  * @author Google, Inc.
  */
-class Google_ShoppingService extends Google_Service {
+class Google_ShoppingService extends Service {
   public $products;
   /**
    * Constructs the internal representation of the Shopping service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'shopping/search/v1/';
     $this->version = 'v1';
     $this->serviceName = 'shopping';
@@ -153,7 +158,7 @@ class Google_ShoppingService extends Google_Service {
   }
 }
 
-class Google_Product extends Google_Model {
+class Google_Product extends Model {
   public $selfLink;
   public $kind;
   protected $__productType = 'Google_ShoppingModelProductJsonV1';
@@ -222,7 +227,7 @@ class Google_Product extends Google_Model {
   }
 }
 
-class Google_Products extends Google_Model {
+class Google_Products extends Model {
   protected $__promotionsType = 'Google_ProductsPromotions';
   protected $__promotionsDataType = 'array';
   public $promotions;
@@ -396,7 +401,7 @@ class Google_Products extends Google_Model {
   }
 }
 
-class Google_ProductsFacets extends Google_Model {
+class Google_ProductsFacets extends Model {
   public $count;
   public $displayName;
   public $name;
@@ -451,7 +456,7 @@ class Google_ProductsFacets extends Google_Model {
   }
 }
 
-class Google_ProductsFacetsBuckets extends Google_Model {
+class Google_ProductsFacetsBuckets extends Model {
   public $count;
   public $minExclusive;
   public $min;
@@ -496,7 +501,7 @@ class Google_ProductsFacetsBuckets extends Google_Model {
   }
 }
 
-class Google_ProductsPromotions extends Google_Model {
+class Google_ProductsPromotions extends Model {
   protected $__productType = 'Google_ShoppingModelProductJsonV1';
   protected $__productDataType = '';
   public $product;
@@ -560,7 +565,7 @@ class Google_ProductsPromotions extends Google_Model {
   }
 }
 
-class Google_ProductsPromotionsCustomFields extends Google_Model {
+class Google_ProductsPromotionsCustomFields extends Model {
   public $name;
   public $value;
   public function setName($name) {
@@ -577,7 +582,7 @@ class Google_ProductsPromotionsCustomFields extends Google_Model {
   }
 }
 
-class Google_ProductsSpelling extends Google_Model {
+class Google_ProductsSpelling extends Model {
   public $suggestion;
   public function setSuggestion($suggestion) {
     $this->suggestion = $suggestion;
@@ -587,7 +592,7 @@ class Google_ProductsSpelling extends Google_Model {
   }
 }
 
-class Google_ProductsStores extends Google_Model {
+class Google_ProductsStores extends Model {
   public $storeCode;
   public $name;
   public $storeName;
@@ -639,7 +644,7 @@ class Google_ProductsStores extends Google_Model {
   }
 }
 
-class Google_ShoppingModelCategoryJsonV1 extends Google_Model {
+class Google_ShoppingModelCategoryJsonV1 extends Model {
   public $url;
   public $shortName;
   public $parents;
@@ -671,7 +676,7 @@ class Google_ShoppingModelCategoryJsonV1 extends Google_Model {
   }
 }
 
-class Google_ShoppingModelDebugJsonV1 extends Google_Model {
+class Google_ShoppingModelDebugJsonV1 extends Model {
   public $searchRequest;
   public $rdcResponse;
   public $facetsRequest;
@@ -726,7 +731,7 @@ class Google_ShoppingModelDebugJsonV1 extends Google_Model {
   }
 }
 
-class Google_ShoppingModelDebugJsonV1BackendTimes extends Google_Model {
+class Google_ShoppingModelDebugJsonV1BackendTimes extends Model {
   public $serverMillis;
   public $hostName;
   public $name;
@@ -757,7 +762,7 @@ class Google_ShoppingModelDebugJsonV1BackendTimes extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1 extends Google_Model {
+class Google_ShoppingModelProductJsonV1 extends Model {
   public $queryMatched;
   public $gtin;
   protected $__imagesType = 'Google_ShoppingModelProductJsonV1Images';
@@ -1028,7 +1033,7 @@ class Google_ShoppingModelProductJsonV1 extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Attributes extends Google_Model {
+class Google_ShoppingModelProductJsonV1Attributes extends Model {
   public $type;
   public $value;
   public $displayName;
@@ -1066,7 +1071,7 @@ class Google_ShoppingModelProductJsonV1Attributes extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Author extends Google_Model {
+class Google_ShoppingModelProductJsonV1Author extends Model {
   public $name;
   public $accountId;
   public function setName($name) {
@@ -1083,7 +1088,7 @@ class Google_ShoppingModelProductJsonV1Author extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Images extends Google_Model {
+class Google_ShoppingModelProductJsonV1Images extends Model {
   public $status;
   public $link;
   protected $__thumbnailsType = 'Google_ShoppingModelProductJsonV1ImagesThumbnails';
@@ -1110,7 +1115,7 @@ class Google_ShoppingModelProductJsonV1Images extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1ImagesThumbnails extends Google_Model {
+class Google_ShoppingModelProductJsonV1ImagesThumbnails extends Model {
   public $content;
   public $width;
   public $link;
@@ -1141,7 +1146,7 @@ class Google_ShoppingModelProductJsonV1ImagesThumbnails extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Internal4 extends Google_Model {
+class Google_ShoppingModelProductJsonV1Internal4 extends Model {
   public $node;
   public $confidence;
   public function setNode($node) {
@@ -1158,7 +1163,7 @@ class Google_ShoppingModelProductJsonV1Internal4 extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Inventories extends Google_Model {
+class Google_ShoppingModelProductJsonV1Inventories extends Model {
   public $installmentPrice;
   public $installmentMonths;
   public $distance;
@@ -1266,7 +1271,7 @@ class Google_ShoppingModelProductJsonV1Inventories extends Google_Model {
   }
 }
 
-class Google_ShoppingModelProductJsonV1Variants extends Google_Model {
+class Google_ShoppingModelProductJsonV1Variants extends Model {
   protected $__variantType = 'Google_ShoppingModelProductJsonV1';
   protected $__variantDataType = '';
   public $variant;
@@ -1278,7 +1283,7 @@ class Google_ShoppingModelProductJsonV1Variants extends Google_Model {
   }
 }
 
-class Google_ShoppingModelRecommendationsJsonV1 extends Google_Model {
+class Google_ShoppingModelRecommendationsJsonV1 extends Model {
   protected $__recommendationListType = 'Google_ShoppingModelRecommendationsJsonV1RecommendationList';
   protected $__recommendationListDataType = 'array';
   public $recommendationList;
@@ -1298,7 +1303,7 @@ class Google_ShoppingModelRecommendationsJsonV1 extends Google_Model {
   }
 }
 
-class Google_ShoppingModelRecommendationsJsonV1RecommendationList extends Google_Model {
+class Google_ShoppingModelRecommendationsJsonV1RecommendationList extends Model {
   protected $__productType = 'Google_ShoppingModelProductJsonV1';
   protected $__productDataType = '';
   public $product;

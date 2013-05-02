@@ -24,7 +24,12 @@
    *   $purchases = $androidpublisherService->purchases;
    *  </code>
    */
-  class Google_PurchasesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_PurchasesServiceResource extends Resource {
 
 
     /**
@@ -78,14 +83,14 @@
  *
  * @author Google, Inc.
  */
-class Google_AndroidpublisherService extends Google_Service {
+class Google_AndroidpublisherService extends Service {
   public $purchases;
   /**
    * Constructs the internal representation of the Androidpublisher service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'androidpublisher/v1/applications/';
     $this->version = 'v1';
     $this->serviceName = 'androidpublisher';
@@ -96,7 +101,7 @@ class Google_AndroidpublisherService extends Google_Service {
   }
 }
 
-class Google_SubscriptionPurchase extends Google_Model {
+class Google_SubscriptionPurchase extends Model {
   public $autoRenewing;
   public $initiationTimestampMsec;
   public $kind;

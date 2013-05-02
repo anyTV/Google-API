@@ -81,12 +81,12 @@ class AuthTest extends BaseTest {
   private function makeSignedJwt($payload) {
     $header = array("typ" => "JWT", "alg" => "RS256");
     $segments = array();
-    $segments[] = Google_Utils::urlSafeB64Encode(json_encode($header));
-    $segments[] = Google_Utils::urlSafeB64Encode(json_encode($payload));
+    $segments[] = Utils::urlSafeB64Encode(json_encode($header));
+    $segments[] = Utils::urlSafeB64Encode(json_encode($payload));
     $signing_input = implode(".", $segments);
 
     $signature = $this->signer->sign($signing_input);
-    $segments[] = Google_Utils::urlSafeB64Encode($signature);
+    $segments[] = Utils::urlSafeB64Encode($signature);
 
     return implode(".", $segments);
   }
@@ -204,7 +204,7 @@ class AuthTest extends BaseTest {
   public function testNoAuth() {
     /** @var $noAuth None */
     $noAuth = new None();
-    $req = new Google_HttpRequest("http://example.com");
+    $req = new HttpRequest("http://example.com");
 
     $resp = $noAuth->sign($req);
     $noAuth->authenticate(null);

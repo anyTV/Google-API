@@ -1,9 +1,10 @@
 <?php
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_AnalyticsService.php';
+use Google\Client;
+
+require_once '../../src/Clientrequire_once '../../src/contrib/Google_AnalyticsService.php';
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google Analytics PHP Starter Application");
 
 // Visit https://code.google.com/apis/console?api=analytics to generate your
@@ -34,7 +35,7 @@ if ($client->getAccessToken()) {
   print "<h1>Web Properties</h1><pre>" . print_r($props, true) . "</pre>";
 
   $accounts = $service->management_accounts->listManagementAccounts();
-  print "<h1>Accounts</h1><pre>" . print_r($accounts, true) . "</pre>";
+  print "<h1>AccountsResource</h1><pre>" . print_r($accounts, true) . "</pre>";
 
   $segments = $service->management_segments->listManagementSegments();
   print "<h1>Segments</h1><pre>" . print_r($segments, true) . "</pre>";

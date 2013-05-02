@@ -14,8 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Api;
-use Google;
+use Google\Auth\AssertionCredentials;
 
 /**
  * The Google API Client
@@ -23,7 +22,6 @@ use Google;
  *
  * @author Chris Chabot <chabotc@google.com>
  * @author Chirag Shah <chirags@google.com>
- * @author Dan Cryer <dan@block8.co.uk>
  */
 class Client {
   /**
@@ -307,7 +305,7 @@ class Client {
    * @param Google\Auth\AssertionCredentials $creds
    * @return void
    */
-  public function setAssertionCredentials(Google_AssertionCredentials $creds) {
+  public function setAssertionCredentials(AssertionCredentials $creds) {
     self::$auth->setAssertionCredentials($creds);
   }
 

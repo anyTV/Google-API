@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\CustomChannel;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 /**
@@ -30,7 +32,7 @@ class AddCustomChannelToHost extends BaseExample {
   public function render() {
     $adClientId = HOST_AD_CLIENT_ID;
 
-    $customChannel = new Google_CustomChannel();
+    $customChannel = new CustomChannel();
     $customChannel->setName(sprintf('Sample Channel #%s',
         $this->getUniqueName()));
 

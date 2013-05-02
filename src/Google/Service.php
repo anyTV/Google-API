@@ -15,8 +15,10 @@
  * limitations under the License.
  */
 
-class Google_Service {
-  public $version;
-  public $servicePath;
-  public $resource;
+namespace Google;
+class Service
+{
+    public $version;
+    public $servicePath;
+    public $resource;
 }

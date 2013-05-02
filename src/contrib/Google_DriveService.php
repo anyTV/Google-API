@@ -22,7 +22,12 @@
    *   $about = $driveService->about;
    *  </code>
    */
-  class Google_AboutServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_AboutServiceResource extends Resource {
 
 
     /**
@@ -55,7 +60,7 @@
    *   $apps = $driveService->apps;
    *  </code>
    */
-  class Google_AppsServiceResource extends Google_ServiceResource {
+  class Google_AppsServiceResource extends Resource {
 
 
     /**
@@ -101,7 +106,7 @@
    *   $changes = $driveService->changes;
    *  </code>
    */
-  class Google_ChangesServiceResource extends Google_ServiceResource {
+  class Google_ChangesServiceResource extends Resource {
 
 
     /**
@@ -153,7 +158,7 @@
    *   $children = $driveService->children;
    *  </code>
    */
-  class Google_ChildrenServiceResource extends Google_ServiceResource {
+  class Google_ChildrenServiceResource extends Resource {
 
 
     /**
@@ -236,7 +241,7 @@
    *   $comments = $driveService->comments;
    *  </code>
    */
-  class Google_CommentsServiceResource extends Google_ServiceResource {
+  class Google_CommentsServiceResource extends Resource {
 
 
     /**
@@ -360,7 +365,7 @@
    *   $files = $driveService->files;
    *  </code>
    */
-  class Google_FilesServiceResource extends Google_ServiceResource {
+  class Google_FilesServiceResource extends Resource {
 
 
     /**
@@ -585,7 +590,7 @@
    *   $parents = $driveService->parents;
    *  </code>
    */
-  class Google_ParentsServiceResource extends Google_ServiceResource {
+  class Google_ParentsServiceResource extends Resource {
 
 
     /**
@@ -664,7 +669,7 @@
    *   $permissions = $driveService->permissions;
    *  </code>
    */
-  class Google_PermissionsServiceResource extends Google_ServiceResource {
+  class Google_PermissionsServiceResource extends Resource {
 
 
     /**
@@ -788,7 +793,7 @@
    *   $properties = $driveService->properties;
    *  </code>
    */
-  class Google_PropertiesServiceResource extends Google_ServiceResource {
+  class Google_PropertiesServiceResource extends Resource {
 
 
     /**
@@ -913,7 +918,7 @@
    *   $replies = $driveService->replies;
    *  </code>
    */
-  class Google_RepliesServiceResource extends Google_ServiceResource {
+  class Google_RepliesServiceResource extends Resource {
 
 
     /**
@@ -1042,7 +1047,7 @@
    *   $revisions = $driveService->revisions;
    *  </code>
    */
-  class Google_RevisionsServiceResource extends Google_ServiceResource {
+  class Google_RevisionsServiceResource extends Resource {
 
 
     /**
@@ -1147,7 +1152,7 @@
  *
  * @author Google, Inc.
  */
-class Google_DriveService extends Google_Service {
+class Google_DriveService extends Service {
   public $about;
   public $apps;
   public $changes;
@@ -1162,9 +1167,9 @@ class Google_DriveService extends Google_Service {
   /**
    * Constructs the internal representation of the Drive service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'drive/v2/';
     $this->version = 'v2';
     $this->serviceName = 'drive';
@@ -1187,7 +1192,7 @@ class Google_DriveService extends Google_Service {
 
 
 
-class Google_About extends Google_Model {
+class Google_About extends Model {
   protected $__additionalRoleInfoType = 'Google_AboutAdditionalRoleInfo';
   protected $__additionalRoleInfoDataType = 'array';
   public $additionalRoleInfo;
@@ -1347,7 +1352,7 @@ class Google_About extends Google_Model {
   }
 }
 
-class Google_AboutAdditionalRoleInfo extends Google_Model {
+class Google_AboutAdditionalRoleInfo extends Model {
   protected $__roleSetsType = 'Google_AboutAdditionalRoleInfoRoleSets';
   protected $__roleSetsDataType = 'array';
   public $roleSets;
@@ -1367,7 +1372,7 @@ class Google_AboutAdditionalRoleInfo extends Google_Model {
   }
 }
 
-class Google_AboutAdditionalRoleInfoRoleSets extends Google_Model {
+class Google_AboutAdditionalRoleInfoRoleSets extends Model {
   public $additionalRoles;
   public $primaryRole;
   public function setAdditionalRoles(/* array(Google_string) */ $additionalRoles) {
@@ -1385,7 +1390,7 @@ class Google_AboutAdditionalRoleInfoRoleSets extends Google_Model {
   }
 }
 
-class Google_AboutExportFormats extends Google_Model {
+class Google_AboutExportFormats extends Model {
   public $source;
   public $targets;
   public function setSource($source) {
@@ -1403,7 +1408,7 @@ class Google_AboutExportFormats extends Google_Model {
   }
 }
 
-class Google_AboutFeatures extends Google_Model {
+class Google_AboutFeatures extends Model {
   public $featureName;
   public $featureRate;
   public function setFeatureName($featureName) {
@@ -1420,7 +1425,7 @@ class Google_AboutFeatures extends Google_Model {
   }
 }
 
-class Google_AboutImportFormats extends Google_Model {
+class Google_AboutImportFormats extends Model {
   public $source;
   public $targets;
   public function setSource($source) {
@@ -1438,7 +1443,7 @@ class Google_AboutImportFormats extends Google_Model {
   }
 }
 
-class Google_AboutMaxUploadSizes extends Google_Model {
+class Google_AboutMaxUploadSizes extends Model {
   public $size;
   public $type;
   public function setSize($size) {
@@ -1455,7 +1460,7 @@ class Google_AboutMaxUploadSizes extends Google_Model {
   }
 }
 
-class Google_App extends Google_Model {
+class Google_App extends Model {
   public $authorized;
   protected $__iconsType = 'Google_AppIcons';
   protected $__iconsDataType = 'array';
@@ -1570,7 +1575,7 @@ class Google_App extends Google_Model {
   }
 }
 
-class Google_AppIcons extends Google_Model {
+class Google_AppIcons extends Model {
   public $category;
   public $iconUrl;
   public $size;
@@ -1594,7 +1599,7 @@ class Google_AppIcons extends Google_Model {
   }
 }
 
-class Google_AppList extends Google_Model {
+class Google_AppList extends Model {
   public $etag;
   protected $__itemsType = 'Google_App';
   protected $__itemsDataType = 'array';
@@ -1628,7 +1633,7 @@ class Google_AppList extends Google_Model {
   }
 }
 
-class Google_Change extends Google_Model {
+class Google_Change extends Model {
   public $deleted;
   protected $__fileType = 'Google_DriveFile';
   protected $__fileDataType = '';
@@ -1675,7 +1680,7 @@ class Google_Change extends Google_Model {
   }
 }
 
-class Google_ChangeList extends Google_Model {
+class Google_ChangeList extends Model {
   public $etag;
   protected $__itemsType = 'Google_Change';
   protected $__itemsDataType = 'array';
@@ -1730,7 +1735,7 @@ class Google_ChangeList extends Google_Model {
   }
 }
 
-class Google_ChildList extends Google_Model {
+class Google_ChildList extends Model {
   public $etag;
   protected $__itemsType = 'Google_ChildReference';
   protected $__itemsDataType = 'array';
@@ -1778,7 +1783,7 @@ class Google_ChildList extends Google_Model {
   }
 }
 
-class Google_ChildReference extends Google_Model {
+class Google_ChildReference extends Model {
   public $childLink;
   public $id;
   public $kind;
@@ -1809,7 +1814,7 @@ class Google_ChildReference extends Google_Model {
   }
 }
 
-class Google_Comment extends Google_Model {
+class Google_Comment extends Model {
   public $anchor;
   protected $__authorType = 'Google_User';
   protected $__authorDataType = '';
@@ -1924,7 +1929,7 @@ class Google_Comment extends Google_Model {
   }
 }
 
-class Google_CommentContext extends Google_Model {
+class Google_CommentContext extends Model {
   public $type;
   public $value;
   public function setType($type) {
@@ -1941,7 +1946,7 @@ class Google_CommentContext extends Google_Model {
   }
 }
 
-class Google_CommentList extends Google_Model {
+class Google_CommentList extends Model {
   protected $__itemsType = 'Google_Comment';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1968,7 +1973,7 @@ class Google_CommentList extends Google_Model {
   }
 }
 
-class Google_CommentReply extends Google_Model {
+class Google_CommentReply extends Model {
   protected $__authorType = 'Google_User';
   protected $__authorDataType = '';
   public $author;
@@ -2036,7 +2041,7 @@ class Google_CommentReply extends Google_Model {
   }
 }
 
-class Google_CommentReplyList extends Google_Model {
+class Google_CommentReplyList extends Model {
   protected $__itemsType = 'Google_CommentReply';
   protected $__itemsDataType = 'array';
   public $items;
@@ -2063,7 +2068,7 @@ class Google_CommentReplyList extends Google_Model {
   }
 }
 
-class Google_DriveFile extends Google_Model {
+class Google_DriveFile extends Model {
   public $alternateLink;
   public $appDataContents;
   public $createdDate;
@@ -2365,7 +2370,7 @@ class Google_DriveFile extends Google_Model {
   }
 }
 
-class Google_DriveFileImageMediaMetadata extends Google_Model {
+class Google_DriveFileImageMediaMetadata extends Model {
   public $aperture;
   public $cameraMake;
   public $cameraModel;
@@ -2517,7 +2522,7 @@ class Google_DriveFileImageMediaMetadata extends Google_Model {
   }
 }
 
-class Google_DriveFileImageMediaMetadataLocation extends Google_Model {
+class Google_DriveFileImageMediaMetadataLocation extends Model {
   public $altitude;
   public $latitude;
   public $longitude;
@@ -2541,7 +2546,7 @@ class Google_DriveFileImageMediaMetadataLocation extends Google_Model {
   }
 }
 
-class Google_DriveFileIndexableText extends Google_Model {
+class Google_DriveFileIndexableText extends Model {
   public $text;
   public function setText($text) {
     $this->text = $text;
@@ -2551,7 +2556,7 @@ class Google_DriveFileIndexableText extends Google_Model {
   }
 }
 
-class Google_DriveFileLabels extends Google_Model {
+class Google_DriveFileLabels extends Model {
   public $hidden;
   public $restricted;
   public $starred;
@@ -2589,7 +2594,7 @@ class Google_DriveFileLabels extends Google_Model {
   }
 }
 
-class Google_DriveFileThumbnail extends Google_Model {
+class Google_DriveFileThumbnail extends Model {
   public $image;
   public $mimeType;
   public function setImage($image) {
@@ -2606,7 +2611,7 @@ class Google_DriveFileThumbnail extends Google_Model {
   }
 }
 
-class Google_FileList extends Google_Model {
+class Google_FileList extends Model {
   public $etag;
   protected $__itemsType = 'Google_DriveFile';
   protected $__itemsDataType = 'array';
@@ -2654,7 +2659,7 @@ class Google_FileList extends Google_Model {
   }
 }
 
-class Google_ParentList extends Google_Model {
+class Google_ParentList extends Model {
   public $etag;
   protected $__itemsType = 'Google_ParentReference';
   protected $__itemsDataType = 'array';
@@ -2688,7 +2693,7 @@ class Google_ParentList extends Google_Model {
   }
 }
 
-class Google_ParentReference extends Google_Model {
+class Google_ParentReference extends Model {
   public $id;
   public $isRoot;
   public $kind;
@@ -2726,7 +2731,7 @@ class Google_ParentReference extends Google_Model {
   }
 }
 
-class Google_Permission extends Google_Model {
+class Google_Permission extends Model {
   public $additionalRoles;
   public $authKey;
   public $etag;
@@ -2814,7 +2819,7 @@ class Google_Permission extends Google_Model {
   }
 }
 
-class Google_PermissionList extends Google_Model {
+class Google_PermissionList extends Model {
   public $etag;
   protected $__itemsType = 'Google_Permission';
   protected $__itemsDataType = 'array';
@@ -2848,7 +2853,7 @@ class Google_PermissionList extends Google_Model {
   }
 }
 
-class Google_Property extends Google_Model {
+class Google_Property extends Model {
   public $etag;
   public $key;
   public $kind;
@@ -2893,7 +2898,7 @@ class Google_Property extends Google_Model {
   }
 }
 
-class Google_PropertyList extends Google_Model {
+class Google_PropertyList extends Model {
   public $etag;
   protected $__itemsType = 'Google_Property';
   protected $__itemsDataType = 'array';
@@ -2927,7 +2932,7 @@ class Google_PropertyList extends Google_Model {
   }
 }
 
-class Google_Revision extends Google_Model {
+class Google_Revision extends Model {
   public $downloadUrl;
   public $etag;
   public $exportLinks;
@@ -3058,7 +3063,7 @@ class Google_Revision extends Google_Model {
   }
 }
 
-class Google_RevisionList extends Google_Model {
+class Google_RevisionList extends Model {
   public $etag;
   protected $__itemsType = 'Google_Revision';
   protected $__itemsDataType = 'array';
@@ -3092,7 +3097,7 @@ class Google_RevisionList extends Google_Model {
   }
 }
 
-class Google_User extends Google_Model {
+class Google_User extends Model {
   public $displayName;
   public $isAuthenticatedUser;
   public $kind;
@@ -3132,7 +3137,7 @@ class Google_User extends Google_Model {
   }
 }
 
-class Google_UserPicture extends Google_Model {
+class Google_UserPicture extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;

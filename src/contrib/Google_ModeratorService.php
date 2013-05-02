@@ -22,7 +22,12 @@
    *   $votes = $moderatorService->votes;
    *  </code>
    */
-  class Google_VotesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_VotesServiceResource extends Resource {
 
 
     /**
@@ -145,7 +150,7 @@
    *   $responses = $moderatorService->responses;
    *  </code>
    */
-  class Google_ResponsesServiceResource extends Google_ServiceResource {
+  class Google_ResponsesServiceResource extends Resource {
 
 
     /**
@@ -208,7 +213,7 @@
    *   $tags = $moderatorService->tags;
    *  </code>
    */
-  class Google_TagsServiceResource extends Google_ServiceResource {
+  class Google_TagsServiceResource extends Resource {
 
 
     /**
@@ -273,7 +278,7 @@
    *   $series = $moderatorService->series;
    *  </code>
    */
-  class Google_SeriesServiceResource extends Google_ServiceResource {
+  class Google_SeriesServiceResource extends Resource {
 
 
     /**
@@ -376,7 +381,7 @@
    *   $submissions = $moderatorService->submissions;
    *  </code>
    */
-  class Google_SeriesSubmissionsServiceResource extends Google_ServiceResource {
+  class Google_SeriesSubmissionsServiceResource extends Resource {
 
 
     /**
@@ -415,7 +420,7 @@
    *   $responses = $moderatorService->responses;
    *  </code>
    */
-  class Google_SeriesResponsesServiceResource extends Google_ServiceResource {
+  class Google_SeriesResponsesServiceResource extends Resource {
 
 
     /**
@@ -452,7 +457,7 @@
    *   $topics = $moderatorService->topics;
    *  </code>
    */
-  class Google_TopicsServiceResource extends Google_ServiceResource {
+  class Google_TopicsServiceResource extends Resource {
 
 
     /**
@@ -542,7 +547,7 @@
    *   $submissions = $moderatorService->submissions;
    *  </code>
    */
-  class Google_TopicsSubmissionsServiceResource extends Google_ServiceResource {
+  class Google_TopicsSubmissionsServiceResource extends Resource {
 
 
     /**
@@ -582,7 +587,7 @@
    *   $global = $moderatorService->global;
    *  </code>
    */
-  class Google_ModeratorGlobalServiceResource extends Google_ServiceResource {
+  class Google_ModeratorGlobalServiceResource extends Resource {
 
 
   }
@@ -595,7 +600,7 @@
    *   $series = $moderatorService->series;
    *  </code>
    */
-  class Google_ModeratorGlobalSeriesServiceResource extends Google_ServiceResource {
+  class Google_ModeratorGlobalSeriesServiceResource extends Resource {
 
 
     /**
@@ -628,7 +633,7 @@
    *   $profiles = $moderatorService->profiles;
    *  </code>
    */
-  class Google_ProfilesServiceResource extends Google_ServiceResource {
+  class Google_ProfilesServiceResource extends Resource {
 
 
     /**
@@ -692,7 +697,7 @@
    *   $featured = $moderatorService->featured;
    *  </code>
    */
-  class Google_FeaturedServiceResource extends Google_ServiceResource {
+  class Google_FeaturedServiceResource extends Resource {
 
 
   }
@@ -705,7 +710,7 @@
    *   $series = $moderatorService->series;
    *  </code>
    */
-  class Google_FeaturedSeriesServiceResource extends Google_ServiceResource {
+  class Google_FeaturedSeriesServiceResource extends Resource {
 
 
     /**
@@ -734,7 +739,7 @@
    *   $myrecent = $moderatorService->myrecent;
    *  </code>
    */
-  class Google_MyrecentServiceResource extends Google_ServiceResource {
+  class Google_MyrecentServiceResource extends Resource {
 
 
   }
@@ -747,7 +752,7 @@
    *   $series = $moderatorService->series;
    *  </code>
    */
-  class Google_MyrecentSeriesServiceResource extends Google_ServiceResource {
+  class Google_MyrecentSeriesServiceResource extends Resource {
 
 
     /**
@@ -776,7 +781,7 @@
    *   $my = $moderatorService->my;
    *  </code>
    */
-  class Google_MyServiceResource extends Google_ServiceResource {
+  class Google_MyServiceResource extends Resource {
 
 
   }
@@ -789,7 +794,7 @@
    *   $series = $moderatorService->series;
    *  </code>
    */
-  class Google_MySeriesServiceResource extends Google_ServiceResource {
+  class Google_MySeriesServiceResource extends Resource {
 
 
     /**
@@ -818,7 +823,7 @@
    *   $submissions = $moderatorService->submissions;
    *  </code>
    */
-  class Google_SubmissionsServiceResource extends Google_ServiceResource {
+  class Google_SubmissionsServiceResource extends Resource {
 
 
     /**
@@ -880,7 +885,7 @@
  *
  * @author Google, Inc.
  */
-class Google_ModeratorService extends Google_Service {
+class Google_ModeratorService extends Service {
   public $votes;
   public $responses;
   public $tags;
@@ -898,9 +903,9 @@ class Google_ModeratorService extends Google_Service {
   /**
    * Constructs the internal representation of the Moderator service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'moderator/v1/';
     $this->version = 'v1';
     $this->serviceName = 'moderator';
@@ -924,7 +929,7 @@ class Google_ModeratorService extends Google_Service {
   }
 }
 
-class Google_ModeratorTopicsResourcePartial extends Google_Model {
+class Google_ModeratorTopicsResourcePartial extends Model {
   protected $__idType = 'Google_ModeratorTopicsResourcePartialId';
   protected $__idDataType = '';
   public $id;
@@ -936,7 +941,7 @@ class Google_ModeratorTopicsResourcePartial extends Google_Model {
   }
 }
 
-class Google_ModeratorTopicsResourcePartialId extends Google_Model {
+class Google_ModeratorTopicsResourcePartialId extends Model {
   public $seriesId;
   public $topicId;
   public function setSeriesId($seriesId) {
@@ -953,7 +958,7 @@ class Google_ModeratorTopicsResourcePartialId extends Google_Model {
   }
 }
 
-class Google_ModeratorVotesResourcePartial extends Google_Model {
+class Google_ModeratorVotesResourcePartial extends Model {
   public $vote;
   public $flag;
   public function setVote($vote) {
@@ -970,7 +975,7 @@ class Google_ModeratorVotesResourcePartial extends Google_Model {
   }
 }
 
-class Google_Profile extends Google_Model {
+class Google_Profile extends Model {
   public $kind;
   protected $__attributionType = 'Google_ProfileAttribution';
   protected $__attributionDataType = '';
@@ -998,7 +1003,7 @@ class Google_Profile extends Google_Model {
   }
 }
 
-class Google_ProfileAttribution extends Google_Model {
+class Google_ProfileAttribution extends Model {
   protected $__geoType = 'Google_ProfileAttributionGeo';
   protected $__geoDataType = '';
   public $geo;
@@ -1031,7 +1036,7 @@ class Google_ProfileAttribution extends Google_Model {
   }
 }
 
-class Google_ProfileAttributionGeo extends Google_Model {
+class Google_ProfileAttributionGeo extends Model {
   public $latitude;
   public $location;
   public $longitude;
@@ -1055,7 +1060,7 @@ class Google_ProfileAttributionGeo extends Google_Model {
   }
 }
 
-class Google_ProfileId extends Google_Model {
+class Google_ProfileId extends Model {
   public $user;
   public function setUser($user) {
     $this->user = $user;
@@ -1065,7 +1070,7 @@ class Google_ProfileId extends Google_Model {
   }
 }
 
-class Google_Series extends Google_Model {
+class Google_Series extends Model {
   public $kind;
   public $description;
   protected $__rulesType = 'Google_SeriesRules';
@@ -1151,7 +1156,7 @@ class Google_Series extends Google_Model {
   }
 }
 
-class Google_SeriesCounters extends Google_Model {
+class Google_SeriesCounters extends Model {
   public $users;
   public $noneVotes;
   public $videoSubmissions;
@@ -1203,7 +1208,7 @@ class Google_SeriesCounters extends Google_Model {
   }
 }
 
-class Google_SeriesId extends Google_Model {
+class Google_SeriesId extends Model {
   public $seriesId;
   public function setSeriesId($seriesId) {
     $this->seriesId = $seriesId;
@@ -1213,7 +1218,7 @@ class Google_SeriesId extends Google_Model {
   }
 }
 
-class Google_SeriesList extends Google_Model {
+class Google_SeriesList extends Model {
   protected $__itemsType = 'Google_Series';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1233,7 +1238,7 @@ class Google_SeriesList extends Google_Model {
   }
 }
 
-class Google_SeriesRules extends Google_Model {
+class Google_SeriesRules extends Model {
   protected $__votesType = 'Google_SeriesRulesVotes';
   protected $__votesDataType = '';
   public $votes;
@@ -1254,7 +1259,7 @@ class Google_SeriesRules extends Google_Model {
   }
 }
 
-class Google_SeriesRulesSubmissions extends Google_Model {
+class Google_SeriesRulesSubmissions extends Model {
   public $close;
   public $open;
   public function setClose($close) {
@@ -1271,7 +1276,7 @@ class Google_SeriesRulesSubmissions extends Google_Model {
   }
 }
 
-class Google_SeriesRulesVotes extends Google_Model {
+class Google_SeriesRulesVotes extends Model {
   public $close;
   public $open;
   public function setClose($close) {
@@ -1288,7 +1293,7 @@ class Google_SeriesRulesVotes extends Google_Model {
   }
 }
 
-class Google_Submission extends Google_Model {
+class Google_Submission extends Model {
   public $kind;
   protected $__attributionType = 'Google_SubmissionAttribution';
   protected $__attributionDataType = '';
@@ -1400,7 +1405,7 @@ class Google_Submission extends Google_Model {
   }
 }
 
-class Google_SubmissionAttribution extends Google_Model {
+class Google_SubmissionAttribution extends Model {
   public $displayName;
   public $location;
   public $avatarUrl;
@@ -1424,7 +1429,7 @@ class Google_SubmissionAttribution extends Google_Model {
   }
 }
 
-class Google_SubmissionCounters extends Google_Model {
+class Google_SubmissionCounters extends Model {
   public $noneVotes;
   public $minusVotes;
   public $plusVotes;
@@ -1448,7 +1453,7 @@ class Google_SubmissionCounters extends Google_Model {
   }
 }
 
-class Google_SubmissionGeo extends Google_Model {
+class Google_SubmissionGeo extends Model {
   public $latitude;
   public $location;
   public $longitude;
@@ -1472,7 +1477,7 @@ class Google_SubmissionGeo extends Google_Model {
   }
 }
 
-class Google_SubmissionId extends Google_Model {
+class Google_SubmissionId extends Model {
   public $seriesId;
   public $submissionId;
   public function setSeriesId($seriesId) {
@@ -1489,7 +1494,7 @@ class Google_SubmissionId extends Google_Model {
   }
 }
 
-class Google_SubmissionList extends Google_Model {
+class Google_SubmissionList extends Model {
   protected $__itemsType = 'Google_Submission';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1509,7 +1514,7 @@ class Google_SubmissionList extends Google_Model {
   }
 }
 
-class Google_SubmissionParentSubmissionId extends Google_Model {
+class Google_SubmissionParentSubmissionId extends Model {
   public $seriesId;
   public $submissionId;
   public function setSeriesId($seriesId) {
@@ -1526,7 +1531,7 @@ class Google_SubmissionParentSubmissionId extends Google_Model {
   }
 }
 
-class Google_SubmissionTranslations extends Google_Model {
+class Google_SubmissionTranslations extends Model {
   public $lang;
   public $text;
   public function setLang($lang) {
@@ -1543,7 +1548,7 @@ class Google_SubmissionTranslations extends Google_Model {
   }
 }
 
-class Google_Tag extends Google_Model {
+class Google_Tag extends Model {
   public $text;
   public $kind;
   protected $__idType = 'Google_TagId';
@@ -1569,7 +1574,7 @@ class Google_Tag extends Google_Model {
   }
 }
 
-class Google_TagId extends Google_Model {
+class Google_TagId extends Model {
   public $seriesId;
   public $tagId;
   public $submissionId;
@@ -1593,7 +1598,7 @@ class Google_TagId extends Google_Model {
   }
 }
 
-class Google_TagList extends Google_Model {
+class Google_TagList extends Model {
   protected $__itemsType = 'Google_Tag';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1613,7 +1618,7 @@ class Google_TagList extends Google_Model {
   }
 }
 
-class Google_Topic extends Google_Model {
+class Google_Topic extends Model {
   public $kind;
   public $description;
   protected $__rulesType = 'Google_TopicRules';
@@ -1680,7 +1685,7 @@ class Google_Topic extends Google_Model {
   }
 }
 
-class Google_TopicCounters extends Google_Model {
+class Google_TopicCounters extends Model {
   public $users;
   public $noneVotes;
   public $videoSubmissions;
@@ -1725,7 +1730,7 @@ class Google_TopicCounters extends Google_Model {
   }
 }
 
-class Google_TopicId extends Google_Model {
+class Google_TopicId extends Model {
   public $seriesId;
   public $topicId;
   public function setSeriesId($seriesId) {
@@ -1742,7 +1747,7 @@ class Google_TopicId extends Google_Model {
   }
 }
 
-class Google_TopicList extends Google_Model {
+class Google_TopicList extends Model {
   protected $__itemsType = 'Google_Topic';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1762,7 +1767,7 @@ class Google_TopicList extends Google_Model {
   }
 }
 
-class Google_TopicRules extends Google_Model {
+class Google_TopicRules extends Model {
   protected $__votesType = 'Google_TopicRulesVotes';
   protected $__votesDataType = '';
   public $votes;
@@ -1783,7 +1788,7 @@ class Google_TopicRules extends Google_Model {
   }
 }
 
-class Google_TopicRulesSubmissions extends Google_Model {
+class Google_TopicRulesSubmissions extends Model {
   public $close;
   public $open;
   public function setClose($close) {
@@ -1800,7 +1805,7 @@ class Google_TopicRulesSubmissions extends Google_Model {
   }
 }
 
-class Google_TopicRulesVotes extends Google_Model {
+class Google_TopicRulesVotes extends Model {
   public $close;
   public $open;
   public function setClose($close) {
@@ -1817,7 +1822,7 @@ class Google_TopicRulesVotes extends Google_Model {
   }
 }
 
-class Google_Vote extends Google_Model {
+class Google_Vote extends Model {
   public $vote;
   public $flag;
   protected $__idType = 'Google_VoteId';
@@ -1850,7 +1855,7 @@ class Google_Vote extends Google_Model {
   }
 }
 
-class Google_VoteId extends Google_Model {
+class Google_VoteId extends Model {
   public $seriesId;
   public $submissionId;
   public function setSeriesId($seriesId) {
@@ -1867,7 +1872,7 @@ class Google_VoteId extends Google_Model {
   }
 }
 
-class Google_VoteList extends Google_Model {
+class Google_VoteList extends Model {
   protected $__itemsType = 'Google_Vote';
   protected $__itemsDataType = 'array';
   public $items;

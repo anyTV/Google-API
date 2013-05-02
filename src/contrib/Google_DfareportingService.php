@@ -22,7 +22,12 @@
    *   $dimensionValues = $dfareportingService->dimensionValues;
    *  </code>
    */
-  class Google_DimensionValuesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_DimensionValuesServiceResource extends Resource {
 
 
     /**
@@ -56,7 +61,7 @@
    *   $files = $dfareportingService->files;
    *  </code>
    */
-  class Google_FilesServiceResource extends Google_ServiceResource {
+  class Google_FilesServiceResource extends Resource {
 
 
     /**
@@ -91,7 +96,7 @@
    *   $reports = $dfareportingService->reports;
    *  </code>
    */
-  class Google_ReportsServiceResource extends Google_ServiceResource {
+  class Google_ReportsServiceResource extends Resource {
 
 
     /**
@@ -120,7 +125,7 @@
       $params = array_merge($params, $optParams);
       $data = $this->__call('get', array($params));
       if ($this->useObjects()) {
-        return new Google_Report($data);
+        return new Model\Report($data);
       } else {
         return $data;
       }
@@ -133,12 +138,12 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function insert($profileId, Google_Report $postBody, $optParams = array()) {
+    public function insert($profileId, Model\Report $postBody, $optParams = array()) {
       $params = array('profileId' => $profileId, 'postBody' => $postBody);
       $params = array_merge($params, $optParams);
       $data = $this->__call('insert', array($params));
       if ($this->useObjects()) {
-        return new Google_Report($data);
+        return new Model\Report($data);
       } else {
         return $data;
       }
@@ -174,12 +179,12 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function patch($profileId, $reportId, Google_Report $postBody, $optParams = array()) {
+    public function patch($profileId, $reportId, Model\Report $postBody, $optParams = array()) {
       $params = array('profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody);
       $params = array_merge($params, $optParams);
       $data = $this->__call('patch', array($params));
       if ($this->useObjects()) {
-        return new Google_Report($data);
+        return new Model\Report($data);
       } else {
         return $data;
       }
@@ -213,12 +218,12 @@
      * @param array $optParams Optional parameters.
      * @return Google_Report
      */
-    public function update($profileId, $reportId, Google_Report $postBody, $optParams = array()) {
+    public function update($profileId, $reportId, Model\Report $postBody, $optParams = array()) {
       $params = array('profileId' => $profileId, 'reportId' => $reportId, 'postBody' => $postBody);
       $params = array_merge($params, $optParams);
       $data = $this->__call('update', array($params));
       if ($this->useObjects()) {
-        return new Google_Report($data);
+        return new Model\Report($data);
       } else {
         return $data;
       }
@@ -233,7 +238,7 @@
    *   $files = $dfareportingService->files;
    *  </code>
    */
-  class Google_ReportsFilesServiceResource extends Google_ServiceResource {
+  class Google_ReportsFilesServiceResource extends Resource {
 
 
     /**
@@ -288,7 +293,7 @@
    *   $userProfiles = $dfareportingService->userProfiles;
    *  </code>
    */
-  class Google_UserProfilesServiceResource extends Google_ServiceResource {
+  class Google_UserProfilesServiceResource extends Resource {
 
 
     /**
@@ -340,7 +345,7 @@
  *
  * @author Google, Inc.
  */
-class Google_DfareportingService extends Google_Service {
+class Google_DfareportingService extends Service {
   public $dimensionValues;
   public $files;
   public $reports;
@@ -349,9 +354,9 @@ class Google_DfareportingService extends Google_Service {
   /**
    * Constructs the internal representation of the Dfareporting service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'dfareporting/v1.1/';
     $this->version = 'v1.1';
     $this->serviceName = 'dfareporting';
@@ -359,14 +364,14 @@ class Google_DfareportingService extends Google_Service {
     $client->addService($this->serviceName, $this->version);
     $this->dimensionValues = new Google_DimensionValuesServiceResource($this, $this->serviceName, 'dimensionValues', json_decode('{"methods": {"query": {"id": "dfareporting.dimensionValues.query", "path": "userprofiles/{profileId}/dimensionvalues/query", "httpMethod": "POST", "parameters": {"maxResults": {"type": "integer", "format": "int32", "minimum": "0", "maximum": "100", "location": "query"}, "pageToken": {"type": "string", "location": "query"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "DimensionValueRequest"}, "response": {"$ref": "DimensionValueList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
     $this->files = new Google_FilesServiceResource($this, $this->serviceName, 'files', json_decode('{"methods": {"list": {"id": "dfareporting.files.list", "path": "userprofiles/{profileId}/files", "httpMethod": "GET", "parameters": {"maxResults": {"type": "integer", "format": "int32", "minimum": "0", "maximum": "10", "location": "query"}, "pageToken": {"type": "string", "location": "query"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "sortField": {"type": "string", "default": "LAST_MODIFIED_TIME", "enum": ["ID", "LAST_MODIFIED_TIME"], "location": "query"}, "sortOrder": {"type": "string", "default": "DESCENDING", "enum": ["ASCENDING", "DESCENDING"], "location": "query"}}, "response": {"$ref": "FileList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
-    $this->reports = new Google_ReportsServiceResource($this, $this->serviceName, 'reports', json_decode('{"methods": {"delete": {"id": "dfareporting.reports.delete", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "DELETE", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "get": {"id": "dfareporting.reports.get", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "GET", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "insert": {"id": "dfareporting.reports.insert", "path": "userprofiles/{profileId}/reports", "httpMethod": "POST", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "list": {"id": "dfareporting.reports.list", "path": "userprofiles/{profileId}/reports", "httpMethod": "GET", "parameters": {"maxResults": {"type": "integer", "format": "int32", "minimum": "0", "maximum": "10", "location": "query"}, "pageToken": {"type": "string", "location": "query"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "sortField": {"type": "string", "default": "LAST_MODIFIED_TIME", "enum": ["ID", "LAST_MODIFIED_TIME", "NAME"], "location": "query"}, "sortOrder": {"type": "string", "default": "DESCENDING", "enum": ["ASCENDING", "DESCENDING"], "location": "query"}}, "response": {"$ref": "ReportList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "patch": {"id": "dfareporting.reports.patch", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "PATCH", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "run": {"id": "dfareporting.reports.run", "path": "userprofiles/{profileId}/reports/{reportId}/run", "httpMethod": "POST", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "synchronous": {"type": "boolean", "location": "query"}}, "response": {"$ref": "File"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "update": {"id": "dfareporting.reports.update", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "PUT", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
+    $this->reports = new Resource\ReportsResource($this, $this->serviceName, 'reports', json_decode('{"methods": {"delete": {"id": "dfareporting.reports.delete", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "DELETE", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "get": {"id": "dfareporting.reports.get", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "GET", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "insert": {"id": "dfareporting.reports.insert", "path": "userprofiles/{profileId}/reports", "httpMethod": "POST", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "list": {"id": "dfareporting.reports.list", "path": "userprofiles/{profileId}/reports", "httpMethod": "GET", "parameters": {"maxResults": {"type": "integer", "format": "int32", "minimum": "0", "maximum": "10", "location": "query"}, "pageToken": {"type": "string", "location": "query"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "sortField": {"type": "string", "default": "LAST_MODIFIED_TIME", "enum": ["ID", "LAST_MODIFIED_TIME", "NAME"], "location": "query"}, "sortOrder": {"type": "string", "default": "DESCENDING", "enum": ["ASCENDING", "DESCENDING"], "location": "query"}}, "response": {"$ref": "ReportList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "patch": {"id": "dfareporting.reports.patch", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "PATCH", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "run": {"id": "dfareporting.reports.run", "path": "userprofiles/{profileId}/reports/{reportId}/run", "httpMethod": "POST", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "synchronous": {"type": "boolean", "location": "query"}}, "response": {"$ref": "File"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "update": {"id": "dfareporting.reports.update", "path": "userprofiles/{profileId}/reports/{reportId}", "httpMethod": "PUT", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "request": {"$ref": "Report"}, "response": {"$ref": "Report"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
     $this->reports_files = new Google_ReportsFilesServiceResource($this, $this->serviceName, 'files', json_decode('{"methods": {"get": {"id": "dfareporting.reports.files.get", "path": "userprofiles/{profileId}/reports/{reportId}/files/{fileId}", "httpMethod": "GET", "parameters": {"fileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "response": {"$ref": "File"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "list": {"id": "dfareporting.reports.files.list", "path": "userprofiles/{profileId}/reports/{reportId}/files", "httpMethod": "GET", "parameters": {"maxResults": {"type": "integer", "format": "int32", "minimum": "0", "maximum": "10", "location": "query"}, "pageToken": {"type": "string", "location": "query"}, "profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "reportId": {"type": "string", "required": true, "format": "int64", "location": "path"}, "sortField": {"type": "string", "default": "LAST_MODIFIED_TIME", "enum": ["ID", "LAST_MODIFIED_TIME"], "location": "query"}, "sortOrder": {"type": "string", "default": "DESCENDING", "enum": ["ASCENDING", "DESCENDING"], "location": "query"}}, "response": {"$ref": "FileList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
     $this->userProfiles = new Google_UserProfilesServiceResource($this, $this->serviceName, 'userProfiles', json_decode('{"methods": {"get": {"id": "dfareporting.userProfiles.get", "path": "userprofiles/{profileId}", "httpMethod": "GET", "parameters": {"profileId": {"type": "string", "required": true, "format": "int64", "location": "path"}}, "response": {"$ref": "UserProfile"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}, "list": {"id": "dfareporting.userProfiles.list", "path": "userprofiles", "httpMethod": "GET", "response": {"$ref": "UserProfileList"}, "scopes": ["https://www.googleapis.com/auth/dfareporting"]}}}', true));
 
   }
 }
 
-class Google_Activities extends Google_Model {
+class Google_Activities extends Model {
   protected $__filtersType = 'Google_DimensionValue';
   protected $__filtersDataType = 'array';
   public $filters;
@@ -393,7 +398,7 @@ class Google_Activities extends Google_Model {
   }
 }
 
-class Google_CustomRichMediaEvents extends Google_Model {
+class Google_CustomRichMediaEvents extends Model {
   protected $__filteredEventIdsType = 'Google_DimensionValue';
   protected $__filteredEventIdsDataType = 'array';
   public $filteredEventIds;
@@ -413,7 +418,7 @@ class Google_CustomRichMediaEvents extends Google_Model {
   }
 }
 
-class Google_DateRange extends Google_Model {
+class Google_DateRange extends Model {
   public $endDate;
   public $kind;
   public $relativeDateRange;
@@ -444,7 +449,7 @@ class Google_DateRange extends Google_Model {
   }
 }
 
-class Google_DfareportingFile extends Google_Model {
+class Google_DfareportingFile extends Model {
   protected $__dateRangeType = 'Google_DateRange';
   protected $__dateRangeDataType = '';
   public $dateRange;
@@ -521,7 +526,7 @@ class Google_DfareportingFile extends Google_Model {
   }
 }
 
-class Google_DfareportingFileUrls extends Google_Model {
+class Google_DfareportingFileUrls extends Model {
   public $apiUrl;
   public $browserUrl;
   public function setApiUrl($apiUrl) {
@@ -538,7 +543,7 @@ class Google_DfareportingFileUrls extends Google_Model {
   }
 }
 
-class Google_DimensionFilter extends Google_Model {
+class Google_DimensionFilter extends Model {
   public $dimensionName;
   public $kind;
   public $value;
@@ -562,7 +567,7 @@ class Google_DimensionFilter extends Google_Model {
   }
 }
 
-class Google_DimensionValue extends Google_Model {
+class Google_DimensionValue extends Model {
   public $dimensionName;
   public $etag;
   public $id;
@@ -600,7 +605,7 @@ class Google_DimensionValue extends Google_Model {
   }
 }
 
-class Google_DimensionValueList extends Google_Model {
+class Google_DimensionValueList extends Model {
   public $etag;
   protected $__itemsType = 'Google_DimensionValue';
   protected $__itemsDataType = 'array';
@@ -634,7 +639,7 @@ class Google_DimensionValueList extends Google_Model {
   }
 }
 
-class Google_DimensionValueRequest extends Google_Model {
+class Google_DimensionValueRequest extends Model {
   public $dimensionName;
   public $endDate;
   protected $__filtersType = 'Google_DimensionFilter';
@@ -675,7 +680,7 @@ class Google_DimensionValueRequest extends Google_Model {
   }
 }
 
-class Google_FileList extends Google_Model {
+class Google_FileList extends Model {
   public $etag;
   protected $__itemsType = 'Google_DfareportingFile';
   protected $__itemsDataType = 'array';
@@ -709,7 +714,7 @@ class Google_FileList extends Google_Model {
   }
 }
 
-class Google_Recipient extends Google_Model {
+class Google_Recipient extends Model {
   public $deliveryType;
   public $email;
   public $kind;
@@ -733,7 +738,7 @@ class Google_Recipient extends Google_Model {
   }
 }
 
-class Google_Report extends Google_Model {
+class Google_Report extends Model {
   public $accountId;
   protected $__activeGrpCriteriaType = 'Google_ReportActiveGrpCriteria';
   protected $__activeGrpCriteriaDataType = '';
@@ -885,7 +890,7 @@ class Google_Report extends Google_Model {
   }
 }
 
-class Google_ReportActiveGrpCriteria extends Google_Model {
+class Google_ReportActiveGrpCriteria extends Model {
   protected $__dateRangeType = 'Google_DateRange';
   protected $__dateRangeDataType = '';
   public $dateRange;
@@ -924,7 +929,7 @@ class Google_ReportActiveGrpCriteria extends Google_Model {
   }
 }
 
-class Google_ReportCriteria extends Google_Model {
+class Google_ReportCriteria extends Model {
   protected $__activitiesType = 'Google_Activities';
   protected $__activitiesDataType = '';
   public $activities;
@@ -981,7 +986,7 @@ class Google_ReportCriteria extends Google_Model {
   }
 }
 
-class Google_ReportCrossDimensionReachCriteria extends Google_Model {
+class Google_ReportCrossDimensionReachCriteria extends Model {
   protected $__breakdownType = 'Google_SortedDimension';
   protected $__breakdownDataType = 'array';
   public $breakdown;
@@ -1041,7 +1046,7 @@ class Google_ReportCrossDimensionReachCriteria extends Google_Model {
   }
 }
 
-class Google_ReportDelivery extends Google_Model {
+class Google_ReportDelivery extends Model {
   public $emailOwner;
   public $emailOwnerDeliveryType;
   public $message;
@@ -1075,7 +1080,7 @@ class Google_ReportDelivery extends Google_Model {
   }
 }
 
-class Google_ReportFloodlightCriteria extends Google_Model {
+class Google_ReportFloodlightCriteria extends Model {
   protected $__dateRangeType = 'Google_DateRange';
   protected $__dateRangeDataType = '';
   public $dateRange;
@@ -1132,7 +1137,7 @@ class Google_ReportFloodlightCriteria extends Google_Model {
   }
 }
 
-class Google_ReportFloodlightCriteriaReportProperties extends Google_Model {
+class Google_ReportFloodlightCriteriaReportProperties extends Model {
   public $includeAttributedIPConversions;
   public $includeUnattributedCookieConversions;
   public $includeUnattributedIPConversions;
@@ -1156,9 +1161,9 @@ class Google_ReportFloodlightCriteriaReportProperties extends Google_Model {
   }
 }
 
-class Google_ReportList extends Google_Model {
+class Google_ReportList extends Model {
   public $etag;
-  protected $__itemsType = 'Google_Report';
+  protected $__itemsType = 'Report';
   protected $__itemsDataType = 'array';
   public $items;
   public $kind;
@@ -1169,8 +1174,8 @@ class Google_ReportList extends Google_Model {
   public function getEtag() {
     return $this->etag;
   }
-  public function setItems(/* array(Google_Report) */ $items) {
-    $this->assertIsArray($items, 'Google_Report', __METHOD__);
+  public function setItems(/* array(Report) */ $items) {
+    $this->assertIsArray($items, 'Report', __METHOD__);
     $this->items = $items;
   }
   public function getItems() {
@@ -1190,7 +1195,7 @@ class Google_ReportList extends Google_Model {
   }
 }
 
-class Google_ReportPathToConversionCriteria extends Google_Model {
+class Google_ReportPathToConversionCriteria extends Model {
   protected $__activityFiltersType = 'Google_DimensionValue';
   protected $__activityFiltersDataType = 'array';
   public $activityFilters;
@@ -1267,7 +1272,7 @@ class Google_ReportPathToConversionCriteria extends Google_Model {
   }
 }
 
-class Google_ReportPathToConversionCriteriaReportProperties extends Google_Model {
+class Google_ReportPathToConversionCriteriaReportProperties extends Model {
   public $clicksLookbackWindow;
   public $impressionsLookbackWindow;
   public $includeAttributedIPConversions;
@@ -1333,7 +1338,7 @@ class Google_ReportPathToConversionCriteriaReportProperties extends Google_Model
   }
 }
 
-class Google_ReportReachCriteria extends Google_Model {
+class Google_ReportReachCriteria extends Model {
   protected $__activitiesType = 'Google_Activities';
   protected $__activitiesDataType = '';
   public $activities;
@@ -1397,7 +1402,7 @@ class Google_ReportReachCriteria extends Google_Model {
   }
 }
 
-class Google_ReportSchedule extends Google_Model {
+class Google_ReportSchedule extends Model {
   public $active;
   public $every;
   public $expirationDate;
@@ -1449,7 +1454,7 @@ class Google_ReportSchedule extends Google_Model {
   }
 }
 
-class Google_SortedDimension extends Google_Model {
+class Google_SortedDimension extends Model {
   public $kind;
   public $name;
   public $sortOrder;
@@ -1473,7 +1478,7 @@ class Google_SortedDimension extends Google_Model {
   }
 }
 
-class Google_UserProfile extends Google_Model {
+class Google_UserProfile extends Model {
   public $accountId;
   public $accountName;
   public $etag;
@@ -1532,7 +1537,7 @@ class Google_UserProfile extends Google_Model {
   }
 }
 
-class Google_UserProfileList extends Google_Model {
+class Google_UserProfileList extends Model {
   public $etag;
   protected $__itemsType = 'Google_UserProfile';
   protected $__itemsDataType = 'array';

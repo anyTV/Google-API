@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\CustomChannel;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 // ID of the custom channel to be updated.
@@ -36,7 +38,7 @@ class UpdateCustomChannelOnHost extends BaseExample {
     $adClientId = HOST_AD_CLIENT_ID;
     $customChannelId = CUSTOM_CHANNEL_ID;
 
-    $customChannel = new Google_CustomChannel();
+    $customChannel = new CustomChannel();
     $customChannel->setName(sprintf('Updated Sample Channel #%s',
         $this->getUniqueName()));
 

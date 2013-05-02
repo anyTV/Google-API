@@ -1,8 +1,9 @@
 <?php
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_TranslateService.php';
+use Google\Client;
 
-$client = new Google_Client();
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_TranslateService.php';
+
+$client = new Client();
 $client->setApplicationName('Google Translate PHP Starter Application');
 
 // Visit https://code.google.com/apis/console?api=translate to generate your

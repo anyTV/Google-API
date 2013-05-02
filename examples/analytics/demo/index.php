@@ -38,8 +38,9 @@
  * If successful, you should be able to run the Hello Analytics API sample.
  * @author Nick Mihailovski <api.nickm@gmail.com>
  */
-require_once '../../../src/Google_Client.php';
-require_once '../../../src/contrib/Google_AnalyticsService.php';
+use Google\Client;
+
+require_once '../../../src/Clientrequire_once '../../../src/contrib/Google_AnalyticsService.php';
 require_once 'storage.php';
 require_once 'authHelper.php';
 
@@ -67,7 +68,7 @@ $mgmtApiDemoUrl = THIS_PAGE . '?demo=mgmt';
 $coreReportingDemoUrl = THIS_PAGE . '?demo=reporting';
 
 // Build a new client object to work with authorization.
-$client = new Google_Client();
+$client = new Client();
 $client->setClientId(CLIENT_ID);
 $client->setClientSecret(CLIENT_SECRET);
 $client->setRedirectUri(REDIRECT_URL);

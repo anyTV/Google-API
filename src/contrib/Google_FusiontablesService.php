@@ -24,7 +24,12 @@
    *   $column = $fusiontablesService->column;
    *  </code>
    */
-  class Google_ColumnServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ColumnServiceResource extends Resource {
 
 
     /**
@@ -145,7 +150,7 @@
    *   $query = $fusiontablesService->query;
    *  </code>
    */
-  class Google_QueryServiceResource extends Google_ServiceResource {
+  class Google_QueryServiceResource extends Resource {
 
 
     /**
@@ -198,7 +203,7 @@
    *   $style = $fusiontablesService->style;
    *  </code>
    */
-  class Google_StyleServiceResource extends Google_ServiceResource {
+  class Google_StyleServiceResource extends Resource {
 
 
     /**
@@ -318,7 +323,7 @@
    *   $table = $fusiontablesService->table;
    *  </code>
    */
-  class Google_TableServiceResource extends Google_ServiceResource {
+  class Google_TableServiceResource extends Resource {
 
 
     /**
@@ -480,7 +485,7 @@
    *   $template = $fusiontablesService->template;
    *  </code>
    */
-  class Google_TemplateServiceResource extends Google_ServiceResource {
+  class Google_TemplateServiceResource extends Resource {
 
 
     /**
@@ -606,7 +611,7 @@
  *
  * @author Google, Inc.
  */
-class Google_FusiontablesService extends Google_Service {
+class Google_FusiontablesService extends Service {
   public $column;
   public $query;
   public $style;
@@ -615,9 +620,9 @@ class Google_FusiontablesService extends Google_Service {
   /**
    * Constructs the internal representation of the Fusiontables service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'fusiontables/v1/';
     $this->version = 'v1';
     $this->serviceName = 'fusiontables';
@@ -632,7 +637,7 @@ class Google_FusiontablesService extends Google_Service {
   }
 }
 
-class Google_Bucket extends Google_Model {
+class Google_Bucket extends Model {
   public $color;
   public $icon;
   public $max;
@@ -677,7 +682,7 @@ class Google_Bucket extends Google_Model {
   }
 }
 
-class Google_Column extends Google_Model {
+class Google_Column extends Model {
   protected $__baseColumnType = 'Google_ColumnBaseColumn';
   protected $__baseColumnDataType = '';
   public $baseColumn;
@@ -717,7 +722,7 @@ class Google_Column extends Google_Model {
   }
 }
 
-class Google_ColumnBaseColumn extends Google_Model {
+class Google_ColumnBaseColumn extends Model {
   public $columnId;
   public $tableIndex;
   public function setColumnId($columnId) {
@@ -734,7 +739,7 @@ class Google_ColumnBaseColumn extends Google_Model {
   }
 }
 
-class Google_ColumnList extends Google_Model {
+class Google_ColumnList extends Model {
   protected $__itemsType = 'Google_Column';
   protected $__itemsDataType = 'array';
   public $items;
@@ -768,7 +773,7 @@ class Google_ColumnList extends Google_Model {
   }
 }
 
-class Google_Geometry extends Google_Model {
+class Google_Geometry extends Model {
   public $geometries;
   public $geometry;
   public $type;
@@ -793,7 +798,7 @@ class Google_Geometry extends Google_Model {
   }
 }
 
-class Google_Import extends Google_Model {
+class Google_Import extends Model {
   public $kind;
   public $numRowsReceived;
   public function setKind($kind) {
@@ -810,7 +815,7 @@ class Google_Import extends Google_Model {
   }
 }
 
-class Google_Line extends Google_Model {
+class Google_Line extends Model {
   public $coordinates;
   public $type;
   public function setCoordinates(/* array(Google_double) */ $coordinates) {
@@ -828,7 +833,7 @@ class Google_Line extends Google_Model {
   }
 }
 
-class Google_LineStyle extends Google_Model {
+class Google_LineStyle extends Model {
   public $strokeColor;
   protected $__strokeColorStylerType = 'Google_StyleFunction';
   protected $__strokeColorStylerDataType = '';
@@ -870,7 +875,7 @@ class Google_LineStyle extends Google_Model {
   }
 }
 
-class Google_Point extends Google_Model {
+class Google_Point extends Model {
   public $coordinates;
   public $type;
   public function setCoordinates(/* array(Google_double) */ $coordinates) {
@@ -888,7 +893,7 @@ class Google_Point extends Google_Model {
   }
 }
 
-class Google_PointStyle extends Google_Model {
+class Google_PointStyle extends Model {
   public $iconName;
   protected $__iconStylerType = 'Google_StyleFunction';
   protected $__iconStylerDataType = '';
@@ -907,7 +912,7 @@ class Google_PointStyle extends Google_Model {
   }
 }
 
-class Google_Polygon extends Google_Model {
+class Google_Polygon extends Model {
   public $coordinates;
   public $type;
   public function setCoordinates(/* array(Google_double) */ $coordinates) {
@@ -925,7 +930,7 @@ class Google_Polygon extends Google_Model {
   }
 }
 
-class Google_PolygonStyle extends Google_Model {
+class Google_PolygonStyle extends Model {
   public $fillColor;
   protected $__fillColorStylerType = 'Google_StyleFunction';
   protected $__fillColorStylerDataType = '';
@@ -990,7 +995,7 @@ class Google_PolygonStyle extends Google_Model {
   }
 }
 
-class Google_Sqlresponse extends Google_Model {
+class Google_Sqlresponse extends Model {
   public $columns;
   public $kind;
   public $rows;
@@ -1016,7 +1021,7 @@ class Google_Sqlresponse extends Google_Model {
   }
 }
 
-class Google_StyleFunction extends Google_Model {
+class Google_StyleFunction extends Model {
   protected $__bucketsType = 'Google_Bucket';
   protected $__bucketsDataType = 'array';
   public $buckets;
@@ -1052,7 +1057,7 @@ class Google_StyleFunction extends Google_Model {
   }
 }
 
-class Google_StyleFunctionGradient extends Google_Model {
+class Google_StyleFunctionGradient extends Model {
   protected $__colorsType = 'Google_StyleFunctionGradientColors';
   protected $__colorsDataType = 'array';
   public $colors;
@@ -1079,7 +1084,7 @@ class Google_StyleFunctionGradient extends Google_Model {
   }
 }
 
-class Google_StyleFunctionGradientColors extends Google_Model {
+class Google_StyleFunctionGradientColors extends Model {
   public $color;
   public $opacity;
   public function setColor($color) {
@@ -1096,7 +1101,7 @@ class Google_StyleFunctionGradientColors extends Google_Model {
   }
 }
 
-class Google_StyleSetting extends Google_Model {
+class Google_StyleSetting extends Model {
   public $kind;
   protected $__markerOptionsType = 'Google_PointStyle';
   protected $__markerOptionsDataType = '';
@@ -1154,7 +1159,7 @@ class Google_StyleSetting extends Google_Model {
   }
 }
 
-class Google_StyleSettingList extends Google_Model {
+class Google_StyleSettingList extends Model {
   protected $__itemsType = 'Google_StyleSetting';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1188,7 +1193,7 @@ class Google_StyleSettingList extends Google_Model {
   }
 }
 
-class Google_Table extends Google_Model {
+class Google_Table extends Model {
   public $attribution;
   public $attributionLink;
   public $baseTableIds;
@@ -1265,7 +1270,7 @@ class Google_Table extends Google_Model {
   }
 }
 
-class Google_TableList extends Google_Model {
+class Google_TableList extends Model {
   protected $__itemsType = 'Google_Table';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1292,7 +1297,7 @@ class Google_TableList extends Google_Model {
   }
 }
 
-class Google_Template extends Google_Model {
+class Google_Template extends Model {
   public $automaticColumnNames;
   public $body;
   public $kind;
@@ -1338,7 +1343,7 @@ class Google_Template extends Google_Model {
   }
 }
 
-class Google_TemplateList extends Google_Model {
+class Google_TemplateList extends Model {
   protected $__itemsType = 'Google_Template';
   protected $__itemsDataType = 'array';
   public $items;

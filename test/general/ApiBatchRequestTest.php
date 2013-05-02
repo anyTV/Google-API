@@ -18,11 +18,11 @@
  * under the License.
  */
 
+use Google\IO\BatchRequest;
+
 require_once 'BaseTest.php';
 require_once '../src/contrib/Google_PlusService.php';
-require_once '../src/service/Google_BatchRequest.php';
-
-class ApiBatchRequestTest extends BaseTest {
+require_once '../src/service/BatchRequest.phpss ApiBatchRequestTest extends BaseTest {
   public $plus;
   public function __construct() {
     parent::__construct();
@@ -30,7 +30,7 @@ class ApiBatchRequestTest extends BaseTest {
   }
 
   public function testBatchRequest() {
-    $batch = new Google_BatchRequest();
+    $batch = new BatchRequest();
 
     BaseTest::$client->setUseBatch(true);
     $batch->add($this->plus->people->get('me'), 'key1');

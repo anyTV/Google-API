@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once '../../src/Google_Client.php';
+use Google\Client;
 
-defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+require_once '../../src/Client.phpined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
 
-$client = new Google_Client();
+$client = new Client();
 // Visit https://code.google.com/apis/console to
 // generate your oauth2_client_id, oauth2_client_secret, and to
 // register your oauth2_redirect_uri.

@@ -22,7 +22,12 @@
    *   $pagespeedapi = $pagespeedonlineService->pagespeedapi;
    *  </code>
    */
-  class Google_PagespeedapiServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_PagespeedapiServiceResource extends Resource {
 
 
     /**
@@ -63,14 +68,14 @@
  *
  * @author Google, Inc.
  */
-class Google_PagespeedonlineService extends Google_Service {
+class Google_PagespeedonlineService extends Service {
   public $pagespeedapi;
   /**
    * Constructs the internal representation of the Pagespeedonline service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'pagespeedonline/v1/';
     $this->version = 'v1';
     $this->serviceName = 'pagespeedonline';
@@ -81,7 +86,7 @@ class Google_PagespeedonlineService extends Google_Service {
   }
 }
 
-class Google_Result extends Google_Model {
+class Google_Result extends Model {
   public $kind;
   protected $__formattedResultsType = 'Google_ResultFormattedResults';
   protected $__formattedResultsDataType = '';
@@ -154,7 +159,7 @@ class Google_Result extends Google_Model {
   }
 }
 
-class Google_ResultFormattedResults extends Google_Model {
+class Google_ResultFormattedResults extends Model {
   public $locale;
   protected $__ruleResultsType = 'Google_ResultFormattedResultsRuleResults';
   protected $__ruleResultsDataType = 'map';
@@ -173,7 +178,7 @@ class Google_ResultFormattedResults extends Google_Model {
   }
 }
 
-class Google_ResultFormattedResultsRuleResults extends Google_Model {
+class Google_ResultFormattedResultsRuleResults extends Model {
   public $localizedRuleName;
   protected $__urlBlocksType = 'Google_ResultFormattedResultsRuleResultsUrlBlocks';
   protected $__urlBlocksDataType = 'array';
@@ -207,7 +212,7 @@ class Google_ResultFormattedResultsRuleResults extends Google_Model {
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocks extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocks extends Model {
   protected $__headerType = 'Google_ResultFormattedResultsRuleResultsUrlBlocksHeader';
   protected $__headerDataType = '';
   public $header;
@@ -229,7 +234,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocks extends Google_Model {
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksHeader extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksHeader extends Model {
   protected $__argsType = 'Google_ResultFormattedResultsRuleResultsUrlBlocksHeaderArgs';
   protected $__argsDataType = 'array';
   public $args;
@@ -249,7 +254,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksHeader extends Google_Mod
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksHeaderArgs extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksHeaderArgs extends Model {
   public $type;
   public $value;
   public function setType($type) {
@@ -266,7 +271,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksHeaderArgs extends Google
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksUrls extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksUrls extends Model {
   protected $__detailsType = 'Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetails';
   protected $__detailsDataType = 'array';
   public $details;
@@ -288,7 +293,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksUrls extends Google_Model
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetails extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetails extends Model {
   protected $__argsType = 'Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetailsArgs';
   protected $__argsDataType = 'array';
   public $args;
@@ -308,7 +313,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetails extends Googl
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetailsArgs extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetailsArgs extends Model {
   public $type;
   public $value;
   public function setType($type) {
@@ -325,7 +330,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsDetailsArgs extends G
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResult extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResult extends Model {
   protected $__argsType = 'Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResultArgs';
   protected $__argsDataType = 'array';
   public $args;
@@ -345,7 +350,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResult extends Google
   }
 }
 
-class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResultArgs extends Google_Model {
+class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResultArgs extends Model {
   public $type;
   public $value;
   public function setType($type) {
@@ -362,7 +367,7 @@ class Google_ResultFormattedResultsRuleResultsUrlBlocksUrlsResultArgs extends Go
   }
 }
 
-class Google_ResultPageStats extends Google_Model {
+class Google_ResultPageStats extends Model {
   public $otherResponseBytes;
   public $flashResponseBytes;
   public $totalRequestBytes;
@@ -456,7 +461,7 @@ class Google_ResultPageStats extends Google_Model {
   }
 }
 
-class Google_ResultVersion extends Google_Model {
+class Google_ResultVersion extends Model {
   public $major;
   public $minor;
   public function setMajor($major) {

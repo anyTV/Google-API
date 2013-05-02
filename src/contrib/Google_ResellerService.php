@@ -24,7 +24,12 @@
    *   $customers = $resellerService->customers;
    *  </code>
    */
-  class Google_CustomersServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_CustomersServiceResource extends Resource {
 
 
     /**
@@ -110,7 +115,7 @@
    *   $subscriptions = $resellerService->subscriptions;
    *  </code>
    */
-  class Google_SubscriptionsServiceResource extends Google_ServiceResource {
+  class Google_SubscriptionsServiceResource extends Resource {
 
 
     /**
@@ -277,15 +282,15 @@
  *
  * @author Google, Inc.
  */
-class Google_ResellerService extends Google_Service {
+class Google_ResellerService extends Service {
   public $customers;
   public $subscriptions;
   /**
    * Constructs the internal representation of the Reseller service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'apps/reseller/v1/';
     $this->version = 'v1';
     $this->serviceName = 'reseller';
@@ -297,7 +302,7 @@ class Google_ResellerService extends Google_Service {
   }
 }
 
-class Google_Address extends Google_Model {
+class Google_Address extends Model {
   public $addressLine1;
   public $addressLine2;
   public $addressLine3;
@@ -370,7 +375,7 @@ class Google_Address extends Google_Model {
   }
 }
 
-class Google_ChangePlanRequest extends Google_Model {
+class Google_ChangePlanRequest extends Model {
   public $kind;
   public $planName;
   public $purchaseOrderId;
@@ -403,7 +408,7 @@ class Google_ChangePlanRequest extends Google_Model {
   }
 }
 
-class Google_Customer extends Google_Model {
+class Google_Customer extends Model {
   public $alternateEmail;
   public $customerDomain;
   public $customerId;
@@ -450,7 +455,7 @@ class Google_Customer extends Google_Model {
   }
 }
 
-class Google_RenewalSettings extends Google_Model {
+class Google_RenewalSettings extends Model {
   public $kind;
   public $renewalType;
   public function setKind($kind) {
@@ -467,7 +472,7 @@ class Google_RenewalSettings extends Google_Model {
   }
 }
 
-class Google_Seats extends Google_Model {
+class Google_Seats extends Model {
   public $kind;
   public $maximumNumberOfSeats;
   public $numberOfSeats;
@@ -491,7 +496,7 @@ class Google_Seats extends Google_Model {
   }
 }
 
-class Google_Subscription extends Google_Model {
+class Google_Subscription extends Model {
   public $creationTime;
   public $customerId;
   public $kind;
@@ -572,7 +577,7 @@ class Google_Subscription extends Google_Model {
   }
 }
 
-class Google_SubscriptionPlan extends Google_Model {
+class Google_SubscriptionPlan extends Model {
   protected $__commitmentIntervalType = 'Google_SubscriptionPlanCommitmentInterval';
   protected $__commitmentIntervalDataType = '';
   public $commitmentInterval;
@@ -598,7 +603,7 @@ class Google_SubscriptionPlan extends Google_Model {
   }
 }
 
-class Google_SubscriptionPlanCommitmentInterval extends Google_Model {
+class Google_SubscriptionPlanCommitmentInterval extends Model {
   public $endTime;
   public $startTime;
   public function setEndTime($endTime) {
@@ -615,7 +620,7 @@ class Google_SubscriptionPlanCommitmentInterval extends Google_Model {
   }
 }
 
-class Google_SubscriptionTrialSettings extends Google_Model {
+class Google_SubscriptionTrialSettings extends Model {
   public $isInTrial;
   public $trialEndTime;
   public function setIsInTrial($isInTrial) {
@@ -632,7 +637,7 @@ class Google_SubscriptionTrialSettings extends Google_Model {
   }
 }
 
-class Google_Subscriptions extends Google_Model {
+class Google_Subscriptions extends Model {
   public $kind;
   public $nextPageToken;
   protected $__subscriptionsType = 'Google_Subscription';

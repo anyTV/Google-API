@@ -14,11 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_Oauth2Service.php';
+use Google\Client;
+
+require_once '../../src/Clientrequire_once '../../src/contrib/Google_Oauth2Service.php';
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google UserInfo PHP Starter Application");
 // Visit https://code.google.com/apis/console?api=plus to generate your
 // oauth2_client_id, oauth2_client_secret, and to register your oauth2_redirect_uri.

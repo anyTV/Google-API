@@ -18,7 +18,9 @@
  * under the License.
  */
 
-class TestApiClient extends Google_Client {
+use Google\Client;
+
+class TestApiClient extends Client {
   public function prepareService() {
     return parent::prepareService();
   }
@@ -26,7 +28,7 @@ class TestApiClient extends Google_Client {
 
 class ApiClientTest extends BaseTest {
   public function testClient() {
-    $client = new Google_Client();
+    $client = new Client();
     $client->setAccessType('foo');
     $this->assertEquals('foo', $client->getAuth()->accessType);
 
@@ -65,7 +67,7 @@ class ApiClientTest extends BaseTest {
   }
 
   public function testSettersGetters() {
-    $client = new Google_Client();
+    $client = new Client();
     $client->setClientId("client1");
     $client->setClientSecret('client1secret');
     $client->setState('1');

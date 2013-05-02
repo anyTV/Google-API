@@ -24,7 +24,12 @@
    *   $groups = $groupssettingsService->groups;
    *  </code>
    */
-  class Google_GroupsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_GroupsServiceResource extends Resource {
 
 
     /**
@@ -96,14 +101,14 @@
  *
  * @author Google, Inc.
  */
-class Google_GroupssettingsService extends Google_Service {
+class Google_GroupssettingsService extends Service {
   public $groups;
   /**
    * Constructs the internal representation of the Groupssettings service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'groups/v1/groups/';
     $this->version = 'v1';
     $this->serviceName = 'groupssettings';
@@ -114,7 +119,7 @@ class Google_GroupssettingsService extends Google_Service {
   }
 }
 
-class Google_Groups extends Google_Model {
+class Google_Groups extends Model {
   public $allowExternalMembers;
   public $allowGoogleCommunication;
   public $allowWebPosting;

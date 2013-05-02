@@ -1,9 +1,10 @@
 <?php
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_SiteVerificationService.php';
+use Google\Client;
+
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_SiteVerificationService.php';
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google Site Verification PHP Sample");
 
 // Visit https://code.google.com/apis/console?api=siteVerification to generate

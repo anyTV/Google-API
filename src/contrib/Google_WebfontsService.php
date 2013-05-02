@@ -22,7 +22,12 @@
    *   $webfonts = $webfontsService->webfonts;
    *  </code>
    */
-  class Google_WebfontsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_WebfontsServiceResource extends Resource {
 
 
     /**
@@ -60,14 +65,14 @@
  *
  * @author Google, Inc.
  */
-class Google_WebfontsService extends Google_Service {
+class Google_WebfontsService extends Service {
   public $webfonts;
   /**
    * Constructs the internal representation of the Webfonts service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'webfonts/v1/';
     $this->version = 'v1';
     $this->serviceName = 'webfonts';
@@ -78,7 +83,7 @@ class Google_WebfontsService extends Google_Service {
   }
 }
 
-class Google_Webfont extends Google_Model {
+class Google_Webfont extends Model {
   public $kind;
   public $variants;
   public $subsets;
@@ -109,7 +114,7 @@ class Google_Webfont extends Google_Model {
   }
 }
 
-class Google_WebfontList extends Google_Model {
+class Google_WebfontList extends Model {
   protected $__itemsType = 'Google_Webfont';
   protected $__itemsDataType = 'array';
   public $items;

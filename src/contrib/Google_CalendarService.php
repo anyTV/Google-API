@@ -22,7 +22,12 @@
    *   $freebusy = $calendarService->freebusy;
    *  </code>
    */
-  class Google_FreebusyServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_FreebusyServiceResource extends Resource {
 
 
     /**
@@ -52,7 +57,7 @@
    *   $settings = $calendarService->settings;
    *  </code>
    */
-  class Google_SettingsServiceResource extends Google_ServiceResource {
+  class Google_SettingsServiceResource extends Resource {
 
 
     /**
@@ -98,7 +103,7 @@
    *   $calendarList = $calendarService->calendarList;
    *  </code>
    */
-  class Google_CalendarListServiceResource extends Google_ServiceResource {
+  class Google_CalendarListServiceResource extends Resource {
 
 
     /**
@@ -221,7 +226,7 @@
    *   $calendars = $calendarService->calendars;
    *  </code>
    */
-  class Google_CalendarsServiceResource extends Google_ServiceResource {
+  class Google_CalendarsServiceResource extends Resource {
 
 
     /**
@@ -329,7 +334,7 @@
    *   $acl = $calendarService->acl;
    *  </code>
    */
-  class Google_AclServiceResource extends Google_ServiceResource {
+  class Google_AclServiceResource extends Resource {
 
 
     /**
@@ -446,7 +451,7 @@
    *   $colors = $calendarService->colors;
    *  </code>
    */
-  class Google_ColorsServiceResource extends Google_ServiceResource {
+  class Google_ColorsServiceResource extends Resource {
 
 
     /**
@@ -475,7 +480,7 @@
    *   $events = $calendarService->events;
    *  </code>
    */
-  class Google_EventsServiceResource extends Google_ServiceResource {
+  class Google_EventsServiceResource extends Resource {
 
 
     /**
@@ -712,7 +717,7 @@
  *
  * @author Google, Inc.
  */
-class Google_CalendarService extends Google_Service {
+class Google_CalendarService extends Service {
   public $freebusy;
   public $settings;
   public $calendarList;
@@ -723,9 +728,9 @@ class Google_CalendarService extends Google_Service {
   /**
    * Constructs the internal representation of the Calendar service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'calendar/v3/';
     $this->version = 'v3';
     $this->serviceName = 'calendar';
@@ -742,7 +747,7 @@ class Google_CalendarService extends Google_Service {
   }
 }
 
-class Google_Acl extends Google_Model {
+class Google_Acl extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_AclRule';
   protected $__itemsDataType = 'array';
@@ -776,7 +781,7 @@ class Google_Acl extends Google_Model {
   }
 }
 
-class Google_AclRule extends Google_Model {
+class Google_AclRule extends Model {
   protected $__scopeType = 'Google_AclRuleScope';
   protected $__scopeDataType = '';
   public $scope;
@@ -816,7 +821,7 @@ class Google_AclRule extends Google_Model {
   }
 }
 
-class Google_AclRuleScope extends Google_Model {
+class Google_AclRuleScope extends Model {
   public $type;
   public $value;
   public function setType($type) {
@@ -833,7 +838,7 @@ class Google_AclRuleScope extends Google_Model {
   }
 }
 
-class Google_Calendar extends Google_Model {
+class Google_Calendar extends Model {
   public $kind;
   public $description;
   public $summary;
@@ -885,7 +890,7 @@ class Google_Calendar extends Google_Model {
   }
 }
 
-class Google_CalendarList extends Google_Model {
+class Google_CalendarList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_CalendarListEntry';
   protected $__itemsDataType = 'array';
@@ -919,7 +924,7 @@ class Google_CalendarList extends Google_Model {
   }
 }
 
-class Google_CalendarListEntry extends Google_Model {
+class Google_CalendarListEntry extends Model {
   public $kind;
   public $foregroundColor;
   protected $__defaultRemindersType = 'Google_EventReminder';
@@ -1030,7 +1035,7 @@ class Google_CalendarListEntry extends Google_Model {
   }
 }
 
-class Google_ColorDefinition extends Google_Model {
+class Google_ColorDefinition extends Model {
   public $foreground;
   public $background;
   public function setForeground($foreground) {
@@ -1047,7 +1052,7 @@ class Google_ColorDefinition extends Google_Model {
   }
 }
 
-class Google_Colors extends Google_Model {
+class Google_Colors extends Model {
   protected $__calendarType = 'Google_ColorDefinition';
   protected $__calendarDataType = 'map';
   public $calendar;
@@ -1082,7 +1087,7 @@ class Google_Colors extends Google_Model {
   }
 }
 
-class Google_Error extends Google_Model {
+class Google_Error extends Model {
   public $domain;
   public $reason;
   public function setDomain($domain) {
@@ -1099,7 +1104,7 @@ class Google_Error extends Google_Model {
   }
 }
 
-class Google_Event extends Google_Model {
+class Google_Event extends Model {
   protected $__creatorType = 'Google_EventCreator';
   protected $__creatorDataType = '';
   public $creator;
@@ -1360,7 +1365,7 @@ class Google_Event extends Google_Model {
   }
 }
 
-class Google_EventAttendee extends Google_Model {
+class Google_EventAttendee extends Model {
   public $comment;
   public $displayName;
   public $responseStatus;
@@ -1433,7 +1438,7 @@ class Google_EventAttendee extends Google_Model {
   }
 }
 
-class Google_EventCreator extends Google_Model {
+class Google_EventCreator extends Model {
   public $self;
   public $displayName;
   public $email;
@@ -1464,7 +1469,7 @@ class Google_EventCreator extends Google_Model {
   }
 }
 
-class Google_EventDateTime extends Google_Model {
+class Google_EventDateTime extends Model {
   public $date;
   public $timeZone;
   public $dateTime;
@@ -1488,7 +1493,7 @@ class Google_EventDateTime extends Google_Model {
   }
 }
 
-class Google_EventExtendedProperties extends Google_Model {
+class Google_EventExtendedProperties extends Model {
   public $shared;
   public $private;
   public function setShared($shared) {
@@ -1505,7 +1510,7 @@ class Google_EventExtendedProperties extends Google_Model {
   }
 }
 
-class Google_EventGadget extends Google_Model {
+class Google_EventGadget extends Model {
   public $preferences;
   public $title;
   public $height;
@@ -1564,7 +1569,7 @@ class Google_EventGadget extends Google_Model {
   }
 }
 
-class Google_EventOrganizer extends Google_Model {
+class Google_EventOrganizer extends Model {
   public $self;
   public $displayName;
   public $email;
@@ -1595,7 +1600,7 @@ class Google_EventOrganizer extends Google_Model {
   }
 }
 
-class Google_EventReminder extends Google_Model {
+class Google_EventReminder extends Model {
   public $minutes;
   public $method;
   public function setMinutes($minutes) {
@@ -1612,7 +1617,7 @@ class Google_EventReminder extends Google_Model {
   }
 }
 
-class Google_EventReminders extends Google_Model {
+class Google_EventReminders extends Model {
   protected $__overridesType = 'Google_EventReminder';
   protected $__overridesDataType = 'array';
   public $overrides;
@@ -1632,7 +1637,7 @@ class Google_EventReminders extends Google_Model {
   }
 }
 
-class Google_Events extends Google_Model {
+class Google_Events extends Model {
   public $nextPageToken;
   public $kind;
   protected $__defaultRemindersType = 'Google_EventReminder';
@@ -1711,7 +1716,7 @@ class Google_Events extends Google_Model {
   }
 }
 
-class Google_FreeBusyCalendar extends Google_Model {
+class Google_FreeBusyCalendar extends Model {
   protected $__busyType = 'Google_TimePeriod';
   protected $__busyDataType = 'array';
   public $busy;
@@ -1734,7 +1739,7 @@ class Google_FreeBusyCalendar extends Google_Model {
   }
 }
 
-class Google_FreeBusyGroup extends Google_Model {
+class Google_FreeBusyGroup extends Model {
   protected $__errorsType = 'Google_Error';
   protected $__errorsDataType = 'array';
   public $errors;
@@ -1755,7 +1760,7 @@ class Google_FreeBusyGroup extends Google_Model {
   }
 }
 
-class Google_FreeBusyRequest extends Google_Model {
+class Google_FreeBusyRequest extends Model {
   public $calendarExpansionMax;
   public $groupExpansionMax;
   public $timeMax;
@@ -1803,7 +1808,7 @@ class Google_FreeBusyRequest extends Google_Model {
   }
 }
 
-class Google_FreeBusyRequestItem extends Google_Model {
+class Google_FreeBusyRequestItem extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -1813,7 +1818,7 @@ class Google_FreeBusyRequestItem extends Google_Model {
   }
 }
 
-class Google_FreeBusyResponse extends Google_Model {
+class Google_FreeBusyResponse extends Model {
   public $timeMax;
   public $kind;
   protected $__calendarsType = 'Google_FreeBusyCalendar';
@@ -1855,7 +1860,7 @@ class Google_FreeBusyResponse extends Google_Model {
   }
 }
 
-class Google_Setting extends Google_Model {
+class Google_Setting extends Model {
   public $kind;
   public $etag;
   public $id;
@@ -1886,7 +1891,7 @@ class Google_Setting extends Google_Model {
   }
 }
 
-class Google_Settings extends Google_Model {
+class Google_Settings extends Model {
   protected $__itemsType = 'Google_Setting';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1913,7 +1918,7 @@ class Google_Settings extends Google_Model {
   }
 }
 
-class Google_TimePeriod extends Google_Model {
+class Google_TimePeriod extends Model {
   public $start;
   public $end;
   public function setStart($start) {

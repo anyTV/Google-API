@@ -22,8 +22,8 @@
  */
 namespace Google\Auth;
 use Google\Auth,
-    Google\Api\Client;
-use Google_HttpRequest;
+    Google\Client;
+use Google\IO\HttpRequest;
 
 class None extends Auth
 {
@@ -69,7 +69,7 @@ class None extends Auth
     { /* noop*/
     }
 
-    public function sign(Google_HttpRequest $request)
+    public function sign(HttpRequest $request)
     {
         if ($this->key) {
             $request->setUrl($request->getUrl() . ((strpos($request->getUrl(), '?') === false) ? '?' : '&')

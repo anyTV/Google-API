@@ -19,7 +19,9 @@
  * Include the Ad Exchange Buyer service class and the HTML generation
  * functions.
  */
-require_once "../../src/contrib/Google_AdexchangebuyerService.php";
+use Google\Service\AdExchangeBuyerService;
+
+require_once "../../src/contrib/_AdexchangebuyerService.php";
 require_once "htmlHelper.php";
 
 /**
@@ -31,17 +33,17 @@ require_once "htmlHelper.php";
 abstract class BaseExample {
 
   /**
-   * @var Google_AdexchangebuyerService
+   * @var AdExchangeBuyerService
    */
   protected $service;
 
   /**
    * Inject the dependency.
-   * @param Google_AdexchangebuyerService $service
-   * @internal param Google_AdexchangebuyerService $adExchangeBuyerService
+   * @param AdExchangeBuyerService $service
+   * @internal param AdExchangeBuyerService $adExchangeBuyerService
    *     an authenticated instance of Google_AdExchangebuyerService.
    */
-  public function __construct(Google_AdexchangebuyerService $service) {
+  public function __construct(AdExchangeBuyerService $service) {
     $this->service = $service;
   }
 

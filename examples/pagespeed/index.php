@@ -14,11 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-session_start();
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_PagespeedonlineService.php';
+use Google\Client;
 
-$client = new Google_Client();
+session_start();
+require_once '../../src/Clientrequire_once '../../src/contrib/Google_PagespeedonlineService.php';
+
+$client = new Client();
 $client->setApplicationName("PageSpeedOnline_Example_App");
 $service = new Google_PagespeedonlineService($client);
 

@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\AdUnit;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 /**
@@ -32,7 +34,7 @@ class AddAdUnitToPublisher extends BaseExample {
     $accountId = PUBLISHER_ACCOUNT_ID;
     $adClientId = PUBLISHER_AD_CLIENT_ID;
 
-    $adUnit = new Google_AdUnit();
+    $adUnit = new AdUnit();
     $adUnit->setName(sprintf('Ad Unit #%s', $this->getUniqueName()));
 
     $contentAdsSettings = new Google_AdUnitContentAdsSettings();

@@ -22,7 +22,12 @@
    *   $trainedmodels = $predictionService->trainedmodels;
    *  </code>
    */
-  class Google_TrainedmodelsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_TrainedmodelsServiceResource extends Resource {
 
 
     /**
@@ -117,7 +122,7 @@
    *   $hostedmodels = $predictionService->hostedmodels;
    *  </code>
    */
-  class Google_HostedmodelsServiceResource extends Google_ServiceResource {
+  class Google_HostedmodelsServiceResource extends Resource {
 
 
     /**
@@ -154,15 +159,15 @@
  *
  * @author Google, Inc.
  */
-class Google_PredictionService extends Google_Service {
+class Google_PredictionService extends Service {
   public $trainedmodels;
   public $hostedmodels;
   /**
    * Constructs the internal representation of the Prediction service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'prediction/v1.4/';
     $this->version = 'v1.4';
     $this->serviceName = 'prediction';
@@ -174,7 +179,7 @@ class Google_PredictionService extends Google_Service {
   }
 }
 
-class Google_Input extends Google_Model {
+class Google_Input extends Model {
   protected $__inputType = 'Google_InputInput';
   protected $__inputDataType = '';
   public $input;
@@ -186,7 +191,7 @@ class Google_Input extends Google_Model {
   }
 }
 
-class Google_InputInput extends Google_Model {
+class Google_InputInput extends Model {
   public $csvInstance;
   public function setCsvInstance(/* array(Google_object) */ $csvInstance) {
     $this->assertIsArray($csvInstance, 'Google_object', __METHOD__);
@@ -197,7 +202,7 @@ class Google_InputInput extends Google_Model {
   }
 }
 
-class Google_Output extends Google_Model {
+class Google_Output extends Model {
   public $kind;
   public $outputLabel;
   public $id;
@@ -245,7 +250,7 @@ class Google_Output extends Google_Model {
   }
 }
 
-class Google_OutputOutputMulti extends Google_Model {
+class Google_OutputOutputMulti extends Model {
   public $score;
   public $label;
   public function setScore($score) {
@@ -262,7 +267,7 @@ class Google_OutputOutputMulti extends Google_Model {
   }
 }
 
-class Google_Training extends Google_Model {
+class Google_Training extends Model {
   public $kind;
   public $storageDataLocation;
   public $storagePMMLModelLocation;
@@ -340,7 +345,7 @@ class Google_Training extends Google_Model {
   }
 }
 
-class Google_TrainingDataAnalysis extends Google_Model {
+class Google_TrainingDataAnalysis extends Model {
   public $warnings;
   public function setWarnings(/* array(Google_string) */ $warnings) {
     $this->assertIsArray($warnings, 'Google_string', __METHOD__);
@@ -351,7 +356,7 @@ class Google_TrainingDataAnalysis extends Google_Model {
   }
 }
 
-class Google_TrainingModelInfo extends Google_Model {
+class Google_TrainingModelInfo extends Model {
   public $confusionMatrixRowTotals;
   public $numberLabels;
   public $confusionMatrix;
@@ -410,7 +415,7 @@ class Google_TrainingModelInfo extends Google_Model {
   }
 }
 
-class Google_Update extends Google_Model {
+class Google_Update extends Model {
   public $csvInstance;
   public $label;
   public function setCsvInstance(/* array(Google_object) */ $csvInstance) {

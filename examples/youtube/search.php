@@ -1,4 +1,6 @@
 <?php
+use Google\Client;
+
 $htmlBody = <<<END
 <form method="GET">
   <div>
@@ -13,15 +15,14 @@ END;
 
 if ($_GET['q'] && $_GET['maxResults']) {
   // Call set_include_path() as needed to point to your client library.
-require_once 'google-api-php-client/src/Google_Client.php';
-require_once 'google-api-php-client/src/contrib/Google_YouTubeService.php';
+require_once 'google-api-php-client/src/Client.phpire_once 'google-api-php-client/src/contrib/Google_YouTubeService.php';
 
   /* Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
   Google APIs Console <http://code.google.com/apis/console#access>
   Please ensure that you have enabled the YouTube Data API for your project. */
   $DEVELOPER_KEY = 'REPLACE ME';
 
-  $client = new Google_Client();
+  $client = new Client();
   $client->setDeveloperKey($DEVELOPER_KEY);
 
   $youtube = new Google_YoutubeService($client);

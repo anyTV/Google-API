@@ -21,7 +21,7 @@
  */
 class AuthHelper {
 
-  /** @var Google_Client $client */
+  /** @var Client $client */
   private $client;
 
   /** @var apiAnalyticsService $analytics */
@@ -36,7 +36,7 @@ class AuthHelper {
 
   /**
    * Constructor.
-   * @param Google_Client $client The API client service object. Used for
+   * @param Client $client The API client service object. Used for
    *     authorization. This is passed by reference and allows this same
    *     object (once authorized) to be used outside of this class.
    * @param storage $storage The storage mechanism to persist authorization
@@ -62,7 +62,7 @@ class AuthHelper {
 
   /**
    * Goes through the client authorization routine. This routine both
-   * redirects a user to the Google Accounts authorization screen as well as
+   * redirects a user to the Google AccountsResource authorization screen as well as
    * handle the response from the authorization service to retrieve the
    * authorization code then exchange it for an access token. This method
    * also removes the authorization code from the URL to keep things pretty.
@@ -88,7 +88,7 @@ class AuthHelper {
 
   /**
    * Revokes an authorization token. This both revokes the token by making a
-   * Google Accounts API request to revoke the token as well as deleting the
+   * Google AccountsResource API request to revoke the token as well as deleting the
    * token from the storage mechanism. If any errors occur, the authorization
    * exception is caught and the message is stored in error.
    */

@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_BooksService.php';
+use Google\Client;
 
-$client = new Google_Client();
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_BooksService.php';
+
+$client = new Client();
 $client->setApplicationName("My_Books_API_Example");
 $service = new Google_BooksService($client);
 

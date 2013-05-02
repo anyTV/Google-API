@@ -22,7 +22,12 @@
    *   $userinfo = $oauth2Service->userinfo;
    *  </code>
    */
-  class Google_UserinfoServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_UserinfoServiceResource extends Resource {
 
 
     /**
@@ -51,7 +56,7 @@
    *   $v2 = $oauth2Service->v2;
    *  </code>
    */
-  class Google_UserinfoV2ServiceResource extends Google_ServiceResource {
+  class Google_UserinfoV2ServiceResource extends Resource {
 
 
   }
@@ -64,7 +69,7 @@
    *   $me = $oauth2Service->me;
    *  </code>
    */
-  class Google_UserinfoV2MeServiceResource extends Google_ServiceResource {
+  class Google_UserinfoV2MeServiceResource extends Resource {
 
 
     /**
@@ -99,15 +104,15 @@
  *
  * @author Google, Inc.
  */
-class Google_Oauth2Service extends Google_Service {
+class Google_Oauth2Service extends Service {
   public $userinfo;
   public $userinfo_v2_me;
   /**
    * Constructs the internal representation of the Oauth2 service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = '';
     $this->version = 'v2';
     $this->serviceName = 'oauth2';
@@ -118,7 +123,7 @@ class Google_Oauth2Service extends Google_Service {
   }
 }
 
-class Google_Tokeninfo extends Google_Model {
+class Google_Tokeninfo extends Model {
   public $issued_to;
   public $user_id;
   public $expires_in;
@@ -177,7 +182,7 @@ class Google_Tokeninfo extends Google_Model {
   }
 }
 
-class Google_Userinfo extends Google_Model {
+class Google_Userinfo extends Model {
   public $family_name;
   public $name;
   public $picture;

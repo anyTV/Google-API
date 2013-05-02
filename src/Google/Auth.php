@@ -17,7 +17,7 @@
 
 namespace Google;
 
-use Google_HttpRequest;
+use Google\IO\HttpRequest;
 
 /**
  * Abstract class for the Authentication in the API client
@@ -28,7 +28,7 @@ abstract class Auth
 {
 	abstract public function authenticate($service);
 
-	abstract public function sign(Google_HttpRequest $request);
+	abstract public function sign(HttpRequest $request);
 
 	abstract public function createAuthUrl($scope);
 

@@ -14,14 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use Google\Client;
+
 session_start();
 
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_UrlshortenerService.php';
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_UrlshortenerService.php';
 
 // Visit https://code.google.com/apis/console to
 // generate your client id, client secret, and redirect uri.
-$client = new Google_Client();
+$client = new Client();
 //$client->setClientId('insert_your_oauth2_client_id');
 //$client->setClientSecret('insert_your_oauth2_client_secret');
 //$client->setRedirectUri('insert_your_oauth2_redirect_uri');

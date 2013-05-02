@@ -22,7 +22,12 @@
    *   $taskqueues = $taskqueueService->taskqueues;
    *  </code>
    */
-  class Google_TaskqueuesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_TaskqueuesServiceResource extends Resource {
 
 
     /**
@@ -55,7 +60,7 @@
    *   $tasks = $taskqueueService->tasks;
    *  </code>
    */
-  class Google_TasksServiceResource extends Google_ServiceResource {
+  class Google_TasksServiceResource extends Resource {
 
 
     /**
@@ -210,15 +215,15 @@
  *
  * @author Google, Inc.
  */
-class Google_TaskqueueService extends Google_Service {
+class Google_TaskqueueService extends Service {
   public $taskqueues;
   public $tasks;
   /**
    * Constructs the internal representation of the Taskqueue service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'taskqueue/v1beta2/projects/';
     $this->version = 'v1beta2';
     $this->serviceName = 'taskqueue';
@@ -230,7 +235,7 @@ class Google_TaskqueueService extends Google_Service {
   }
 }
 
-class Google_Task extends Google_Model {
+class Google_Task extends Model {
   public $kind;
   public $leaseTimestamp;
   public $id;
@@ -282,7 +287,7 @@ class Google_Task extends Google_Model {
   }
 }
 
-class Google_TaskQueue extends Google_Model {
+class Google_TaskQueue extends Model {
   public $kind;
   protected $__statsType = 'Google_TaskQueueStats';
   protected $__statsDataType = '';
@@ -324,7 +329,7 @@ class Google_TaskQueue extends Google_Model {
   }
 }
 
-class Google_TaskQueueAcl extends Google_Model {
+class Google_TaskQueueAcl extends Model {
   public $consumerEmails;
   public $producerEmails;
   public $adminEmails;
@@ -351,7 +356,7 @@ class Google_TaskQueueAcl extends Google_Model {
   }
 }
 
-class Google_TaskQueueStats extends Google_Model {
+class Google_TaskQueueStats extends Model {
   public $oldestTask;
   public $leasedLastMinute;
   public $totalTasks;
@@ -382,7 +387,7 @@ class Google_TaskQueueStats extends Google_Model {
   }
 }
 
-class Google_Tasks extends Google_Model {
+class Google_Tasks extends Model {
   protected $__itemsType = 'Google_Task';
   protected $__itemsDataType = 'array';
   public $items;
@@ -402,7 +407,7 @@ class Google_Tasks extends Google_Model {
   }
 }
 
-class Google_Tasks2 extends Google_Model {
+class Google_Tasks2 extends Model {
   protected $__itemsType = 'Google_Task';
   protected $__itemsDataType = 'array';
   public $items;

@@ -45,7 +45,7 @@ class GetAllAccounts extends BaseExample {
    * @return string
    */
   public function getName() {
-    return 'Get All Accounts';
+    return 'Get All AccountsResource';
   }
 }
 

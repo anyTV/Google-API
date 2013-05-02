@@ -16,9 +16,9 @@
  */
 
 use Google\Auth\AssertionCredentials;
+use Google\Client;
 
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_PredictionService.php';
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_PredictionService.php';
 
 // Set your client id, service account name, and the path to your private key.
 // For more information about obtaining these keys, visit:
@@ -30,7 +30,7 @@ const SERVICE_ACCOUNT_NAME = 'INSERT_YOUR_SERVICE_ACCOUNT_NAME';
 // readable by others.
 const KEY_FILE = '/super/secret/path/to/key.p12';
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google Prediction Sample");
 
 // Set your cached access token. Remember to replace $_SESSION with a

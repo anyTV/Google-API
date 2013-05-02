@@ -22,7 +22,12 @@
    *   $advertisers = $ganService->advertisers;
    *  </code>
    */
-  class Google_AdvertisersServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_AdvertisersServiceResource extends Resource {
 
 
     /**
@@ -84,7 +89,7 @@
    *   $ccOffers = $ganService->ccOffers;
    *  </code>
    */
-  class Google_CcOffersServiceResource extends Google_ServiceResource {
+  class Google_CcOffersServiceResource extends Resource {
 
 
     /**
@@ -117,7 +122,7 @@
    *   $events = $ganService->events;
    *  </code>
    */
-  class Google_EventsServiceResource extends Google_ServiceResource {
+  class Google_EventsServiceResource extends Resource {
 
 
     /**
@@ -165,7 +170,7 @@
    *   $links = $ganService->links;
    *  </code>
    */
-  class Google_LinksServiceResource extends Google_ServiceResource {
+  class Google_LinksServiceResource extends Resource {
 
 
     /**
@@ -250,7 +255,7 @@
    *   $publishers = $ganService->publishers;
    *  </code>
    */
-  class Google_PublishersServiceResource extends Google_ServiceResource {
+  class Google_PublishersServiceResource extends Resource {
 
 
     /**
@@ -318,7 +323,7 @@
  *
  * @author Google, Inc.
  */
-class Google_GanService extends Google_Service {
+class Google_GanService extends Service {
   public $advertisers;
   public $ccOffers;
   public $events;
@@ -327,9 +332,9 @@ class Google_GanService extends Google_Service {
   /**
    * Constructs the internal representation of the Gan service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'gan/v1beta1/';
     $this->version = 'v1beta1';
     $this->serviceName = 'gan';
@@ -344,7 +349,7 @@ class Google_GanService extends Google_Service {
   }
 }
 
-class Google_Advertiser extends Google_Model {
+class Google_Advertiser extends Model {
   public $category;
   public $contactEmail;
   public $kind;
@@ -500,7 +505,7 @@ class Google_Advertiser extends Google_Model {
   }
 }
 
-class Google_Advertisers extends Google_Model {
+class Google_Advertisers extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Advertiser';
   protected $__itemsDataType = 'array';
@@ -527,7 +532,7 @@ class Google_Advertisers extends Google_Model {
   }
 }
 
-class Google_CcOffer extends Google_Model {
+class Google_CcOffer extends Model {
   public $luggageInsurance;
   public $creditLimitMin;
   public $cardName;
@@ -980,7 +985,7 @@ class Google_CcOffer extends Google_Model {
   }
 }
 
-class Google_CcOfferBonusRewards extends Google_Model {
+class Google_CcOfferBonusRewards extends Model {
   public $amount;
   public $details;
   public function setAmount($amount) {
@@ -997,7 +1002,7 @@ class Google_CcOfferBonusRewards extends Google_Model {
   }
 }
 
-class Google_CcOfferDefaultFees extends Google_Model {
+class Google_CcOfferDefaultFees extends Model {
   public $category;
   public $maxRate;
   public $minRate;
@@ -1028,7 +1033,7 @@ class Google_CcOfferDefaultFees extends Google_Model {
   }
 }
 
-class Google_CcOfferRewards extends Google_Model {
+class Google_CcOfferRewards extends Model {
   public $category;
   public $minRewardTier;
   public $maxRewardTier;
@@ -1073,7 +1078,7 @@ class Google_CcOfferRewards extends Google_Model {
   }
 }
 
-class Google_CcOffers extends Google_Model {
+class Google_CcOffers extends Model {
   protected $__itemsType = 'Google_CcOffer';
   protected $__itemsDataType = 'array';
   public $items;
@@ -1093,7 +1098,7 @@ class Google_CcOffers extends Google_Model {
   }
 }
 
-class Google_Event extends Google_Model {
+class Google_Event extends Model {
   protected $__networkFeeType = 'Google_Money';
   protected $__networkFeeDataType = '';
   public $networkFee;
@@ -1233,7 +1238,7 @@ class Google_Event extends Google_Model {
   }
 }
 
-class Google_EventProducts extends Google_Model {
+class Google_EventProducts extends Model {
   protected $__networkFeeType = 'Google_Money';
   protected $__networkFeeDataType = '';
   public $networkFee;
@@ -1307,7 +1312,7 @@ class Google_EventProducts extends Google_Model {
   }
 }
 
-class Google_Events extends Google_Model {
+class Google_Events extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Event';
   protected $__itemsDataType = 'array';
@@ -1334,7 +1339,7 @@ class Google_Events extends Google_Model {
   }
 }
 
-class Google_Link extends Google_Model {
+class Google_Link extends Model {
   public $isActive;
   public $linkType;
   public $kind;
@@ -1490,7 +1495,7 @@ class Google_Link extends Google_Model {
   }
 }
 
-class Google_LinkSpecialOffers extends Google_Model {
+class Google_LinkSpecialOffers extends Model {
   protected $__priceCutType = 'Google_Money';
   protected $__priceCutDataType = '';
   public $priceCut;
@@ -1557,7 +1562,7 @@ class Google_LinkSpecialOffers extends Google_Model {
   }
 }
 
-class Google_Links extends Google_Model {
+class Google_Links extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Link';
   protected $__itemsDataType = 'array';
@@ -1584,7 +1589,7 @@ class Google_Links extends Google_Model {
   }
 }
 
-class Google_Money extends Google_Model {
+class Google_Money extends Model {
   public $amount;
   public $currencyCode;
   public function setAmount($amount) {
@@ -1601,7 +1606,7 @@ class Google_Money extends Google_Model {
   }
 }
 
-class Google_Publisher extends Google_Model {
+class Google_Publisher extends Model {
   public $status;
   public $kind;
   public $name;
@@ -1687,7 +1692,7 @@ class Google_Publisher extends Google_Model {
   }
 }
 
-class Google_Publishers extends Google_Model {
+class Google_Publishers extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Publisher';
   protected $__itemsDataType = 'array';

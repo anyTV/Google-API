@@ -22,13 +22,12 @@
 * @author David Torres <david.t@google.com>
 */
 
-require_once "../../src/Google_Client.php";
-require_once "../../src/contrib/Google_AdexchangebuyerService.php";
-require_once "htmlHelper.php";
+use Google\Client;
+use Google\Service\AdExchangeBuyerService;
 
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName('DoubleClick Ad Exchange Buyer API PHP Samples');
 // Visit https://code.google.com/apis/console?api=adexchangebuyer to generate
 // your client id, client secret, and to register your redirect uri.
@@ -40,7 +39,7 @@ $client->setScopes(array('https://www.googleapis.com/auth/adexchange.buyer'));
 // $client->setClientSecret('insert_your_oauth2_client_secret');
 // $client->setRedirectUri('insert_your_oauth2_redirect_uri');
 // $client->setDeveloperKey('insert_your_simple_api_key');
-$service = new Google_AdexchangebuyerService($client);
+$service = new AdExchangeBuyerService($client);
 
 if (isset($_GET['code'])) {
   $client->authenticate();

@@ -17,15 +17,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+use Google\Model;
+use Google\Service\Resource;
+use Google\Utils;
+
 require_once '../src/contrib/Google_PlusService.php';
 
-class AnimalServiceResource extends Google_ServiceResource {
+class AnimalServiceResource extends Resource {
   public function stripNull($o) {
     return parent::stripNull($o);
   }
 }
 
-class TestModel extends Google_Model {
+class TestModel extends Model {
   function mapTypes($array) {
     return parent::mapTypes($array);
   }
@@ -57,7 +61,7 @@ class ServiceTest extends BaseTest {
     global $apiConfig;
     $apiConfig['use_objects'] = true;
     $model->mapTypes(array(
-      '__infoType' => 'Google_Model',
+      '__infoType' => 'Model',
       '__infoDataType' => 'map',
       'info' => array (
         'location' => 'mars',
@@ -82,12 +86,12 @@ class ServiceTest extends BaseTest {
   }
 
   public function testStrLen() {
-    $this->assertEquals(0, Google_Utils::getStrLen(null));
-    $this->assertEquals(0, Google_Utils::getStrLen(false));
-    $this->assertEquals(0, Google_Utils::getStrLen(""));
+    $this->assertEquals(0, Utils::getStrLen(null));
+    $this->assertEquals(0, Utils::getStrLen(false));
+    $this->assertEquals(0, Utils::getStrLen(""));
 
-    $this->assertEquals(1, Google_Utils::getStrLen(" "));
-    $this->assertEquals(2, Google_Utils::getStrLen(" 1"));
-    $this->assertEquals(7, Google_Utils::getStrLen("0a\\n\n\r\n"));
+    $this->assertEquals(1, Utils::getStrLen(" "));
+    $this->assertEquals(2, Utils::getStrLen(" 1"));
+    $this->assertEquals(7, Utils::getStrLen("0a\\n\n\r\n"));
   }
 }

@@ -1,12 +1,13 @@
 <?php
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_PlusMomentsService.php';
+use Google\Client;
+
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_PlusMomentsService.php';
 
 session_start();
 
 // Visit the Google+ history documentation to enable the Google+ history:
 // https://developers.google.com/+/history/#getting_started
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google+ history example");
 $client->setClientId('insert_client_id');
 $client->setClientSecret('insert_client_secret');

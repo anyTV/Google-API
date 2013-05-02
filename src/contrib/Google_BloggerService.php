@@ -22,7 +22,12 @@
    *   $blogs = $bloggerService->blogs;
    *  </code>
    */
-  class Google_BlogsServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_BlogsServiceResource extends Resource {
 
 
     /**
@@ -89,7 +94,7 @@
    *   $posts = $bloggerService->posts;
    *  </code>
    */
-  class Google_PostsServiceResource extends Google_ServiceResource {
+  class Google_PostsServiceResource extends Resource {
 
 
     /**
@@ -254,7 +259,7 @@
    *   $pages = $bloggerService->pages;
    *  </code>
    */
-  class Google_PagesServiceResource extends Google_ServiceResource {
+  class Google_PagesServiceResource extends Resource {
 
 
     /**
@@ -304,7 +309,7 @@
    *   $comments = $bloggerService->comments;
    *  </code>
    */
-  class Google_CommentsServiceResource extends Google_ServiceResource {
+  class Google_CommentsServiceResource extends Resource {
 
 
     /**
@@ -360,7 +365,7 @@
    *   $users = $bloggerService->users;
    *  </code>
    */
-  class Google_UsersServiceResource extends Google_ServiceResource {
+  class Google_UsersServiceResource extends Resource {
 
 
     /**
@@ -396,7 +401,7 @@
  *
  * @author Google, Inc.
  */
-class Google_BloggerService extends Google_Service {
+class Google_BloggerService extends Service {
   public $blogs;
   public $posts;
   public $pages;
@@ -405,9 +410,9 @@ class Google_BloggerService extends Google_Service {
   /**
    * Constructs the internal representation of the Blogger service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'blogger/v3/';
     $this->version = 'v3';
     $this->serviceName = 'blogger';
@@ -422,7 +427,7 @@ class Google_BloggerService extends Google_Service {
   }
 }
 
-class Google_Blog extends Google_Model {
+class Google_Blog extends Model {
   public $kind;
   public $description;
   protected $__localeType = 'Google_BlogLocale';
@@ -515,7 +520,7 @@ class Google_Blog extends Google_Model {
   }
 }
 
-class Google_BlogList extends Google_Model {
+class Google_BlogList extends Model {
   protected $__itemsType = 'Google_Blog';
   protected $__itemsDataType = 'array';
   public $items;
@@ -535,7 +540,7 @@ class Google_BlogList extends Google_Model {
   }
 }
 
-class Google_BlogLocale extends Google_Model {
+class Google_BlogLocale extends Model {
   public $country;
   public $variant;
   public $language;
@@ -559,7 +564,7 @@ class Google_BlogLocale extends Google_Model {
   }
 }
 
-class Google_BlogPages extends Google_Model {
+class Google_BlogPages extends Model {
   public $totalItems;
   public $selfLink;
   public function setTotalItems($totalItems) {
@@ -576,7 +581,7 @@ class Google_BlogPages extends Google_Model {
   }
 }
 
-class Google_BlogPosts extends Google_Model {
+class Google_BlogPosts extends Model {
   public $totalItems;
   protected $__itemsType = 'Google_Post';
   protected $__itemsDataType = 'array';
@@ -603,7 +608,7 @@ class Google_BlogPosts extends Google_Model {
   }
 }
 
-class Google_Comment extends Google_Model {
+class Google_Comment extends Model {
   public $content;
   public $kind;
   protected $__inReplyToType = 'Google_CommentInReplyTo';
@@ -684,7 +689,7 @@ class Google_Comment extends Google_Model {
   }
 }
 
-class Google_CommentAuthor extends Google_Model {
+class Google_CommentAuthor extends Model {
   public $url;
   protected $__imageType = 'Google_CommentAuthorImage';
   protected $__imageDataType = '';
@@ -717,7 +722,7 @@ class Google_CommentAuthor extends Google_Model {
   }
 }
 
-class Google_CommentAuthorImage extends Google_Model {
+class Google_CommentAuthorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -727,7 +732,7 @@ class Google_CommentAuthorImage extends Google_Model {
   }
 }
 
-class Google_CommentBlog extends Google_Model {
+class Google_CommentBlog extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -737,7 +742,7 @@ class Google_CommentBlog extends Google_Model {
   }
 }
 
-class Google_CommentInReplyTo extends Google_Model {
+class Google_CommentInReplyTo extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -747,7 +752,7 @@ class Google_CommentInReplyTo extends Google_Model {
   }
 }
 
-class Google_CommentList extends Google_Model {
+class Google_CommentList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Comment';
   protected $__itemsDataType = 'array';
@@ -781,7 +786,7 @@ class Google_CommentList extends Google_Model {
   }
 }
 
-class Google_CommentPost extends Google_Model {
+class Google_CommentPost extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -791,7 +796,7 @@ class Google_CommentPost extends Google_Model {
   }
 }
 
-class Google_Page extends Google_Model {
+class Google_Page extends Model {
   public $content;
   public $kind;
   protected $__authorType = 'Google_PageAuthor';
@@ -868,7 +873,7 @@ class Google_Page extends Google_Model {
   }
 }
 
-class Google_PageAuthor extends Google_Model {
+class Google_PageAuthor extends Model {
   public $url;
   protected $__imageType = 'Google_PageAuthorImage';
   protected $__imageDataType = '';
@@ -901,7 +906,7 @@ class Google_PageAuthor extends Google_Model {
   }
 }
 
-class Google_PageAuthorImage extends Google_Model {
+class Google_PageAuthorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -911,7 +916,7 @@ class Google_PageAuthorImage extends Google_Model {
   }
 }
 
-class Google_PageBlog extends Google_Model {
+class Google_PageBlog extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -921,7 +926,7 @@ class Google_PageBlog extends Google_Model {
   }
 }
 
-class Google_PageList extends Google_Model {
+class Google_PageList extends Model {
   protected $__itemsType = 'Google_Page';
   protected $__itemsDataType = 'array';
   public $items;
@@ -941,7 +946,7 @@ class Google_PageList extends Google_Model {
   }
 }
 
-class Google_Post extends Google_Model {
+class Google_Post extends Model {
   public $content;
   public $kind;
   protected $__authorType = 'Google_PostAuthor';
@@ -1051,7 +1056,7 @@ class Google_Post extends Google_Model {
   }
 }
 
-class Google_PostAuthor extends Google_Model {
+class Google_PostAuthor extends Model {
   public $url;
   protected $__imageType = 'Google_PostAuthorImage';
   protected $__imageDataType = '';
@@ -1084,7 +1089,7 @@ class Google_PostAuthor extends Google_Model {
   }
 }
 
-class Google_PostAuthorImage extends Google_Model {
+class Google_PostAuthorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -1094,7 +1099,7 @@ class Google_PostAuthorImage extends Google_Model {
   }
 }
 
-class Google_PostBlog extends Google_Model {
+class Google_PostBlog extends Model {
   public $id;
   public function setId($id) {
     $this->id = $id;
@@ -1104,7 +1109,7 @@ class Google_PostBlog extends Google_Model {
   }
 }
 
-class Google_PostList extends Google_Model {
+class Google_PostList extends Model {
   public $nextPageToken;
   protected $__itemsType = 'Google_Post';
   protected $__itemsDataType = 'array';
@@ -1138,7 +1143,7 @@ class Google_PostList extends Google_Model {
   }
 }
 
-class Google_PostLocation extends Google_Model {
+class Google_PostLocation extends Model {
   public $lat;
   public $lng;
   public $span;
@@ -1169,7 +1174,7 @@ class Google_PostLocation extends Google_Model {
   }
 }
 
-class Google_PostReplies extends Google_Model {
+class Google_PostReplies extends Model {
   public $totalItems;
   protected $__itemsType = 'Google_Comment';
   protected $__itemsDataType = 'array';
@@ -1196,7 +1201,7 @@ class Google_PostReplies extends Google_Model {
   }
 }
 
-class Google_User extends Google_Model {
+class Google_User extends Model {
   public $about;
   public $displayName;
   public $created;
@@ -1266,7 +1271,7 @@ class Google_User extends Google_Model {
   }
 }
 
-class Google_UserBlogs extends Google_Model {
+class Google_UserBlogs extends Model {
   public $selfLink;
   public function setSelfLink($selfLink) {
     $this->selfLink = $selfLink;
@@ -1276,7 +1281,7 @@ class Google_UserBlogs extends Google_Model {
   }
 }
 
-class Google_UserLocale extends Google_Model {
+class Google_UserLocale extends Model {
   public $country;
   public $variant;
   public $language;

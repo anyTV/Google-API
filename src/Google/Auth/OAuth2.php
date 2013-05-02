@@ -20,10 +20,10 @@ use Google\Auth\AssertionCredentials;
 use Google\Auth;
 use Google\Auth\LoginTicket;
 use Google\Exception\AuthException;
-use Google\Api\Client;
-use Google_HttpRequest;
+use Google\Client;
+use Google\IO\HttpRequest;
 use Google\Auth\PemVerifier;
-use Google_Utils;
+use Google\Utils;
 
 /**
  * Authentication class that deals with the OAuth 2 web-server authentication flow
@@ -102,7 +102,7 @@ class OAuth2 extends Auth
 
         if ($code) {
             // We got here from the redirect from a successful authorization grant, fetch the access token
-            $request = Client::$io->makeRequest(new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), array(
+            $request = Client::$io->makeRequest(new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), array(
                 'code' => $code,
                 'grant_type' => 'authorization_code',
                 'redirect_uri' => $this->redirectUri,
@@ -202,11 +202,11 @@ class OAuth2 extends Auth
 
     /**
      * Include an accessToken in a given apiHttpRequest.
-     * @param Google_HttpRequest $request
-     * @return Google_HttpRequest
+     * @param HttpRequest $request
+     * @return HttpRequest
      * @throws AuthException
      */
-    public function sign(Google_HttpRequest $request)
+    public function sign(HttpRequest $request)
     {
         // add the developer key to the request before signing it
         if ($this->developerKey) {
@@ -279,7 +279,7 @@ class OAuth2 extends Auth
 
     private function refreshTokenRequest($params)
     {
-        $http = new Google_HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), $params);
+        $http = new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), $params);
         $request = Client::$io->makeRequest($http);
 
         $code = $request->getResponseHttpCode();
@@ -314,7 +314,7 @@ class OAuth2 extends Auth
         if (!$token) {
             $token = $this->token['access_token'];
         }
-        $request = new Google_HttpRequest(self::OAUTH2_REVOKE_URI, 'POST', array(), "token=$token");
+        $request = new HttpRequest(self::OAUTH2_REVOKE_URI, 'POST', array(), "token=$token");
         $response = Client::$io->makeRequest($request);
         $code = $response->getResponseHttpCode();
         if ($code == 200) {
@@ -348,7 +348,7 @@ class OAuth2 extends Auth
     private function getFederatedSignOnCerts()
     {
         // This relies on makeRequest caching certificate responses.
-        $request = Client::$io->makeRequest(new Google_HttpRequest(
+        $request = Client::$io->makeRequest(new HttpRequest(
             self::OAUTH2_FEDERATED_SIGNON_CERTS_URL));
         if ($request->getResponseHttpCode() == 200) {
             $certs = json_decode($request->getResponseBody(), true);
@@ -394,16 +394,16 @@ class OAuth2 extends Auth
             throw new AuthException("Wrong number of segments in token: $jwt");
         }
         $signed = $segments[0] . "." . $segments[1];
-        $signature = Google_Utils::urlSafeB64Decode($segments[2]);
+        $signature = Utils::urlSafeB64Decode($segments[2]);
 
         // Parse envelope.
-        $envelope = json_decode(Google_Utils::urlSafeB64Decode($segments[0]), true);
+        $envelope = json_decode(Utils::urlSafeB64Decode($segments[0]), true);
         if (!$envelope) {
             throw new AuthException("Can't parse token envelope: " . $segments[0]);
         }
 
         // Parse token
-        $json_body = Google_Utils::urlSafeB64Decode($segments[1]);
+        $json_body = Utils::urlSafeB64Decode($segments[1]);
         $payload = json_decode($json_body, true);
         if (!$payload) {
             throw new AuthException("Can't parse token payload: " . $segments[1]);

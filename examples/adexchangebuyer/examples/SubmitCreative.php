@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\Creative;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 /**
@@ -57,7 +59,7 @@ class SubmitCreative extends BaseExample {
   public function run() {
     $values = $this->formValues;
 
-    $creative = new Google_Creative();
+    $creative = new Creative();
     $creative->setAccountId($values['account_id']);
     $creative->setAdgroupId($values['ad_group_id']);
     $creative->setBuyerCreativeId($values['buyer_creative_id']);

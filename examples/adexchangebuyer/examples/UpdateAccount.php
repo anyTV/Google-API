@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\Account;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 /**
@@ -47,7 +49,7 @@ class UpdateAccount extends BaseExample {
    */
   public function run() {
     $values = $this->formValues;
-    $account = new Google_Account();
+    $account = new Account();
     $account->setId($values['account_id']);
     $account->setCookieMatchingUrl($values['cookie_matching_url']);
 

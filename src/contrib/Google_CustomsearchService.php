@@ -22,7 +22,12 @@
    *   $cse = $customsearchService->cse;
    *  </code>
    */
-  class Google_CseServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_CseServiceResource extends Resource {
 
 
     /**
@@ -91,14 +96,14 @@
  *
  * @author Google, Inc.
  */
-class Google_CustomsearchService extends Google_Service {
+class Google_CustomsearchService extends Service {
   public $cse;
   /**
    * Constructs the internal representation of the Customsearch service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'customsearch/';
     $this->version = 'v1';
     $this->serviceName = 'customsearch';
@@ -109,7 +114,7 @@ class Google_CustomsearchService extends Google_Service {
   }
 }
 
-class Google_Context extends Google_Model {
+class Google_Context extends Model {
   protected $__facetsType = 'Google_ContextFacets';
   protected $__facetsDataType = 'array';
   public $facets;
@@ -129,7 +134,7 @@ class Google_Context extends Google_Model {
   }
 }
 
-class Google_ContextFacets extends Google_Model {
+class Google_ContextFacets extends Model {
   public $anchor;
   public $label;
   public function setAnchor($anchor) {
@@ -146,7 +151,7 @@ class Google_ContextFacets extends Google_Model {
   }
 }
 
-class Google_Promotion extends Google_Model {
+class Google_Promotion extends Model {
   public $title;
   public $displayLink;
   public $htmlTitle;
@@ -196,7 +201,7 @@ class Google_Promotion extends Google_Model {
   }
 }
 
-class Google_PromotionBodyLines extends Google_Model {
+class Google_PromotionBodyLines extends Model {
   public $url;
   public $htmlTitle;
   public $link;
@@ -227,7 +232,7 @@ class Google_PromotionBodyLines extends Google_Model {
   }
 }
 
-class Google_PromotionImage extends Google_Model {
+class Google_PromotionImage extends Model {
   public $source;
   public $width;
   public $height;
@@ -251,7 +256,7 @@ class Google_PromotionImage extends Google_Model {
   }
 }
 
-class Google_Query extends Google_Model {
+class Google_Query extends Model {
   public $sort;
   public $inputEncoding;
   public $orTerms;
@@ -513,7 +518,7 @@ class Google_Query extends Google_Model {
   }
 }
 
-class Google_Result extends Google_Model {
+class Google_Result extends Model {
   public $snippet;
   public $kind;
   protected $__labelsType = 'Google_ResultLabels';
@@ -626,7 +631,7 @@ class Google_Result extends Google_Model {
   }
 }
 
-class Google_ResultImage extends Google_Model {
+class Google_ResultImage extends Model {
   public $thumbnailWidth;
   public $byteSize;
   public $height;
@@ -678,7 +683,7 @@ class Google_ResultImage extends Google_Model {
   }
 }
 
-class Google_ResultLabels extends Google_Model {
+class Google_ResultLabels extends Model {
   public $displayName;
   public $name;
   public function setDisplayName($displayName) {
@@ -695,7 +700,7 @@ class Google_ResultLabels extends Google_Model {
   }
 }
 
-class Google_Search extends Google_Model {
+class Google_Search extends Model {
   protected $__promotionsType = 'Google_Promotion';
   protected $__promotionsDataType = 'array';
   public $promotions;
@@ -770,7 +775,7 @@ class Google_Search extends Google_Model {
   }
 }
 
-class Google_SearchSearchInformation extends Google_Model {
+class Google_SearchSearchInformation extends Model {
   public $formattedSearchTime;
   public $formattedTotalResults;
   public $totalResults;
@@ -801,7 +806,7 @@ class Google_SearchSearchInformation extends Google_Model {
   }
 }
 
-class Google_SearchSpelling extends Google_Model {
+class Google_SearchSpelling extends Model {
   public $correctedQuery;
   public $htmlCorrectedQuery;
   public function setCorrectedQuery($correctedQuery) {
@@ -818,7 +823,7 @@ class Google_SearchSpelling extends Google_Model {
   }
 }
 
-class Google_SearchUrl extends Google_Model {
+class Google_SearchUrl extends Model {
   public $type;
   public $template;
   public function setType($type) {

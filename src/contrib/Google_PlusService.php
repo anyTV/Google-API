@@ -22,7 +22,12 @@
    *   $activities = $plusService->activities;
    *  </code>
    */
-  class Google_ActivitiesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ActivitiesServiceResource extends Resource {
 
 
     /**
@@ -95,7 +100,7 @@
    *   $comments = $plusService->comments;
    *  </code>
    */
-  class Google_CommentsServiceResource extends Google_ServiceResource {
+  class Google_CommentsServiceResource extends Resource {
 
 
     /**
@@ -146,7 +151,7 @@
    *   $moments = $plusService->moments;
    *  </code>
    */
-  class Google_MomentsServiceResource extends Google_ServiceResource {
+  class Google_MomentsServiceResource extends Resource {
 
 
     /**
@@ -216,7 +221,7 @@
    *   $people = $plusService->people;
    *  </code>
    */
-  class Google_PeopleServiceResource extends Google_ServiceResource {
+  class Google_PeopleServiceResource extends Resource {
 
 
     /**
@@ -318,7 +323,7 @@
  *
  * @author Google, Inc.
  */
-class Google_PlusService extends Google_Service {
+class Google_PlusService extends Service {
   public $activities;
   public $comments;
   public $moments;
@@ -326,9 +331,9 @@ class Google_PlusService extends Google_Service {
   /**
    * Constructs the internal representation of the Plus service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'plus/v1/';
     $this->version = 'v1';
     $this->serviceName = 'plus';
@@ -342,7 +347,7 @@ class Google_PlusService extends Google_Service {
   }
 }
 
-class Google_Acl extends Google_Model {
+class Google_Acl extends Model {
   public $description;
   protected $__itemsType = 'Google_PlusAclentryResource';
   protected $__itemsDataType = 'array';
@@ -369,7 +374,7 @@ class Google_Acl extends Google_Model {
   }
 }
 
-class Google_Activity extends Google_Model {
+class Google_Activity extends Model {
   protected $__accessType = 'Google_Acl';
   protected $__accessDataType = '';
   public $access;
@@ -513,7 +518,7 @@ class Google_Activity extends Google_Model {
   }
 }
 
-class Google_ActivityActor extends Google_Model {
+class Google_ActivityActor extends Model {
   public $displayName;
   public $id;
   protected $__imageType = 'Google_ActivityActorImage';
@@ -555,7 +560,7 @@ class Google_ActivityActor extends Google_Model {
   }
 }
 
-class Google_ActivityActorImage extends Google_Model {
+class Google_ActivityActorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -565,7 +570,7 @@ class Google_ActivityActorImage extends Google_Model {
   }
 }
 
-class Google_ActivityActorName extends Google_Model {
+class Google_ActivityActorName extends Model {
   public $familyName;
   public $givenName;
   public function setFamilyName($familyName) {
@@ -582,7 +587,7 @@ class Google_ActivityActorName extends Google_Model {
   }
 }
 
-class Google_ActivityFeed extends Google_Model {
+class Google_ActivityFeed extends Model {
   public $etag;
   public $id;
   protected $__itemsType = 'Google_Activity';
@@ -651,7 +656,7 @@ class Google_ActivityFeed extends Google_Model {
   }
 }
 
-class Google_ActivityObject extends Google_Model {
+class Google_ActivityObject extends Model {
   protected $__actorType = 'Google_ActivityObjectActor';
   protected $__actorDataType = '';
   public $actor;
@@ -735,7 +740,7 @@ class Google_ActivityObject extends Google_Model {
   }
 }
 
-class Google_ActivityObjectActor extends Google_Model {
+class Google_ActivityObjectActor extends Model {
   public $displayName;
   public $id;
   protected $__imageType = 'Google_ActivityObjectActorImage';
@@ -768,7 +773,7 @@ class Google_ActivityObjectActor extends Google_Model {
   }
 }
 
-class Google_ActivityObjectActorImage extends Google_Model {
+class Google_ActivityObjectActorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -778,7 +783,7 @@ class Google_ActivityObjectActorImage extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachments extends Google_Model {
+class Google_ActivityObjectAttachments extends Model {
   public $content;
   public $displayName;
   protected $__embedType = 'Google_ActivityObjectAttachmentsEmbed';
@@ -853,7 +858,7 @@ class Google_ActivityObjectAttachments extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachmentsEmbed extends Google_Model {
+class Google_ActivityObjectAttachmentsEmbed extends Model {
   public $type;
   public $url;
   public function setType($type) {
@@ -870,7 +875,7 @@ class Google_ActivityObjectAttachmentsEmbed extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachmentsFullImage extends Google_Model {
+class Google_ActivityObjectAttachmentsFullImage extends Model {
   public $height;
   public $type;
   public $url;
@@ -901,7 +906,7 @@ class Google_ActivityObjectAttachmentsFullImage extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachmentsImage extends Google_Model {
+class Google_ActivityObjectAttachmentsImage extends Model {
   public $height;
   public $type;
   public $url;
@@ -932,7 +937,7 @@ class Google_ActivityObjectAttachmentsImage extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachmentsThumbnails extends Google_Model {
+class Google_ActivityObjectAttachmentsThumbnails extends Model {
   public $description;
   protected $__imageType = 'Google_ActivityObjectAttachmentsThumbnailsImage';
   protected $__imageDataType = '';
@@ -958,7 +963,7 @@ class Google_ActivityObjectAttachmentsThumbnails extends Google_Model {
   }
 }
 
-class Google_ActivityObjectAttachmentsThumbnailsImage extends Google_Model {
+class Google_ActivityObjectAttachmentsThumbnailsImage extends Model {
   public $height;
   public $type;
   public $url;
@@ -989,7 +994,7 @@ class Google_ActivityObjectAttachmentsThumbnailsImage extends Google_Model {
   }
 }
 
-class Google_ActivityObjectPlusoners extends Google_Model {
+class Google_ActivityObjectPlusoners extends Model {
   public $selfLink;
   public $totalItems;
   public function setSelfLink($selfLink) {
@@ -1006,7 +1011,7 @@ class Google_ActivityObjectPlusoners extends Google_Model {
   }
 }
 
-class Google_ActivityObjectReplies extends Google_Model {
+class Google_ActivityObjectReplies extends Model {
   public $selfLink;
   public $totalItems;
   public function setSelfLink($selfLink) {
@@ -1023,7 +1028,7 @@ class Google_ActivityObjectReplies extends Google_Model {
   }
 }
 
-class Google_ActivityObjectResharers extends Google_Model {
+class Google_ActivityObjectResharers extends Model {
   public $selfLink;
   public $totalItems;
   public function setSelfLink($selfLink) {
@@ -1040,7 +1045,7 @@ class Google_ActivityObjectResharers extends Google_Model {
   }
 }
 
-class Google_ActivityProvider extends Google_Model {
+class Google_ActivityProvider extends Model {
   public $title;
   public function setTitle($title) {
     $this->title = $title;
@@ -1050,7 +1055,7 @@ class Google_ActivityProvider extends Google_Model {
   }
 }
 
-class Google_Comment extends Google_Model {
+class Google_Comment extends Model {
   protected $__actorType = 'Google_CommentActor';
   protected $__actorDataType = '';
   public $actor;
@@ -1139,7 +1144,7 @@ class Google_Comment extends Google_Model {
   }
 }
 
-class Google_CommentActor extends Google_Model {
+class Google_CommentActor extends Model {
   public $displayName;
   public $id;
   protected $__imageType = 'Google_CommentActorImage';
@@ -1172,7 +1177,7 @@ class Google_CommentActor extends Google_Model {
   }
 }
 
-class Google_CommentActorImage extends Google_Model {
+class Google_CommentActorImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -1182,7 +1187,7 @@ class Google_CommentActorImage extends Google_Model {
   }
 }
 
-class Google_CommentFeed extends Google_Model {
+class Google_CommentFeed extends Model {
   public $etag;
   public $id;
   protected $__itemsType = 'Google_Comment';
@@ -1244,7 +1249,7 @@ class Google_CommentFeed extends Google_Model {
   }
 }
 
-class Google_CommentInReplyTo extends Google_Model {
+class Google_CommentInReplyTo extends Model {
   public $id;
   public $url;
   public function setId($id) {
@@ -1261,7 +1266,7 @@ class Google_CommentInReplyTo extends Google_Model {
   }
 }
 
-class Google_CommentObject extends Google_Model {
+class Google_CommentObject extends Model {
   public $content;
   public $objectType;
   public $originalContent;
@@ -1285,7 +1290,7 @@ class Google_CommentObject extends Google_Model {
   }
 }
 
-class Google_CommentPlusoners extends Google_Model {
+class Google_CommentPlusoners extends Model {
   public $totalItems;
   public function setTotalItems($totalItems) {
     $this->totalItems = $totalItems;
@@ -1295,7 +1300,7 @@ class Google_CommentPlusoners extends Google_Model {
   }
 }
 
-class Google_ItemScope extends Google_Model {
+class Google_ItemScope extends Model {
   protected $__aboutType = 'Google_ItemScope';
   protected $__aboutDataType = '';
   public $about;
@@ -1719,7 +1724,7 @@ class Google_ItemScope extends Google_Model {
   }
 }
 
-class Google_Moment extends Google_Model {
+class Google_Moment extends Model {
   public $id;
   public $kind;
   protected $__resultType = 'Google_ItemScope';
@@ -1768,7 +1773,7 @@ class Google_Moment extends Google_Model {
   }
 }
 
-class Google_MomentsFeed extends Google_Model {
+class Google_MomentsFeed extends Model {
   public $etag;
   protected $__itemsType = 'Google_Moment';
   protected $__itemsDataType = 'array';
@@ -1830,7 +1835,7 @@ class Google_MomentsFeed extends Google_Model {
   }
 }
 
-class Google_PeopleFeed extends Google_Model {
+class Google_PeopleFeed extends Model {
   public $etag;
   protected $__itemsType = 'Google_Person';
   protected $__itemsDataType = 'array';
@@ -1885,7 +1890,7 @@ class Google_PeopleFeed extends Google_Model {
   }
 }
 
-class Google_Person extends Google_Model {
+class Google_Person extends Model {
   public $aboutMe;
   protected $__ageRangeType = 'Google_PersonAgeRange';
   protected $__ageRangeDataType = '';
@@ -2104,7 +2109,7 @@ class Google_Person extends Google_Model {
   }
 }
 
-class Google_PersonAgeRange extends Google_Model {
+class Google_PersonAgeRange extends Model {
   public $max;
   public $min;
   public function setMax($max) {
@@ -2121,7 +2126,7 @@ class Google_PersonAgeRange extends Google_Model {
   }
 }
 
-class Google_PersonCover extends Google_Model {
+class Google_PersonCover extends Model {
   protected $__coverInfoType = 'Google_PersonCoverCoverInfo';
   protected $__coverInfoDataType = '';
   public $coverInfo;
@@ -2149,7 +2154,7 @@ class Google_PersonCover extends Google_Model {
   }
 }
 
-class Google_PersonCoverCoverInfo extends Google_Model {
+class Google_PersonCoverCoverInfo extends Model {
   public $leftImageOffset;
   public $topImageOffset;
   public function setLeftImageOffset($leftImageOffset) {
@@ -2166,7 +2171,7 @@ class Google_PersonCoverCoverInfo extends Google_Model {
   }
 }
 
-class Google_PersonCoverCoverPhoto extends Google_Model {
+class Google_PersonCoverCoverPhoto extends Model {
   public $height;
   public $url;
   public $width;
@@ -2190,7 +2195,7 @@ class Google_PersonCoverCoverPhoto extends Google_Model {
   }
 }
 
-class Google_PersonEmails extends Google_Model {
+class Google_PersonEmails extends Model {
   public $primary;
   public $type;
   public $value;
@@ -2214,7 +2219,7 @@ class Google_PersonEmails extends Google_Model {
   }
 }
 
-class Google_PersonImage extends Google_Model {
+class Google_PersonImage extends Model {
   public $url;
   public function setUrl($url) {
     $this->url = $url;
@@ -2224,7 +2229,7 @@ class Google_PersonImage extends Google_Model {
   }
 }
 
-class Google_PersonName extends Google_Model {
+class Google_PersonName extends Model {
   public $familyName;
   public $formatted;
   public $givenName;
@@ -2269,7 +2274,7 @@ class Google_PersonName extends Google_Model {
   }
 }
 
-class Google_PersonOrganizations extends Google_Model {
+class Google_PersonOrganizations extends Model {
   public $department;
   public $description;
   public $endDate;
@@ -2335,7 +2340,7 @@ class Google_PersonOrganizations extends Google_Model {
   }
 }
 
-class Google_PersonPlacesLived extends Google_Model {
+class Google_PersonPlacesLived extends Model {
   public $primary;
   public $value;
   public function setPrimary($primary) {
@@ -2352,7 +2357,7 @@ class Google_PersonPlacesLived extends Google_Model {
   }
 }
 
-class Google_PersonUrls extends Google_Model {
+class Google_PersonUrls extends Model {
   public $primary;
   public $type;
   public $value;
@@ -2376,7 +2381,7 @@ class Google_PersonUrls extends Google_Model {
   }
 }
 
-class Google_PlusAclentryResource extends Google_Model {
+class Google_PlusAclentryResource extends Model {
   public $displayName;
   public $id;
   public $type;

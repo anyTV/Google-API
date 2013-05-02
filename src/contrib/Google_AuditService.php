@@ -24,7 +24,12 @@
    *   $activities = $auditService->activities;
    *  </code>
    */
-  class Google_ActivitiesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ActivitiesServiceResource extends Resource {
 
 
     /**
@@ -71,14 +76,14 @@
  *
  * @author Google, Inc.
  */
-class Google_AuditService extends Google_Service {
+class Google_AuditService extends Service {
   public $activities;
   /**
    * Constructs the internal representation of the Audit service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'apps/reporting/audit/v1/';
     $this->version = 'v1';
     $this->serviceName = 'audit';
@@ -89,7 +94,7 @@ class Google_AuditService extends Google_Service {
   }
 }
 
-class Google_Activities extends Google_Model {
+class Google_Activities extends Model {
   protected $__itemsType = 'Google_Activity';
   protected $__itemsDataType = 'array';
   public $items;
@@ -116,7 +121,7 @@ class Google_Activities extends Google_Model {
   }
 }
 
-class Google_Activity extends Google_Model {
+class Google_Activity extends Model {
   protected $__actorType = 'Google_ActivityActor';
   protected $__actorDataType = '';
   public $actor;
@@ -168,7 +173,7 @@ class Google_Activity extends Google_Model {
   }
 }
 
-class Google_ActivityActor extends Google_Model {
+class Google_ActivityActor extends Model {
   public $applicationId;
   public $callerType;
   public $email;
@@ -199,7 +204,7 @@ class Google_ActivityActor extends Google_Model {
   }
 }
 
-class Google_ActivityEvents extends Google_Model {
+class Google_ActivityEvents extends Model {
   public $eventType;
   public $name;
   protected $__parametersType = 'Google_ActivityEventsParameters';
@@ -226,7 +231,7 @@ class Google_ActivityEvents extends Google_Model {
   }
 }
 
-class Google_ActivityEventsParameters extends Google_Model {
+class Google_ActivityEventsParameters extends Model {
   public $name;
   public $value;
   public function setName($name) {
@@ -243,7 +248,7 @@ class Google_ActivityEventsParameters extends Google_Model {
   }
 }
 
-class Google_ActivityId extends Google_Model {
+class Google_ActivityId extends Model {
   public $applicationId;
   public $customerId;
   public $time;

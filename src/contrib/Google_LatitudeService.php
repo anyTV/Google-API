@@ -22,7 +22,12 @@
    *   $currentLocation = $latitudeService->currentLocation;
    *  </code>
    */
-  class Google_CurrentLocationServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_CurrentLocationServiceResource extends Resource {
 
 
     /**
@@ -81,7 +86,7 @@
    *   $location = $latitudeService->location;
    *  </code>
    */
-  class Google_LocationServiceResource extends Google_ServiceResource {
+  class Google_LocationServiceResource extends Resource {
 
 
     /**
@@ -169,15 +174,15 @@
  *
  * @author Google, Inc.
  */
-class Google_LatitudeService extends Google_Service {
+class Google_LatitudeService extends Service {
   public $currentLocation;
   public $location;
   /**
    * Constructs the internal representation of the Latitude service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'latitude/v1/';
     $this->version = 'v1';
     $this->serviceName = 'latitude';
@@ -189,7 +194,7 @@ class Google_LatitudeService extends Google_Service {
   }
 }
 
-class Google_Location extends Google_Model {
+class Google_Location extends Model {
   public $kind;
   public $altitude;
   public $longitude;
@@ -262,7 +267,7 @@ class Google_Location extends Google_Model {
   }
 }
 
-class Google_LocationFeed extends Google_Model {
+class Google_LocationFeed extends Model {
   protected $__itemsType = 'Google_Location';
   protected $__itemsDataType = 'array';
   public $items;

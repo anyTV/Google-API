@@ -14,11 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-session_start();
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_TasksService.php';
+use Google\Client;
 
-$client = new Google_Client();
+session_start();
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_TasksService.php';
+
+$client = new Client();
 // Visit https://code.google.com/apis/console to generate your
 // oauth2_client_id, oauth2_client_secret, and to register your oauth2_redirect_uri.
 // $client->setClientId('insert_your_oauth2_client_id');

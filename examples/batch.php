@@ -15,11 +15,12 @@
  * the License.
  */
 
-require_once '../src/Google_Client.php';
-require_once '../src/contrib/Google_PlusService.php';
+use Google\Client;
+use Google\IO\BatchRequest;
+
 session_start();
 
-$client = new Google_Client();
+$client = new Client();
 $client->setApplicationName("Google+ PHP Starter Application");
 $plus = new Google_PlusService($client);
 
@@ -48,7 +49,7 @@ if (isset($_SESSION['token'])) {
 if ($client->getAccessToken()) {
   $client->setUseBatch(true);
  
-  $batch = new Google_BatchRequest();
+  $batch = new BatchRequest();
   $batch->add($plus->people->get('me'), 'key1');
   $batch->add($plus->people->get('me'), 'key2');
   $result = $batch->execute();

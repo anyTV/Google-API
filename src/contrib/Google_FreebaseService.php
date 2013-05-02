@@ -22,7 +22,12 @@
    *   $text = $freebaseService->text;
    *  </code>
    */
-  class Google_TextServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_TextServiceResource extends Resource {
 
 
     /**
@@ -61,14 +66,14 @@
  *
  * @author Google, Inc.
  */
-class Google_FreebaseService extends Google_Service {
+class Google_FreebaseService extends Service {
   public $text;
   /**
    * Constructs the internal representation of the Freebase service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'freebase/v1/';
     $this->version = 'v1';
     $this->serviceName = 'freebase';
@@ -78,7 +83,7 @@ class Google_FreebaseService extends Google_Service {
   }
 }
 
-class Google_ContentserviceGet extends Google_Model {
+class Google_ContentserviceGet extends Model {
   public $result;
   public function setResult($result) {
     $this->result = $result;

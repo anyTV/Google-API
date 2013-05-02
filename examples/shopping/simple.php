@@ -1,8 +1,9 @@
 <?php
-require_once '../../src/Google_Client.php';
-require_once '../../src/contrib/Google_ShoppingService.php';
+use Google\Client;
 
-$client = new Google_Client();
+require_once '../../src/Client.phpire_once '../../src/contrib/Google_ShoppingService.php';
+
+$client = new Client();
 $client->setApplicationName("Google Shopping PHP Starter Application");
 
 // Visit https://code.google.com/apis/console?api=shopping to generate your

@@ -22,7 +22,12 @@
    *   $webResource = $siteVerificationService->webResource;
    *  </code>
    */
-  class Google_WebResourceServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_WebResourceServiceResource extends Resource {
 
 
     /**
@@ -158,14 +163,14 @@
  *
  * @author Google, Inc.
  */
-class Google_SiteVerificationService extends Google_Service {
+class Google_SiteVerificationService extends Service {
   public $webResource;
   /**
    * Constructs the internal representation of the SiteVerification service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'siteVerification/v1/';
     $this->version = 'v1';
     $this->serviceName = 'siteVerification';
@@ -176,7 +181,7 @@ class Google_SiteVerificationService extends Google_Service {
   }
 }
 
-class Google_SiteVerificationWebResourceGettokenRequest extends Google_Model {
+class Google_SiteVerificationWebResourceGettokenRequest extends Model {
   public $verificationMethod;
   protected $__siteType = 'Google_SiteVerificationWebResourceGettokenRequestSite';
   protected $__siteDataType = '';
@@ -195,7 +200,7 @@ class Google_SiteVerificationWebResourceGettokenRequest extends Google_Model {
   }
 }
 
-class Google_SiteVerificationWebResourceGettokenRequestSite extends Google_Model {
+class Google_SiteVerificationWebResourceGettokenRequestSite extends Model {
   public $identifier;
   public $type;
   public function setIdentifier($identifier) {
@@ -212,7 +217,7 @@ class Google_SiteVerificationWebResourceGettokenRequestSite extends Google_Model
   }
 }
 
-class Google_SiteVerificationWebResourceGettokenResponse extends Google_Model {
+class Google_SiteVerificationWebResourceGettokenResponse extends Model {
   public $token;
   public $method;
   public function setToken($token) {
@@ -229,7 +234,7 @@ class Google_SiteVerificationWebResourceGettokenResponse extends Google_Model {
   }
 }
 
-class Google_SiteVerificationWebResourceListResponse extends Google_Model {
+class Google_SiteVerificationWebResourceListResponse extends Model {
   protected $__itemsType = 'Google_SiteVerificationWebResourceResource';
   protected $__itemsDataType = 'array';
   public $items;
@@ -242,7 +247,7 @@ class Google_SiteVerificationWebResourceListResponse extends Google_Model {
   }
 }
 
-class Google_SiteVerificationWebResourceResource extends Google_Model {
+class Google_SiteVerificationWebResourceResource extends Model {
   public $owners;
   public $id;
   protected $__siteType = 'Google_SiteVerificationWebResourceResourceSite';
@@ -269,7 +274,7 @@ class Google_SiteVerificationWebResourceResource extends Google_Model {
   }
 }
 
-class Google_SiteVerificationWebResourceResourceSite extends Google_Model {
+class Google_SiteVerificationWebResourceResourceSite extends Model {
   public $identifier;
   public $type;
   public function setIdentifier($identifier) {

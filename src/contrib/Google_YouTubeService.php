@@ -22,7 +22,12 @@
    *   $activities = $youtubeService->activities;
    *  </code>
    */
-  class Google_ActivitiesServiceResource extends Google_ServiceResource {
+use Google\Client;
+use Google\Service;
+use Google\Model;
+use Google\Service\Resource;
+
+class Google_ActivitiesServiceResource extends Resource {
 
 
     /**
@@ -84,7 +89,7 @@
    *   $channels = $youtubeService->channels;
    *  </code>
    */
-  class Google_ChannelsServiceResource extends Google_ServiceResource {
+  class Google_ChannelsServiceResource extends Resource {
 
 
     /**
@@ -125,7 +130,7 @@
    *   $guideCategories = $youtubeService->guideCategories;
    *  </code>
    */
-  class Google_GuideCategoriesServiceResource extends Google_ServiceResource {
+  class Google_GuideCategoriesServiceResource extends Resource {
 
 
     /**
@@ -160,7 +165,7 @@
    *   $liveBroadcasts = $youtubeService->liveBroadcasts;
    *  </code>
    */
-  class Google_LiveBroadcastsServiceResource extends Google_ServiceResource {
+  class Google_LiveBroadcastsServiceResource extends Resource {
 
 
     /**
@@ -290,7 +295,7 @@
    *   $liveStreams = $youtubeService->liveStreams;
    *  </code>
    */
-  class Google_LiveStreamsServiceResource extends Google_ServiceResource {
+  class Google_LiveStreamsServiceResource extends Resource {
 
 
     /**
@@ -379,7 +384,7 @@
    *   $players = $youtubeService->players;
    *  </code>
    */
-  class Google_PlayersServiceResource extends Google_ServiceResource {
+  class Google_PlayersServiceResource extends Resource {
 
 
     /**
@@ -413,7 +418,7 @@
    *   $playlistItems = $youtubeService->playlistItems;
    *  </code>
    */
-  class Google_PlaylistItemsServiceResource extends Google_ServiceResource {
+  class Google_PlaylistItemsServiceResource extends Resource {
 
 
     /**
@@ -504,7 +509,7 @@
    *   $playlists = $youtubeService->playlists;
    *  </code>
    */
-  class Google_PlaylistsServiceResource extends Google_ServiceResource {
+  class Google_PlaylistsServiceResource extends Resource {
 
 
     /**
@@ -595,7 +600,7 @@
    *   $search = $youtubeService->search;
    *  </code>
    */
-  class Google_SearchServiceResource extends Google_ServiceResource {
+  class Google_SearchServiceResource extends Resource {
 
 
     /**
@@ -655,7 +660,7 @@
    *   $subscriptions = $youtubeService->subscriptions;
    *  </code>
    */
-  class Google_SubscriptionsServiceResource extends Google_ServiceResource {
+  class Google_SubscriptionsServiceResource extends Resource {
 
 
     /**
@@ -725,7 +730,7 @@
    *   $videoCategories = $youtubeService->videoCategories;
    *  </code>
    */
-  class Google_VideoCategoriesServiceResource extends Google_ServiceResource {
+  class Google_VideoCategoriesServiceResource extends Resource {
 
 
     /**
@@ -759,7 +764,7 @@
    *   $videos = $youtubeService->videos;
    *  </code>
    */
-  class Google_VideosServiceResource extends Google_ServiceResource {
+  class Google_VideosServiceResource extends Resource {
 
 
     /**
@@ -864,7 +869,7 @@
  *
  * @author Google, Inc.
  */
-class Google_YouTubeService extends Google_Service {
+class Google_YouTubeService extends Service {
   public $activities;
   public $channels;
   public $guideCategories;
@@ -880,9 +885,9 @@ class Google_YouTubeService extends Google_Service {
   /**
    * Constructs the internal representation of the YouTube service.
    *
-   * @param Google_Client $client
+   * @param Client $client
    */
-  public function __construct(Google_Client $client) {
+  public function __construct(Client $client) {
     $this->servicePath = 'youtube/v3/';
     $this->version = 'v3';
     $this->serviceName = 'youtube';
@@ -906,7 +911,7 @@ class Google_YouTubeService extends Google_Service {
 
 
 
-class Google_AccessPolicy extends Google_Model {
+class Google_AccessPolicy extends Model {
   public $allowed;
   public $exception;
   public function setAllowed($allowed) {
@@ -924,7 +929,7 @@ class Google_AccessPolicy extends Google_Model {
   }
 }
 
-class Google_Activity extends Google_Model {
+class Google_Activity extends Model {
   protected $__contentDetailsType = 'Google_ActivityContentDetails';
   protected $__contentDetailsDataType = '';
   public $contentDetails;
@@ -966,7 +971,7 @@ class Google_Activity extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetails extends Google_Model {
+class Google_ActivityContentDetails extends Model {
   protected $__bulletinType = 'Google_ActivityContentDetailsBulletin';
   protected $__bulletinDataType = '';
   public $bulletin;
@@ -1059,7 +1064,7 @@ class Google_ActivityContentDetails extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsBulletin extends Google_Model {
+class Google_ActivityContentDetailsBulletin extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1071,7 +1076,7 @@ class Google_ActivityContentDetailsBulletin extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsChannelItem extends Google_Model {
+class Google_ActivityContentDetailsChannelItem extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1083,7 +1088,7 @@ class Google_ActivityContentDetailsChannelItem extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsComment extends Google_Model {
+class Google_ActivityContentDetailsComment extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1095,7 +1100,7 @@ class Google_ActivityContentDetailsComment extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsFavorite extends Google_Model {
+class Google_ActivityContentDetailsFavorite extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1107,7 +1112,7 @@ class Google_ActivityContentDetailsFavorite extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsLike extends Google_Model {
+class Google_ActivityContentDetailsLike extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1119,7 +1124,7 @@ class Google_ActivityContentDetailsLike extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsPlaylistItem extends Google_Model {
+class Google_ActivityContentDetailsPlaylistItem extends Model {
   public $playlistId;
   public $playlistItemId;
   protected $__resourceIdType = 'Google_ResourceId';
@@ -1145,7 +1150,7 @@ class Google_ActivityContentDetailsPlaylistItem extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsRecommendation extends Google_Model {
+class Google_ActivityContentDetailsRecommendation extends Model {
   public $reason;
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
@@ -1173,7 +1178,7 @@ class Google_ActivityContentDetailsRecommendation extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsSocial extends Google_Model {
+class Google_ActivityContentDetailsSocial extends Model {
   public $author;
   public $imageUrl;
   public $referenceUrl;
@@ -1213,7 +1218,7 @@ class Google_ActivityContentDetailsSocial extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsSubscription extends Google_Model {
+class Google_ActivityContentDetailsSubscription extends Model {
   protected $__resourceIdType = 'Google_ResourceId';
   protected $__resourceIdDataType = '';
   public $resourceId;
@@ -1225,7 +1230,7 @@ class Google_ActivityContentDetailsSubscription extends Google_Model {
   }
 }
 
-class Google_ActivityContentDetailsUpload extends Google_Model {
+class Google_ActivityContentDetailsUpload extends Model {
   public $videoId;
   public function setVideoId($videoId) {
     $this->videoId = $videoId;
@@ -1235,7 +1240,7 @@ class Google_ActivityContentDetailsUpload extends Google_Model {
   }
 }
 
-class Google_ActivityListResponse extends Google_Model {
+class Google_ActivityListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_Activity';
   protected $__itemsDataType = 'array';
@@ -1285,7 +1290,7 @@ class Google_ActivityListResponse extends Google_Model {
   }
 }
 
-class Google_ActivitySnippet extends Google_Model {
+class Google_ActivitySnippet extends Model {
   public $channelId;
   public $channelTitle;
   public $description;
@@ -1346,7 +1351,7 @@ class Google_ActivitySnippet extends Google_Model {
   }
 }
 
-class Google_Channel extends Google_Model {
+class Google_Channel extends Model {
   protected $__brandingSettingsType = 'Google_ChannelBrandingSettings';
   protected $__brandingSettingsDataType = '';
   public $brandingSettings;
@@ -1424,7 +1429,7 @@ class Google_Channel extends Google_Model {
   }
 }
 
-class Google_ChannelBrandingSettings extends Google_Model {
+class Google_ChannelBrandingSettings extends Model {
   protected $__channelType = 'Google_ChannelSettings';
   protected $__channelDataType = '';
   public $channel;
@@ -1464,7 +1469,7 @@ class Google_ChannelBrandingSettings extends Google_Model {
   }
 }
 
-class Google_ChannelContentDetails extends Google_Model {
+class Google_ChannelContentDetails extends Model {
   public $googlePlusUserId;
   protected $__relatedPlaylistsType = 'Google_ChannelContentDetailsRelatedPlaylists';
   protected $__relatedPlaylistsDataType = '';
@@ -1483,7 +1488,7 @@ class Google_ChannelContentDetails extends Google_Model {
   }
 }
 
-class Google_ChannelContentDetailsRelatedPlaylists extends Google_Model {
+class Google_ChannelContentDetailsRelatedPlaylists extends Model {
   public $favorites;
   public $likes;
   public $uploads;
@@ -1521,7 +1526,7 @@ class Google_ChannelContentDetailsRelatedPlaylists extends Google_Model {
   }
 }
 
-class Google_ChannelListResponse extends Google_Model {
+class Google_ChannelListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_Channel';
   protected $__itemsDataType = 'array';
@@ -1571,7 +1576,7 @@ class Google_ChannelListResponse extends Google_Model {
   }
 }
 
-class Google_ChannelSettings extends Google_Model {
+class Google_ChannelSettings extends Model {
   public $defaultTab;
   public $description;
   public $featuredChannelsTitle;
@@ -1652,7 +1657,7 @@ class Google_ChannelSettings extends Google_Model {
   }
 }
 
-class Google_ChannelSnippet extends Google_Model {
+class Google_ChannelSnippet extends Model {
   public $description;
   public $publishedAt;
   protected $__thumbnailsType = 'Google_ThumbnailDetails';
@@ -1685,7 +1690,7 @@ class Google_ChannelSnippet extends Google_Model {
   }
 }
 
-class Google_ChannelStatistics extends Google_Model {
+class Google_ChannelStatistics extends Model {
   public $commentCount;
   public $subscriberCount;
   public $videoCount;
@@ -1716,7 +1721,7 @@ class Google_ChannelStatistics extends Google_Model {
   }
 }
 
-class Google_ChannelStatus extends Google_Model {
+class Google_ChannelStatus extends Model {
   public $privacyStatus;
   public function setPrivacyStatus($privacyStatus) {
     $this->privacyStatus = $privacyStatus;
@@ -1726,7 +1731,7 @@ class Google_ChannelStatus extends Google_Model {
   }
 }
 
-class Google_ChannelTopicDetails extends Google_Model {
+class Google_ChannelTopicDetails extends Model {
   public $topicIds;
   public function setTopicIds(/* array(Google_string) */ $topicIds) {
     $this->assertIsArray($topicIds, 'Google_string', __METHOD__);
@@ -1737,7 +1742,7 @@ class Google_ChannelTopicDetails extends Google_Model {
   }
 }
 
-class Google_ContentRating extends Google_Model {
+class Google_ContentRating extends Model {
   public $acbRating;
   public $bbfcRating;
   public $cbfcRating;
@@ -1845,7 +1850,7 @@ class Google_ContentRating extends Google_Model {
   }
 }
 
-class Google_FeaturedChannel extends Google_Model {
+class Google_FeaturedChannel extends Model {
   public $channelId;
   protected $__channelSnippetType = 'Google_ChannelSnippet';
   protected $__channelSnippetDataType = '';
@@ -1892,7 +1897,7 @@ class Google_FeaturedChannel extends Google_Model {
   }
 }
 
-class Google_FeaturedVideo extends Google_Model {
+class Google_FeaturedVideo extends Model {
   public $endTimeMs;
   public $featureId;
   public $startTimeMs;
@@ -1932,7 +1937,7 @@ class Google_FeaturedVideo extends Google_Model {
   }
 }
 
-class Google_GeoPoint extends Google_Model {
+class Google_GeoPoint extends Model {
   public $elevation;
   public $latitude;
   public $longitude;
@@ -1956,7 +1961,7 @@ class Google_GeoPoint extends Google_Model {
   }
 }
 
-class Google_GuideCategory extends Google_Model {
+class Google_GuideCategory extends Model {
   public $etag;
   public $id;
   public $kind;
@@ -1989,7 +1994,7 @@ class Google_GuideCategory extends Google_Model {
   }
 }
 
-class Google_GuideCategoryListResponse extends Google_Model {
+class Google_GuideCategoryListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_GuideCategory';
   protected $__itemsDataType = 'array';
@@ -2016,7 +2021,7 @@ class Google_GuideCategoryListResponse extends Google_Model {
   }
 }
 
-class Google_GuideCategorySnippet extends Google_Model {
+class Google_GuideCategorySnippet extends Model {
   public $channelId;
   public $title;
   public function setChannelId($channelId) {
@@ -2033,7 +2038,7 @@ class Google_GuideCategorySnippet extends Google_Model {
   }
 }
 
-class Google_ImageSettings extends Google_Model {
+class Google_ImageSettings extends Model {
   protected $__backgroundImageUrlType = 'Google_LocalizedProperty';
   protected $__backgroundImageUrlDataType = '';
   public $backgroundImageUrl;
@@ -2172,7 +2177,7 @@ class Google_ImageSettings extends Google_Model {
   }
 }
 
-class Google_InvideoFeature extends Google_Model {
+class Google_InvideoFeature extends Model {
   protected $__featuredChannelType = 'Google_FeaturedChannel';
   protected $__featuredChannelDataType = '';
   public $featuredChannel;
@@ -2193,7 +2198,7 @@ class Google_InvideoFeature extends Google_Model {
   }
 }
 
-class Google_LiveBroadcast extends Google_Model {
+class Google_LiveBroadcast extends Model {
   protected $__contentDetailsType = 'Google_LiveBroadcastContentDetails';
   protected $__contentDetailsDataType = '';
   public $contentDetails;
@@ -2253,7 +2258,7 @@ class Google_LiveBroadcast extends Google_Model {
   }
 }
 
-class Google_LiveBroadcastContentDetails extends Google_Model {
+class Google_LiveBroadcastContentDetails extends Model {
   public $boundStreamId;
   protected $__enableArchiveType = 'Google_LiveBroadcastContentDetailsEnableArchive';
   protected $__enableArchiveDataType = '';
@@ -2325,10 +2330,10 @@ class Google_LiveBroadcastContentDetails extends Google_Model {
   }
 }
 
-class Google_LiveBroadcastContentDetailsEnableArchive extends Google_Model {
+class Google_LiveBroadcastContentDetailsEnableArchive extends Model {
 }
 
-class Google_LiveBroadcastContentDetailsMonitorStream extends Google_Model {
+class Google_LiveBroadcastContentDetailsMonitorStream extends Model {
   public $broadcastStreamDelayMs;
   public $embedHtml;
   public $enableMonitorStream;
@@ -2352,10 +2357,10 @@ class Google_LiveBroadcastContentDetailsMonitorStream extends Google_Model {
   }
 }
 
-class Google_LiveBroadcastContentDetailsStartWithSlateCuepoint extends Google_Model {
+class Google_LiveBroadcastContentDetailsStartWithSlateCuepoint extends Model {
 }
 
-class Google_LiveBroadcastList extends Google_Model {
+class Google_LiveBroadcastList extends Model {
   public $etag;
   protected $__itemsType = 'Google_LiveBroadcast';
   protected $__itemsDataType = 'array';
@@ -2405,10 +2410,10 @@ class Google_LiveBroadcastList extends Google_Model {
   }
 }
 
-class Google_LiveBroadcastSlateSettings extends Google_Model {
+class Google_LiveBroadcastSlateSettings extends Model {
 }
 
-class Google_LiveBroadcastSnippet extends Google_Model {
+class Google_LiveBroadcastSnippet extends Model {
   public $actualEndTime;
   public $actualStartTime;
   public $channelId;
@@ -2476,7 +2481,7 @@ class Google_LiveBroadcastSnippet extends Google_Model {
   }
 }
 
-class Google_LiveBroadcastStatus extends Google_Model {
+class Google_LiveBroadcastStatus extends Model {
   public $lifeCycleStatus;
   public $privacyStatus;
   public function setLifeCycleStatus($lifeCycleStatus) {
@@ -2493,7 +2498,7 @@ class Google_LiveBroadcastStatus extends Google_Model {
   }
 }
 
-class Google_LiveStream extends Google_Model {
+class Google_LiveStream extends Model {
   protected $__cdnType = 'Google_LiveStreamCdn';
   protected $__cdnDataType = '';
   public $cdn;
@@ -2544,7 +2549,7 @@ class Google_LiveStream extends Google_Model {
   }
 }
 
-class Google_LiveStreamCdn extends Google_Model {
+class Google_LiveStreamCdn extends Model {
   public $format;
   protected $__ingestionInfoType = 'Google_LiveStreamCdnIngestionInfo';
   protected $__ingestionInfoDataType = '';
@@ -2570,7 +2575,7 @@ class Google_LiveStreamCdn extends Google_Model {
   }
 }
 
-class Google_LiveStreamCdnIngestionInfo extends Google_Model {
+class Google_LiveStreamCdnIngestionInfo extends Model {
   public $backupIngestionAddress;
   public $ingestionAddress;
   public $streamName;
@@ -2594,7 +2599,7 @@ class Google_LiveStreamCdnIngestionInfo extends Google_Model {
   }
 }
 
-class Google_LiveStreamList extends Google_Model {
+class Google_LiveStreamList extends Model {
   public $etag;
   protected $__itemsType = 'Google_LiveStream';
   protected $__itemsDataType = 'array';
@@ -2644,7 +2649,7 @@ class Google_LiveStreamList extends Google_Model {
   }
 }
 
-class Google_LiveStreamSnippet extends Google_Model {
+class Google_LiveStreamSnippet extends Model {
   public $channelId;
   public $description;
   public $publishedAt;
@@ -2675,7 +2680,7 @@ class Google_LiveStreamSnippet extends Google_Model {
   }
 }
 
-class Google_LiveStreamStatus extends Google_Model {
+class Google_LiveStreamStatus extends Model {
   public $streamStatus;
   public function setStreamStatus($streamStatus) {
     $this->streamStatus = $streamStatus;
@@ -2685,7 +2690,7 @@ class Google_LiveStreamStatus extends Google_Model {
   }
 }
 
-class Google_LocalizedProperty extends Google_Model {
+class Google_LocalizedProperty extends Model {
   public $default;
   protected $__localizedType = 'Google_LocalizedString';
   protected $__localizedDataType = 'array';
@@ -2705,7 +2710,7 @@ class Google_LocalizedProperty extends Google_Model {
   }
 }
 
-class Google_LocalizedString extends Google_Model {
+class Google_LocalizedString extends Model {
   public $language;
   public $value;
   public function setLanguage($language) {
@@ -2722,7 +2727,7 @@ class Google_LocalizedString extends Google_Model {
   }
 }
 
-class Google_PageInfo extends Google_Model {
+class Google_PageInfo extends Model {
   public $resultsPerPage;
   public $totalResults;
   public function setResultsPerPage($resultsPerPage) {
@@ -2739,7 +2744,7 @@ class Google_PageInfo extends Google_Model {
   }
 }
 
-class Google_Player extends Google_Model {
+class Google_Player extends Model {
   protected $__adsPlaylistType = 'Google_PlayerAdsPlaylist';
   protected $__adsPlaylistDataType = '';
   public $adsPlaylist;
@@ -2792,7 +2797,7 @@ class Google_Player extends Google_Model {
   }
 }
 
-class Google_PlayerAdsPlaylist extends Google_Model {
+class Google_PlayerAdsPlaylist extends Model {
   public $vmap_xml;
   public function setVmap_xml($vmap_xml) {
     $this->vmap_xml = $vmap_xml;
@@ -2802,7 +2807,7 @@ class Google_PlayerAdsPlaylist extends Google_Model {
   }
 }
 
-class Google_PlayerListResponse extends Google_Model {
+class Google_PlayerListResponse extends Model {
   public $etag;
   public $kind;
   protected $__playersType = 'Google_Player';
@@ -2829,7 +2834,7 @@ class Google_PlayerListResponse extends Google_Model {
   }
 }
 
-class Google_PlayerRestrictionDetails extends Google_Model {
+class Google_PlayerRestrictionDetails extends Model {
   public $reason;
   public $restricted;
   public $restriction;
@@ -2853,7 +2858,7 @@ class Google_PlayerRestrictionDetails extends Google_Model {
   }
 }
 
-class Google_PlayerVideoUrl extends Google_Model {
+class Google_PlayerVideoUrl extends Model {
   public $itag;
   public $url;
   public function setItag($itag) {
@@ -2870,7 +2875,7 @@ class Google_PlayerVideoUrl extends Google_Model {
   }
 }
 
-class Google_PlayerVideoUrls extends Google_Model {
+class Google_PlayerVideoUrls extends Model {
   protected $__restrictionType = 'Google_PlayerRestrictionDetails';
   protected $__restrictionDataType = '';
   public $restriction;
@@ -2892,7 +2897,7 @@ class Google_PlayerVideoUrls extends Google_Model {
   }
 }
 
-class Google_Playlist extends Google_Model {
+class Google_Playlist extends Model {
   protected $__contentDetailsType = 'Google_PlaylistContentDetails';
   protected $__contentDetailsDataType = '';
   public $contentDetails;
@@ -2952,7 +2957,7 @@ class Google_Playlist extends Google_Model {
   }
 }
 
-class Google_PlaylistContentDetails extends Google_Model {
+class Google_PlaylistContentDetails extends Model {
   public $itemCount;
   public function setItemCount($itemCount) {
     $this->itemCount = $itemCount;
@@ -2962,7 +2967,7 @@ class Google_PlaylistContentDetails extends Google_Model {
   }
 }
 
-class Google_PlaylistItem extends Google_Model {
+class Google_PlaylistItem extends Model {
   protected $__contentDetailsType = 'Google_PlaylistItemContentDetails';
   protected $__contentDetailsDataType = '';
   public $contentDetails;
@@ -3013,7 +3018,7 @@ class Google_PlaylistItem extends Google_Model {
   }
 }
 
-class Google_PlaylistItemContentDetails extends Google_Model {
+class Google_PlaylistItemContentDetails extends Model {
   public $endAt;
   public $note;
   public $startAt;
@@ -3044,7 +3049,7 @@ class Google_PlaylistItemContentDetails extends Google_Model {
   }
 }
 
-class Google_PlaylistItemListResponse extends Google_Model {
+class Google_PlaylistItemListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_PlaylistItem';
   protected $__itemsDataType = 'array';
@@ -3094,7 +3099,7 @@ class Google_PlaylistItemListResponse extends Google_Model {
   }
 }
 
-class Google_PlaylistItemSnippet extends Google_Model {
+class Google_PlaylistItemSnippet extends Model {
   public $channelId;
   public $description;
   public $playlistId;
@@ -3157,7 +3162,7 @@ class Google_PlaylistItemSnippet extends Google_Model {
   }
 }
 
-class Google_PlaylistItemStatus extends Google_Model {
+class Google_PlaylistItemStatus extends Model {
   public $privacyStatus;
   public function setPrivacyStatus($privacyStatus) {
     $this->privacyStatus = $privacyStatus;
@@ -3167,7 +3172,7 @@ class Google_PlaylistItemStatus extends Google_Model {
   }
 }
 
-class Google_PlaylistListResponse extends Google_Model {
+class Google_PlaylistListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_Playlist';
   protected $__itemsDataType = 'array';
@@ -3217,7 +3222,7 @@ class Google_PlaylistListResponse extends Google_Model {
   }
 }
 
-class Google_PlaylistPlayer extends Google_Model {
+class Google_PlaylistPlayer extends Model {
   public $embedHtml;
   public function setEmbedHtml($embedHtml) {
     $this->embedHtml = $embedHtml;
@@ -3227,7 +3232,7 @@ class Google_PlaylistPlayer extends Google_Model {
   }
 }
 
-class Google_PlaylistSnippet extends Google_Model {
+class Google_PlaylistSnippet extends Model {
   public $channelId;
   public $description;
   public $publishedAt;
@@ -3267,7 +3272,7 @@ class Google_PlaylistSnippet extends Google_Model {
   }
 }
 
-class Google_PlaylistStatus extends Google_Model {
+class Google_PlaylistStatus extends Model {
   public $privacyStatus;
   public function setPrivacyStatus($privacyStatus) {
     $this->privacyStatus = $privacyStatus;
@@ -3277,7 +3282,7 @@ class Google_PlaylistStatus extends Google_Model {
   }
 }
 
-class Google_PropertyValue extends Google_Model {
+class Google_PropertyValue extends Model {
   public $property;
   public $value;
   public function setProperty($property) {
@@ -3294,7 +3299,7 @@ class Google_PropertyValue extends Google_Model {
   }
 }
 
-class Google_ResourceId extends Google_Model {
+class Google_ResourceId extends Model {
   public $channelId;
   public $kind;
   public $playlistId;
@@ -3325,7 +3330,7 @@ class Google_ResourceId extends Google_Model {
   }
 }
 
-class Google_SearchListResponse extends Google_Model {
+class Google_SearchListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_SearchResult';
   protected $__itemsDataType = 'array';
@@ -3375,7 +3380,7 @@ class Google_SearchListResponse extends Google_Model {
   }
 }
 
-class Google_SearchResult extends Google_Model {
+class Google_SearchResult extends Model {
   public $etag;
   protected $__idType = 'Google_ResourceId';
   protected $__idDataType = '';
@@ -3410,7 +3415,7 @@ class Google_SearchResult extends Google_Model {
   }
 }
 
-class Google_SearchResultSnippet extends Google_Model {
+class Google_SearchResultSnippet extends Model {
   public $channelId;
   public $channelTitle;
   public $description;
@@ -3457,7 +3462,7 @@ class Google_SearchResultSnippet extends Google_Model {
   }
 }
 
-class Google_Subscription extends Google_Model {
+class Google_Subscription extends Model {
   protected $__contentDetailsType = 'Google_SubscriptionContentDetails';
   protected $__contentDetailsDataType = '';
   public $contentDetails;
@@ -3499,7 +3504,7 @@ class Google_Subscription extends Google_Model {
   }
 }
 
-class Google_SubscriptionContentDetails extends Google_Model {
+class Google_SubscriptionContentDetails extends Model {
   public $newItemCount;
   public $totalItemCount;
   public function setNewItemCount($newItemCount) {
@@ -3516,7 +3521,7 @@ class Google_SubscriptionContentDetails extends Google_Model {
   }
 }
 
-class Google_SubscriptionListResponse extends Google_Model {
+class Google_SubscriptionListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_Subscription';
   protected $__itemsDataType = 'array';
@@ -3566,7 +3571,7 @@ class Google_SubscriptionListResponse extends Google_Model {
   }
 }
 
-class Google_SubscriptionSnippet extends Google_Model {
+class Google_SubscriptionSnippet extends Model {
   public $channelId;
   public $description;
   public $publishedAt;
@@ -3615,7 +3620,7 @@ class Google_SubscriptionSnippet extends Google_Model {
   }
 }
 
-class Google_Thumbnail extends Google_Model {
+class Google_Thumbnail extends Model {
   public $height;
   public $url;
   public $width;
@@ -3639,7 +3644,7 @@ class Google_Thumbnail extends Google_Model {
   }
 }
 
-class Google_ThumbnailDetails extends Google_Model {
+class Google_ThumbnailDetails extends Model {
   protected $__defaultType = 'Google_Thumbnail';
   protected $__defaultDataType = '';
   public $default;
@@ -3687,7 +3692,7 @@ class Google_ThumbnailDetails extends Google_Model {
   }
 }
 
-class Google_Video extends Google_Model {
+class Google_Video extends Model {
   protected $__ageGatingDetailsType = 'Google_VideoAgeGating';
   protected $__ageGatingDetailsDataType = '';
   public $ageGatingDetails;
@@ -3828,7 +3833,7 @@ class Google_Video extends Google_Model {
   }
 }
 
-class Google_VideoAgeGating extends Google_Model {
+class Google_VideoAgeGating extends Model {
   public $alcoholContent;
   public $restricted;
   public $videoGameRating;
@@ -3852,7 +3857,7 @@ class Google_VideoAgeGating extends Google_Model {
   }
 }
 
-class Google_VideoCategory extends Google_Model {
+class Google_VideoCategory extends Model {
   public $etag;
   public $id;
   public $kind;
@@ -3885,7 +3890,7 @@ class Google_VideoCategory extends Google_Model {
   }
 }
 
-class Google_VideoCategoryListResponse extends Google_Model {
+class Google_VideoCategoryListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_VideoCategory';
   protected $__itemsDataType = 'array';
@@ -3912,7 +3917,7 @@ class Google_VideoCategoryListResponse extends Google_Model {
   }
 }
 
-class Google_VideoCategorySnippet extends Google_Model {
+class Google_VideoCategorySnippet extends Model {
   public $channelId;
   public $title;
   public function setChannelId($channelId) {
@@ -3929,7 +3934,7 @@ class Google_VideoCategorySnippet extends Google_Model {
   }
 }
 
-class Google_VideoContentDetails extends Google_Model {
+class Google_VideoContentDetails extends Model {
   public $caption;
   protected $__contentRatingType = 'Google_ContentRating';
   protected $__contentRatingDataType = '';
@@ -3994,7 +3999,7 @@ class Google_VideoContentDetails extends Google_Model {
   }
 }
 
-class Google_VideoContentDetailsRegionRestriction extends Google_Model {
+class Google_VideoContentDetailsRegionRestriction extends Model {
   public $allowed;
   public $blocked;
   public function setAllowed(/* array(Google_string) */ $allowed) {
@@ -4013,7 +4018,7 @@ class Google_VideoContentDetailsRegionRestriction extends Google_Model {
   }
 }
 
-class Google_VideoFileDetails extends Google_Model {
+class Google_VideoFileDetails extends Model {
   protected $__audioStreamsType = 'Google_VideoFileDetailsAudioStream';
   protected $__audioStreamsDataType = 'array';
   public $audioStreams;
@@ -4094,7 +4099,7 @@ class Google_VideoFileDetails extends Google_Model {
   }
 }
 
-class Google_VideoFileDetailsAudioStream extends Google_Model {
+class Google_VideoFileDetailsAudioStream extends Model {
   public $bitrateBps;
   public $channelCount;
   public $codec;
@@ -4125,7 +4130,7 @@ class Google_VideoFileDetailsAudioStream extends Google_Model {
   }
 }
 
-class Google_VideoFileDetailsVideoStream extends Google_Model {
+class Google_VideoFileDetailsVideoStream extends Model {
   public $aspectRatio;
   public $bitrateBps;
   public $codec;
@@ -4184,7 +4189,7 @@ class Google_VideoFileDetailsVideoStream extends Google_Model {
   }
 }
 
-class Google_VideoListResponse extends Google_Model {
+class Google_VideoListResponse extends Model {
   public $etag;
   protected $__itemsType = 'Google_Video';
   protected $__itemsDataType = 'array';
@@ -4211,7 +4216,7 @@ class Google_VideoListResponse extends Google_Model {
   }
 }
 
-class Google_VideoMonetizationDetails extends Google_Model {
+class Google_VideoMonetizationDetails extends Model {
   protected $__accessType = 'Google_AccessPolicy';
   protected $__accessDataType = '';
   public $access;
@@ -4223,7 +4228,7 @@ class Google_VideoMonetizationDetails extends Google_Model {
   }
 }
 
-class Google_VideoPlayer extends Google_Model {
+class Google_VideoPlayer extends Model {
   public $embedHtml;
   public function setEmbedHtml($embedHtml) {
     $this->embedHtml = $embedHtml;
@@ -4233,7 +4238,7 @@ class Google_VideoPlayer extends Google_Model {
   }
 }
 
-class Google_VideoProcessingDetails extends Google_Model {
+class Google_VideoProcessingDetails extends Model {
   public $editorSuggestionsAvailability;
   public $fileDetailsAvailability;
   public $processingFailureReason;
@@ -4294,7 +4299,7 @@ class Google_VideoProcessingDetails extends Google_Model {
   }
 }
 
-class Google_VideoProcessingDetailsProcessingProgress extends Google_Model {
+class Google_VideoProcessingDetailsProcessingProgress extends Model {
   public $partsProcessed;
   public $partsTotal;
   public $timeLeftMs;
@@ -4318,7 +4323,7 @@ class Google_VideoProcessingDetailsProcessingProgress extends Google_Model {
   }
 }
 
-class Google_VideoProjectDetails extends Google_Model {
+class Google_VideoProjectDetails extends Model {
   public $tags;
   public function setTags(/* array(Google_string) */ $tags) {
     $this->assertIsArray($tags, 'Google_string', __METHOD__);
@@ -4329,7 +4334,7 @@ class Google_VideoProjectDetails extends Google_Model {
   }
 }
 
-class Google_VideoRecordingDetails extends Google_Model {
+class Google_VideoRecordingDetails extends Model {
   protected $__locationType = 'Google_GeoPoint';
   protected $__locationDataType = '';
   public $location;
@@ -4355,7 +4360,7 @@ class Google_VideoRecordingDetails extends Google_Model {
   }
 }
 
-class Google_VideoSnippet extends Google_Model {
+class Google_VideoSnippet extends Model {
   public $categoryId;
   public $channelId;
   public $channelTitle;
@@ -4417,7 +4422,7 @@ class Google_VideoSnippet extends Google_Model {
   }
 }
 
-class Google_VideoStatistics extends Google_Model {
+class Google_VideoStatistics extends Model {
   public $commentCount;
   public $dislikeCount;
   public $favoriteCount;
@@ -4455,7 +4460,7 @@ class Google_VideoStatistics extends Google_Model {
   }
 }
 
-class Google_VideoStatus extends Google_Model {
+class Google_VideoStatus extends Model {
   public $embeddable;
   public $failureReason;
   public $license;
@@ -4507,7 +4512,7 @@ class Google_VideoStatus extends Google_Model {
   }
 }
 
-class Google_VideoSuggestions extends Google_Model {
+class Google_VideoSuggestions extends Model {
   public $editorSuggestions;
   public $processingErrors;
   public $processingHints;
@@ -4552,7 +4557,7 @@ class Google_VideoSuggestions extends Google_Model {
   }
 }
 
-class Google_VideoSuggestionsTagSuggestion extends Google_Model {
+class Google_VideoSuggestionsTagSuggestion extends Model {
   public $categoryRestricts;
   public $tag;
   public function setCategoryRestricts(/* array(Google_string) */ $categoryRestricts) {
@@ -4570,7 +4575,7 @@ class Google_VideoSuggestionsTagSuggestion extends Google_Model {
   }
 }
 
-class Google_VideoTopicDetails extends Google_Model {
+class Google_VideoTopicDetails extends Model {
   public $topicIds;
   public function setTopicIds(/* array(Google_string) */ $topicIds) {
     $this->assertIsArray($topicIds, 'Google_string', __METHOD__);
@@ -4581,7 +4586,7 @@ class Google_VideoTopicDetails extends Google_Model {
   }
 }
 
-class Google_WatchSettings extends Google_Model {
+class Google_WatchSettings extends Model {
   public $backgroundColor;
   public $featuredPlaylistId;
   public $textColor;

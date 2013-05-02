@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\AdUnit;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 // ID of the ad unit to be updated.
@@ -37,7 +39,7 @@ class UpdateAdUnitOnPublisher extends BaseExample {
     $adClientId = PUBLISHER_AD_CLIENT_ID;
     $adUnitId = PUBLISHER_AD_UNIT_ID;
 
-    $adUnit = new Google_AdUnit();
+    $adUnit = new AdUnit();
     $contentAdsSettings = new Google_AdUnitContentAdsSettings();
     $customStyle = new Google_AdStyle();
     $colors = new Google_AdStyleColors();

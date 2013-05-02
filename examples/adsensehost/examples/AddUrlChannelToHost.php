@@ -16,6 +16,8 @@
  */
 
 // Require the base class.
+use Google\Model\UrlChannel;
+
 require_once __DIR__ . "/../BaseExample.php";
 
 /**
@@ -30,7 +32,7 @@ class AddUrlChannelToHost extends BaseExample {
   public function render() {
     $adClientId = HOST_AD_CLIENT_ID;
 
-    $urlChannel = new Google_UrlChannel();
+    $urlChannel = new UrlChannel();
     $urlChannel->setUrlPattern(sprintf('www.example.com/%s',
       $this->getUniqueName()));
 
