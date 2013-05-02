@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-global $apiConfig;
 $apiConfig = array(
     // True if objects should be returned by the service classes.
     // False if associative arrays should be returned (default behavior).
