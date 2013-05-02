@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 namespace Google\Api;
+use Google;
 
 /**
  * The Google API Client
@@ -27,19 +28,19 @@ namespace Google\Api;
 class Client {
   /**
    * @static
-   * @var Google_Auth $auth
+   * @var Google\Auth $auth
    */
   static $auth;
 
   /**
    * @static
-   * @var Google_IO $io
+   * @var Google\IO $io
    */
   static $io;
 
   /**
    * @static
-   * @var Google_Cache $cache
+   * @var Google\Cache $cache
    */
   static $cache;
 
@@ -80,7 +81,7 @@ class Client {
   public function addService($service, $version = false) {
     global $apiConfig;
     if ($this->authenticated) {
-      throw new Google_Exception('Cant add services after having authenticated');
+      throw new Google\Exception('Cant add services after having authenticated');
     }
     $this->services[$service] = array();
     if (isset($apiConfig['services'][$service])) {
@@ -126,7 +127,7 @@ class Client {
 
   /**
    * Set the OAuth 2.0 access token using the string that resulted from calling authenticate()
-   * or Google_Client#getAccessToken().
+   * or Google\Api\Client#getAccessToken().
    * @param string $accessToken JSON encoded string containing in the following format:
    * {"access_token":"TOKEN", "refresh_token":"TOKEN", "token_type":"Bearer",
    *  "expires_in":3600, "id_token":"TOKEN", "created":1320790426}
@@ -282,7 +283,7 @@ class Client {
   /**
    * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
    * token, if a token isn't provided.
-   * @throws Google_AuthException
+   * @throws Google\Exception\AuthException
    * @param string|null $token The token (access token or a refresh token) that should be revoked.
    * @return boolean Returns True if the revocation was successful, otherwise False.
    */
@@ -293,9 +294,9 @@ class Client {
   /**
    * Verify an id_token. This method will verify the current id_token, if one
    * isn't provided.
-   * @throws Google_AuthException
+   * @throws Google\Exception\AuthException
    * @param string|null $token The token (id_token) that should be verified.
-   * @return Google_LoginTicket Returns an apiLoginTicket if the verification was
+   * @return Google\Auth\LoginTicket Returns an apiLoginTicket if the verification was
    * successful.
    */
   public function verifyIdToken($token = null) {
@@ -303,7 +304,7 @@ class Client {
   }
 
   /**
-   * @param Google_AssertionCredentials $creds
+   * @param Google\Auth\AssertionCredentials $creds
    * @return void
    */
   public function setAssertionCredentials(Google_AssertionCredentials $creds) {
@@ -354,24 +355,24 @@ class Client {
 
   /**
    * @static
-   * @return Google_Auth the implementation of apiAuth.
+   * @return Google\Auth the implementation of apiAuth.
    */
   public static function getAuth() {
-    return Google_Client::$auth;
+    return static::$auth;
   }
 
   /**
    * @static
-   * @return Google_IO the implementation of apiIo.
+   * @return Google\IO the implementation of apiIo.
    */
   public static function getIo() {
-    return Google_Client::$io;
+    return static::$io;
   }
 
   /**
-   * @return Google_Cache the implementation of apiCache.
+   * @return Google\Cache the implementation of apiCache.
    */
   public function getCache() {
-    return Google_Client::$cache;
+    return static::$cache;
   }
 }
